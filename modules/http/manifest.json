@@ -1,0 +1,7 @@
+{
+  "slug": "http",
+  "name": "HTTP",
+  "description": "Acciones HTTP (requests) y utilidades.",
+  "version": "1.0.0",
+  "requires": []
+}

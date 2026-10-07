@@ -1,0 +1,7 @@
+{
+  "slug": "wordpress",
+  "name": "WordPress",
+  "description": "Triggers y acciones nativas de WordPress.",
+  "version": "1.0.0",
+  "requires": []
+}

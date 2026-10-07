@@ -1,0 +1,7 @@
+{
+  "slug": "slack_webhook",
+  "name": "Slack Webhook",
+  "description": "Enviar mensajes a Slack mediante Webhook.",
+  "version": "1.0.0",
+  "requires": []
+}

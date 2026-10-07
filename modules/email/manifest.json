@@ -1,0 +1,7 @@
+{
+  "slug": "email",
+  "name": "Email",
+  "description": "Enviar emails (wp_mail) y plantillas simples.",
+  "version": "1.0.0",
+  "requires": []
+}
