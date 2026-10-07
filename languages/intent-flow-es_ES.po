@@ -1,0 +1,263 @@
+# Intent Flow — WordPress Automation
+# Copyright (C) 2026 Álvaro Martínez — adaptatuweb.com
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Intent Flow 0.9.4.2.33\n"
+"Report-Msgid-Bugs-To: proyectos@adaptatuweb.com\n"
+"POT-Creation-Date: 2026-07-08\n"
+"PO-Revision-Date: 2026-07-08\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: intent-flow\n"
+
+msgid "Loading…"
+msgstr "Cargando…"
+
+msgid "Saving…"
+msgstr "Guardando…"
+
+msgid "Saved"
+msgstr "Guardado"
+
+msgid "Deleting…"
+msgstr "Eliminando…"
+
+msgid "Deleted"
+msgstr "Eliminado"
+
+msgid "Updating…"
+msgstr "Actualizando…"
+
+msgid "Error:"
+msgstr "Error:"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Export"
+msgstr "Exportar"
+
+msgid "Import"
+msgstr "Importar"
+
+msgid "Reload"
+msgstr "Recargar"
+
+msgid "Reload list"
+msgstr "Recargar lista"
+
+msgid "Use"
+msgstr "Usar"
+
+msgid "Test"
+msgstr "Probar"
+
+msgid "Run"
+msgstr "Ejecutar"
+
+msgid "Add"
+msgstr "Añadir"
+
+msgid "Back to Dashboard"
+msgstr "Volver al Dashboard"
+
+msgid "Version"
+msgstr "Versión"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Date"
+msgstr "Fecha"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Description"
+msgstr "Descripción"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Source"
+msgstr "Fuente"
+
+msgid "Detail"
+msgstr "Detalle"
+
+msgid "Active"
+msgstr "Activa"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "Interval"
+msgstr "Intervalo"
+
+msgid "Payload"
+msgstr "Payload"
+
+msgid "Trigger"
+msgstr "Trigger"
+
+msgid "Action"
+msgstr "Acción"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "Reason"
+msgstr "Razón"
+
+msgid "Limit"
+msgstr "Límite"
+
+msgid "Secret"
+msgstr "Secret"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Content"
+msgstr "Contenido"
+
+msgid "Module"
+msgstr "Módulo"
+
+msgid "Repeat"
+msgstr "Repetir"
+
+msgid "JSON"
+msgstr "JSON"
+
+msgid "Form"
+msgstr "Formulario"
+
+msgid "Config"
+msgstr "Config"
+
+msgid "User"
+msgstr "Usuario"
+
+msgid "New flow"
+msgstr "Nuevo flow"
+
+msgid "Save Flow"
+msgstr "Guardar Flow"
+
+msgid "Run flow"
+msgstr "Ejecutar flow"
+
+msgid "Run test"
+msgstr "Run test"
+
+msgid "Create flow"
+msgstr "Crear flow"
+
+msgid "Flow name"
+msgstr "Nombre del flow"
+
+msgid "Search flows…"
+msgstr "Buscar flows…"
+
+msgid "No flows yet."
+msgstr "No hay flows todavía."
+
+msgid "Visual mode"
+msgstr "Modo visual"
+
+msgid "Add action"
+msgstr "Añadir acción"
+
+msgid "Create draft"
+msgstr "Crear borrador"
+
+msgid "Publish"
+msgstr "Publicar"
+
+msgid "Clear"
+msgstr "Limpiar"
+
+msgid "No rules yet. Create the first one above 👆"
+msgstr "Aún no hay reglas. Crea la primera arriba 👆"
+
+msgid "New rule"
+msgstr "Nueva regla"
+
+msgid "Active rules"
+msgstr "Reglas activas"
+
+msgid "Save rule"
+msgstr "Guardar regla"
+
+msgid "No jobs yet."
+msgstr "No hay jobs aún."
+
+msgid "Create job"
+msgstr "Crear job"
+
+msgid "Connections"
+msgstr "Connections"
+
+msgid "New connection"
+msgstr "Nueva connection"
+
+msgid "No connections yet. Click \"New connection\"."
+msgstr "No hay connections aún. Pulsa \"Nueva connection\"."
+
+msgid "Integrations (Modules)"
+msgstr "Integrations (Modules)"
+
+msgid "Deactivate"
+msgstr "Desactivar"
+
+msgid "Activate"
+msgstr "Activar"
+
+msgid "Server audit log"
+msgstr "Auditoría del servidor"
+
+msgid "Clear audit"
+msgstr "Borrar auditoría"
+
+msgid "Clear executions"
+msgstr "Borrar ejecuciones"
+
+msgid "No executions yet."
+msgstr "Sin ejecuciones todavía."
+
+msgid "No events yet."
+msgstr "Sin eventos todavía."
+
+msgid "Dry-run mode (simulation)"
+msgstr "Modo dry-run (simulación)"
+
+msgid "Actions are not really executed. Ideal for testing."
+msgstr "Las acciones no se ejecutan realmente. Ideal para pruebas."
+
+msgid "Safe mode"
+msgstr "Modo seguro (safe mode)"
+
+msgid "Blocks dangerous actions. Recommended in production."
+msgstr "Bloquea acciones peligrosas. Recomendado en producción."
+
+msgid "💾 Save configuration"
+msgstr "💾 Guardar configuración"
+
+msgid "✅ Configuration saved."
+msgstr "✅ Configuración guardada."

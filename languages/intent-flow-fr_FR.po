@@ -1,0 +1,212 @@
+# Intent Flow — WordPress Automation
+# Copyright (C) 2026 Álvaro Martínez — adaptatuweb.com
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Intent Flow 0.9.4.2.33\n"
+"Report-Msgid-Bugs-To: proyectos@adaptatuweb.com\n"
+"POT-Creation-Date: 2026-07-08\n"
+"PO-Revision-Date: 2026-07-08\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: intent-flow\n"
+
+msgid "Loading…"
+msgstr "Chargement…"
+
+msgid "Saving…"
+msgstr "Enregistrement…"
+
+msgid "Saved"
+msgstr "Enregistré"
+
+msgid "Deleting…"
+msgstr "Suppression…"
+
+msgid "Deleted"
+msgstr "Supprimé"
+
+msgid "Updating…"
+msgstr "Mise à jour…"
+
+msgid "Error:"
+msgstr "Erreur :"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Export"
+msgstr "Exporter"
+
+msgid "Import"
+msgstr "Importer"
+
+msgid "Reload"
+msgstr "Recharger"
+
+msgid "Reload list"
+msgstr "Recharger la liste"
+
+msgid "Use"
+msgstr "Utiliser"
+
+msgid "Test"
+msgstr "Tester"
+
+msgid "Run"
+msgstr "Exécuter"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Back to Dashboard"
+msgstr "Retour au tableau de bord"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Source"
+msgstr "Source"
+
+msgid "Detail"
+msgstr "Détail"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Enabled"
+msgstr "Activé"
+
+msgid "Interval"
+msgstr "Intervalle"
+
+msgid "Payload"
+msgstr "Payload"
+
+msgid "Trigger"
+msgstr "Déclencheur"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Event"
+msgstr "Événement"
+
+msgid "Reason"
+msgstr "Raison"
+
+msgid "Limit"
+msgstr "Limite"
+
+msgid "Secret"
+msgstr "Secret"
+
+msgid "Title"
+msgstr "Titre"
+
+msgid "Content"
+msgstr "Contenu"
+
+msgid "Module"
+msgstr "Module"
+
+msgid "Repeat"
+msgstr "Répéter"
+
+msgid "New flow"
+msgstr "Nouveau flux"
+
+msgid "Save Flow"
+msgstr "Enregistrer le flux"
+
+msgid "Run flow"
+msgstr "Exécuter le flux"
+
+msgid "Create flow"
+msgstr "Créer un flux"
+
+msgid "Flow name"
+msgstr "Nom du flux"
+
+msgid "No flows yet."
+msgstr "Aucun flux pour le moment."
+
+msgid "Add action"
+msgstr "Ajouter une action"
+
+msgid "No rules yet. Create the first one above 👆"
+msgstr "Pas encore de règles. Créez la première ci-dessus 👆"
+
+msgid "New rule"
+msgstr "Nouvelle règle"
+
+msgid "Active rules"
+msgstr "Règles actives"
+
+msgid "No jobs yet."
+msgstr "Pas encore de tâches."
+
+msgid "Create job"
+msgstr "Créer une tâche"
+
+msgid "New connection"
+msgstr "Nouvelle connexion"
+
+msgid "No connections yet. Click \"New connection\"."
+msgstr "Pas encore de connexions. Cliquez sur \"Nouvelle connexion\"."
+
+msgid "Deactivate"
+msgstr "Désactiver"
+
+msgid "Activate"
+msgstr "Activer"
+
+msgid "No executions yet."
+msgstr "Pas encore d'exécutions."
+
+msgid "Dry-run mode (simulation)"
+msgstr "Mode simulation (dry-run)"
+
+msgid "Actions are not really executed. Ideal for testing."
+msgstr "Les actions ne sont pas réellement exécutées. Idéal pour les tests."
+
+msgid "Safe mode"
+msgstr "Mode sécurisé"
+
+msgid "Blocks dangerous actions. Recommended in production."
+msgstr "Bloque les actions dangereuses. Recommandé en production."
+
+msgid "💾 Save configuration"
+msgstr "💾 Enregistrer la configuration"
+
+msgid "✅ Configuration saved."
+msgstr "✅ Configuration enregistrée."

@@ -1,0 +1,179 @@
+# Intent Flow — WordPress Automation
+# Copyright (C) 2026 Álvaro Martínez — adaptatuweb.com
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Intent Flow 0.9.4.2.33\n"
+"Report-Msgid-Bugs-To: proyectos@adaptatuweb.com\n"
+"POT-Creation-Date: 2026-09-28\n"
+"PO-Revision-Date: 2026-09-28\n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: intent-flow\n"
+
+msgid "Loading…"
+msgstr "Se încarcă…"
+
+msgid "Saving…"
+msgstr "Se salvează…"
+
+msgid "Saved"
+msgstr "Salvat"
+
+msgid "Deleting…"
+msgstr "Se șterge…"
+
+msgid "Deleted"
+msgstr "Șters"
+
+msgid "Updating…"
+msgstr "Se actualizează…"
+
+msgid "Error:"
+msgstr "Eroare:"
+
+msgid "Cancel"
+msgstr "Anulează"
+
+msgid "Close"
+msgstr "Închide"
+
+msgid "Edit"
+msgstr "Editează"
+
+msgid "Delete"
+msgstr "Șterge"
+
+msgid "Save"
+msgstr "Salvează"
+
+msgid "Export"
+msgstr "Exportă"
+
+msgid "Import"
+msgstr "Importă"
+
+msgid "Reload"
+msgstr "Reîncarcă"
+
+msgid "Reload list"
+msgstr "Reîncarcă lista"
+
+msgid "Use"
+msgstr "Folosește"
+
+msgid "Test"
+msgstr "Testează"
+
+msgid "Run"
+msgstr "Rulează"
+
+msgid "Add"
+msgstr "Adaugă"
+
+msgid "Back to Dashboard"
+msgstr "Înapoi la panou"
+
+msgid "Version"
+msgstr "Versiune"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Date"
+msgstr "Dată"
+
+msgid "Name"
+msgstr "Nume"
+
+msgid "Description"
+msgstr "Descriere"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Active"
+msgstr "Activă"
+
+msgid "Enabled"
+msgstr "Activat"
+
+msgid "Trigger"
+msgstr "Declanșator"
+
+msgid "Action"
+msgstr "Acțiune"
+
+msgid "Event"
+msgstr "Eveniment"
+
+msgid "New flow"
+msgstr "Flux nou"
+
+msgid "Save Flow"
+msgstr "Salvează fluxul"
+
+msgid "Run flow"
+msgstr "Rulează fluxul"
+
+msgid "Create flow"
+msgstr "Creează flux"
+
+msgid "Flow name"
+msgstr "Numele fluxului"
+
+msgid "No flows yet."
+msgstr "Niciun flux încă."
+
+msgid "Add action"
+msgstr "Adaugă acțiune"
+
+msgid "No rules yet. Create the first one above 👆"
+msgstr "Nicio regulă încă. Creează prima de mai sus 👆"
+
+msgid "New rule"
+msgstr "Regulă nouă"
+
+msgid "Active rules"
+msgstr "Reguli active"
+
+msgid "No jobs yet."
+msgstr "Niciun job încă."
+
+msgid "Create job"
+msgstr "Creează job"
+
+msgid "New connection"
+msgstr "Conexiune nouă"
+
+msgid "No connections yet. Click \"New connection\"."
+msgstr "Nicio conexiune încă. Fă clic pe \"Conexiune nouă\"."
+
+msgid "Deactivate"
+msgstr "Dezactivează"
+
+msgid "Activate"
+msgstr "Activează"
+
+msgid "No executions yet."
+msgstr "Nicio execuție încă."
+
+msgid "Dry-run mode (simulation)"
+msgstr "Mod simulare (dry-run)"
+
+msgid "Actions are not really executed. Ideal for testing."
+msgstr "Acțiunile nu sunt executate cu adevărat. Ideal pentru testare."
+
+msgid "Safe mode"
+msgstr "Mod sigur"
+
+msgid "Blocks dangerous actions. Recommended in production."
+msgstr "Blochează acțiunile periculoase. Recomandat în producție."
+
+msgid "💾 Save configuration"
+msgstr "💾 Salvează configurația"
+
+msgid "✅ Configuration saved."
+msgstr "✅ Configurație salvată."

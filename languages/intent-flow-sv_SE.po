@@ -1,0 +1,179 @@
+# Intent Flow — WordPress Automation
+# Copyright (C) 2026 Álvaro Martínez — adaptatuweb.com
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Intent Flow 0.9.4.2.33\n"
+"Report-Msgid-Bugs-To: proyectos@adaptatuweb.com\n"
+"POT-Creation-Date: 2026-09-28\n"
+"PO-Revision-Date: 2026-09-28\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: intent-flow\n"
+
+msgid "Loading…"
+msgstr "Laddar…"
+
+msgid "Saving…"
+msgstr "Sparar…"
+
+msgid "Saved"
+msgstr "Sparat"
+
+msgid "Deleting…"
+msgstr "Tar bort…"
+
+msgid "Deleted"
+msgstr "Borttaget"
+
+msgid "Updating…"
+msgstr "Uppdaterar…"
+
+msgid "Error:"
+msgstr "Fel:"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Close"
+msgstr "Stäng"
+
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Delete"
+msgstr "Ta bort"
+
+msgid "Save"
+msgstr "Spara"
+
+msgid "Export"
+msgstr "Exportera"
+
+msgid "Import"
+msgstr "Importera"
+
+msgid "Reload"
+msgstr "Ladda om"
+
+msgid "Reload list"
+msgstr "Ladda om lista"
+
+msgid "Use"
+msgstr "Använd"
+
+msgid "Test"
+msgstr "Testa"
+
+msgid "Run"
+msgstr "Kör"
+
+msgid "Add"
+msgstr "Lägg till"
+
+msgid "Back to Dashboard"
+msgstr "Tillbaka till instrumentpanelen"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Name"
+msgstr "Namn"
+
+msgid "Description"
+msgstr "Beskrivning"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Enabled"
+msgstr "Aktiverad"
+
+msgid "Trigger"
+msgstr "Utlösare"
+
+msgid "Action"
+msgstr "Åtgärd"
+
+msgid "Event"
+msgstr "Händelse"
+
+msgid "New flow"
+msgstr "Nytt flöde"
+
+msgid "Save Flow"
+msgstr "Spara flöde"
+
+msgid "Run flow"
+msgstr "Kör flöde"
+
+msgid "Create flow"
+msgstr "Skapa flöde"
+
+msgid "Flow name"
+msgstr "Flödesnamn"
+
+msgid "No flows yet."
+msgstr "Inga flöden ännu."
+
+msgid "Add action"
+msgstr "Lägg till åtgärd"
+
+msgid "No rules yet. Create the first one above 👆"
+msgstr "Inga regler ännu. Skapa den första ovan 👆"
+
+msgid "New rule"
+msgstr "Ny regel"
+
+msgid "Active rules"
+msgstr "Aktiva regler"
+
+msgid "No jobs yet."
+msgstr "Inga jobb ännu."
+
+msgid "Create job"
+msgstr "Skapa jobb"
+
+msgid "New connection"
+msgstr "Ny anslutning"
+
+msgid "No connections yet. Click \"New connection\"."
+msgstr "Inga anslutningar ännu. Klicka på \"Ny anslutning\"."
+
+msgid "Deactivate"
+msgstr "Inaktivera"
+
+msgid "Activate"
+msgstr "Aktivera"
+
+msgid "No executions yet."
+msgstr "Inga körningar ännu."
+
+msgid "Dry-run mode (simulation)"
+msgstr "Torrkörningsläge (simulering)"
+
+msgid "Actions are not really executed. Ideal for testing."
+msgstr "Åtgärder utförs inte på riktigt. Perfekt för testning."
+
+msgid "Safe mode"
+msgstr "Säkert läge"
+
+msgid "Blocks dangerous actions. Recommended in production."
+msgstr "Blockerar farliga åtgärder. Rekommenderas i produktion."
+
+msgid "💾 Save configuration"
+msgstr "💾 Spara konfiguration"
+
+msgid "✅ Configuration saved."
+msgstr "✅ Konfiguration sparad."

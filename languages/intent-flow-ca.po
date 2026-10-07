@@ -1,0 +1,179 @@
+# Intent Flow — WordPress Automation
+# Copyright (C) 2026 Álvaro Martínez — adaptatuweb.com
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Intent Flow 0.9.4.2.33\n"
+"Report-Msgid-Bugs-To: proyectos@adaptatuweb.com\n"
+"POT-Creation-Date: 2026-07-08\n"
+"PO-Revision-Date: 2026-07-08\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: intent-flow\n"
+
+msgid "Loading…"
+msgstr "Carregant…"
+
+msgid "Saving…"
+msgstr "Desant…"
+
+msgid "Saved"
+msgstr "Desat"
+
+msgid "Deleting…"
+msgstr "Eliminant…"
+
+msgid "Deleted"
+msgstr "Eliminat"
+
+msgid "Updating…"
+msgstr "Actualitzant…"
+
+msgid "Error:"
+msgstr "Error:"
+
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Edit"
+msgstr "Edita"
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Save"
+msgstr "Desa"
+
+msgid "Export"
+msgstr "Exporta"
+
+msgid "Import"
+msgstr "Importa"
+
+msgid "Reload"
+msgstr "Recarrega"
+
+msgid "Reload list"
+msgstr "Recarrega la llista"
+
+msgid "Use"
+msgstr "Utilitza"
+
+msgid "Test"
+msgstr "Prova"
+
+msgid "Run"
+msgstr "Executa"
+
+msgid "Add"
+msgstr "Afegeix"
+
+msgid "Back to Dashboard"
+msgstr "Torna al tauler"
+
+msgid "Version"
+msgstr "Versió"
+
+msgid "Status"
+msgstr "Estat"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Description"
+msgstr "Descripció"
+
+msgid "Type"
+msgstr "Tipus"
+
+msgid "Active"
+msgstr "Activa"
+
+msgid "Enabled"
+msgstr "Activat"
+
+msgid "Trigger"
+msgstr "Disparador"
+
+msgid "Action"
+msgstr "Acció"
+
+msgid "Event"
+msgstr "Esdeveniment"
+
+msgid "New flow"
+msgstr "Nou flux"
+
+msgid "Save Flow"
+msgstr "Desa el flux"
+
+msgid "Run flow"
+msgstr "Executa el flux"
+
+msgid "Create flow"
+msgstr "Crea un flux"
+
+msgid "Flow name"
+msgstr "Nom del flux"
+
+msgid "No flows yet."
+msgstr "Encara no hi ha fluxos."
+
+msgid "Add action"
+msgstr "Afegeix acció"
+
+msgid "No rules yet. Create the first one above 👆"
+msgstr "Encara no hi ha regles. Crea la primera a dalt 👆"
+
+msgid "New rule"
+msgstr "Nova regla"
+
+msgid "Active rules"
+msgstr "Regles actives"
+
+msgid "No jobs yet."
+msgstr "Encara no hi ha treballs."
+
+msgid "Create job"
+msgstr "Crea un treball"
+
+msgid "New connection"
+msgstr "Nova connexió"
+
+msgid "No connections yet. Click \"New connection\"."
+msgstr "Encara no hi ha connexions. Fes clic a \"Nova connexió\"."
+
+msgid "Deactivate"
+msgstr "Desactiva"
+
+msgid "Activate"
+msgstr "Activa"
+
+msgid "No executions yet."
+msgstr "Encara no hi ha execucions."
+
+msgid "Dry-run mode (simulation)"
+msgstr "Mode simulació (dry-run)"
+
+msgid "Actions are not really executed. Ideal for testing."
+msgstr "Les accions no s'executen realment. Ideal per a proves."
+
+msgid "Safe mode"
+msgstr "Mode segur"
+
+msgid "Blocks dangerous actions. Recommended in production."
+msgstr "Bloqueja accions perilloses. Recomanat en producció."
+
+msgid "💾 Save configuration"
+msgstr "💾 Desa la configuració"
+
+msgid "✅ Configuration saved."
+msgstr "✅ Configuració desada."

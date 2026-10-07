@@ -1,0 +1,179 @@
+# Intent Flow — WordPress Automation
+# Copyright (C) 2026 Álvaro Martínez — adaptatuweb.com
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Intent Flow 0.9.4.2.33\n"
+"Report-Msgid-Bugs-To: proyectos@adaptatuweb.com\n"
+"POT-Creation-Date: 2026-07-08\n"
+"PO-Revision-Date: 2026-07-08\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: intent-flow\n"
+
+msgid "Loading…"
+msgstr "Caricamento…"
+
+msgid "Saving…"
+msgstr "Salvataggio…"
+
+msgid "Saved"
+msgstr "Salvato"
+
+msgid "Deleting…"
+msgstr "Eliminazione…"
+
+msgid "Deleted"
+msgstr "Eliminato"
+
+msgid "Updating…"
+msgstr "Aggiornamento…"
+
+msgid "Error:"
+msgstr "Errore:"
+
+msgid "Cancel"
+msgstr "Annulla"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Edit"
+msgstr "Modifica"
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Save"
+msgstr "Salva"
+
+msgid "Export"
+msgstr "Esporta"
+
+msgid "Import"
+msgstr "Importa"
+
+msgid "Reload"
+msgstr "Ricarica"
+
+msgid "Reload list"
+msgstr "Ricarica elenco"
+
+msgid "Use"
+msgstr "Usa"
+
+msgid "Test"
+msgstr "Prova"
+
+msgid "Run"
+msgstr "Esegui"
+
+msgid "Add"
+msgstr "Aggiungi"
+
+msgid "Back to Dashboard"
+msgstr "Torna alla dashboard"
+
+msgid "Version"
+msgstr "Versione"
+
+msgid "Status"
+msgstr "Stato"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Description"
+msgstr "Descrizione"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Active"
+msgstr "Attiva"
+
+msgid "Enabled"
+msgstr "Abilitato"
+
+msgid "Trigger"
+msgstr "Trigger"
+
+msgid "Action"
+msgstr "Azione"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "New flow"
+msgstr "Nuovo flusso"
+
+msgid "Save Flow"
+msgstr "Salva flusso"
+
+msgid "Run flow"
+msgstr "Esegui flusso"
+
+msgid "Create flow"
+msgstr "Crea flusso"
+
+msgid "Flow name"
+msgstr "Nome del flusso"
+
+msgid "No flows yet."
+msgstr "Nessun flusso ancora."
+
+msgid "Add action"
+msgstr "Aggiungi azione"
+
+msgid "No rules yet. Create the first one above 👆"
+msgstr "Nessuna regola ancora. Crea la prima qui sopra 👆"
+
+msgid "New rule"
+msgstr "Nuova regola"
+
+msgid "Active rules"
+msgstr "Regole attive"
+
+msgid "No jobs yet."
+msgstr "Nessun job ancora."
+
+msgid "Create job"
+msgstr "Crea job"
+
+msgid "New connection"
+msgstr "Nuova connessione"
+
+msgid "No connections yet. Click \"New connection\"."
+msgstr "Nessuna connessione ancora. Clicca \"Nuova connessione\"."
+
+msgid "Deactivate"
+msgstr "Disattiva"
+
+msgid "Activate"
+msgstr "Attiva"
+
+msgid "No executions yet."
+msgstr "Nessuna esecuzione ancora."
+
+msgid "Dry-run mode (simulation)"
+msgstr "Modalità dry-run (simulazione)"
+
+msgid "Actions are not really executed. Ideal for testing."
+msgstr "Le azioni non vengono eseguite realmente. Ideale per i test."
+
+msgid "Safe mode"
+msgstr "Modalità sicura"
+
+msgid "Blocks dangerous actions. Recommended in production."
+msgstr "Blocca le azioni pericolose. Consigliato in produzione."
+
+msgid "💾 Save configuration"
+msgstr "💾 Salva configurazione"
+
+msgid "✅ Configuration saved."
+msgstr "✅ Configurazione salvata."
