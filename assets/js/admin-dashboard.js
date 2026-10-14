@@ -186,17 +186,17 @@ function fallbackPreset(intentId) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const root = document.getElementById("mmi-dashboard");
+  const root = document.getElementById("inteflow-dashboard");
   if (!root) return;
 
-  const loading = document.getElementById("mmi-loading");
+  const loading = document.getElementById("inteflow-loading");
   const showFatal = (msg, detail=null) => {
     if (loading) {
       loading.style.display = "";
       loading.innerHTML = "";
       loading.appendChild(el("h2",{text:"Intent Flow (UI)"}));
-      loading.appendChild(el("p",{class:"mmi-danger",text: msg || "Error cargando la UI."}));
-      if (detail) loading.appendChild(el("pre",{class:"mmi-code",text: (typeof detail==="string"?detail: pretty(detail)).slice(0,2000)}));
+      loading.appendChild(el("p",{class:"inteflow-danger",text: msg || "Error cargando la UI."}));
+      if (detail) loading.appendChild(el("pre",{class:"inteflow-code",text: (typeof detail==="string"?detail: pretty(detail)).slice(0,2000)}));
     }
     root.style.display = "none";
   };
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const p = new URLSearchParams(window.location.search).get('page') || '';
       const norm = String(p).replace(/_/g,'-').toLowerCase();
-      if (norm.includes('mmi-')) {
+      if (norm.includes('inteflow-')) {
         if (norm.includes('help')) return 'help';
         if (norm.includes('event')) return 'events';
         if (norm.includes('flow')) return 'flows';
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return null;
   }
 
-const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(root.dataset.mmiPage) : (__mmiDetectPageFromUrl() || 'dashboard');
+const __mmiPageKey = (root && root.dataset && root.dataset.intreflowPage) ? String(root.dataset.intreflowPage) : (__mmiDetectPageFromUrl() || 'dashboard');
   if (__mmiPageKey === 'dashboard') {
     if (loading) loading.style.display = "none";
     root.style.display = "";
@@ -235,74 +235,74 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
     try { __mmiProfile = String(localStorage.getItem(PROFILE_KEY) || "").trim() || "business"; } catch (e) { __mmiProfile = "business"; }
 
     root.innerHTML = `
-      <div class="mmi-home">
+      <div class="inteflow-home">
         <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 18px;">
           <strong style="margin-right:6px;">Perfil:</strong>
-          <button type="button" class="button" data-mmi-profile="novice">👤 Novato</button>
-          <button type="button" class="button" data-mmi-profile="business">🧑‍💼 Negocio</button>
-          <button type="button" class="button" data-mmi-profile="tech">🧑‍💻 Técnico</button>
-          <span id="mmi-profile-saved" style="display:none;margin-left:8px;" class="mmi-muted">Guardado</span>
+          <button type="button" class="button" data-inteflow-profile="novice">👤 Novato</button>
+          <button type="button" class="button" data-inteflow-profile="business">🧑‍💼 Negocio</button>
+          <button type="button" class="button" data-inteflow-profile="tech">🧑‍💻 Técnico</button>
+          <span id="inteflow-profile-saved" style="display:none;margin-left:8px;" class="inteflow-muted">Guardado</span>
         </div>
 
-        <div class="mmi-home-grid">
-          <div class="mmi-home-card">
+        <div class="inteflow-home-grid">
+          <div class="inteflow-home-card">
             <h2>⚡ Crear Flow</h2>
-            <p class="mmi-muted">Crea una automatización nueva.</p>
-            <a class="button button-primary" href="admin.php?page=mmi-flows">Nuevo Flow</a>
+            <p class="inteflow-muted">Crea una automatización nueva.</p>
+            <a class="button button-primary" href="admin.php?page=inteflow-flows">Nuevo Flow</a>
           </div>
 
-          <div class="mmi-home-card">
+          <div class="inteflow-home-card">
             <h2>🔁 Flows</h2>
-            <p class="mmi-muted">Ver y editar automatizaciones.</p>
-            <a class="button" href="admin.php?page=mmi-flows">Ver Flows</a>
+            <p class="inteflow-muted">Ver y editar automatizaciones.</p>
+            <a class="button" href="admin.php?page=inteflow-flows">Ver Flows</a>
           </div>
 
-          <div class="mmi-home-card">
+          <div class="inteflow-home-card">
             <h2>🔌 Connections</h2>
-            <p class="mmi-muted">Conecta Telegram, Slack, HTTP…</p>
-            <a class="button" href="admin.php?page=mmi-connections">Gestionar Connections</a>
+            <p class="inteflow-muted">Conecta Telegram, Slack, HTTP…</p>
+            <a class="button" href="admin.php?page=inteflow-connections">Gestionar Connections</a>
           </div>
 
-          <div class="mmi-home-card">
+          <div class="inteflow-home-card">
             <h2>📜 Logs</h2>
-            <p class="mmi-muted">Revisa ejecuciones, errores y auditoría.</p>
-            <a class="button" href="admin.php?page=mmi-logs">Ver Logs</a>
+            <p class="inteflow-muted">Revisa ejecuciones, errores y auditoría.</p>
+            <a class="button" href="admin.php?page=inteflow-logs">Ver Logs</a>
           </div>
 
-          <div class="mmi-home-card">
+          <div class="inteflow-home-card">
             <h2>🧩 Integrations</h2>
-            <p class="mmi-muted">Catálogo y acciones listas para usar.</p>
-            <a class="button" href="admin.php?page=mmi-integrations">Ver Integrations</a>
+            <p class="inteflow-muted">Catálogo y acciones listas para usar.</p>
+            <a class="button" href="admin.php?page=inteflow-integrations">Ver Integrations</a>
           </div>
 
-          <div class="mmi-home-card">
+          <div class="inteflow-home-card">
             <h2>⏱️ Scheduler</h2>
-            <p class="mmi-muted">Cola, tareas programadas y reintentos.</p>
-            <a class="button" href="admin.php?page=mmi-scheduler">Abrir Scheduler</a>
+            <p class="inteflow-muted">Cola, tareas programadas y reintentos.</p>
+            <a class="button" href="admin.php?page=inteflow-scheduler">Abrir Scheduler</a>
           </div>
 
-          <div class="mmi-home-card">
+          <div class="inteflow-home-card">
             <h2>⚙️ Settings</h2>
-            <p class="mmi-muted">Ajustes globales del plugin.</p>
-            <a class="button" href="admin.php?page=mmi-settings">Abrir Settings</a>
+            <p class="inteflow-muted">Ajustes globales del plugin.</p>
+            <a class="button" href="admin.php?page=inteflow-settings">Abrir Settings</a>
           </div>
         </div>
       </div>
     `;
 
     // Activar botón actual + persistir
-    const savedMsg = root.querySelector("#mmi-profile-saved");
+    const savedMsg = root.querySelector("#inteflow-profile-saved");
     function setActiveProfile(p) {
-      root.querySelectorAll("[data-mmi-profile]").forEach((b) => {
-        const isActive = b.getAttribute("data-mmi-profile") === p;
+      root.querySelectorAll("[data-inteflow-profile]").forEach((b) => {
+        const isActive = b.getAttribute("data-inteflow-profile") === p;
         b.classList.toggle("button-primary", isActive);
       });
     }
     setActiveProfile(__mmiProfile);
 
-    root.querySelectorAll("[data-mmi-profile]").forEach((btn) => {
+    root.querySelectorAll("[data-inteflow-profile]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const p = btn.getAttribute("data-mmi-profile") || "business";
+        const p = btn.getAttribute("data-inteflow-profile") || "business";
         __mmiProfile = p;
         try { localStorage.setItem(PROFILE_KEY, p); } catch (e) {}
         setActiveProfile(p);
@@ -335,7 +335,7 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
   }
 
   root.innerHTML = "";
-  root.classList.add("mmi-dashboard");
+  root.classList.add("inteflow-dashboard");
 
   try {
 
@@ -358,9 +358,9 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
 
   if (!okBoot) {
     root.appendChild(
-      el("div", { class: "mmi-card" }, [
+      el("div", { class: "inteflow-card" }, [
         el("h2", { text: "Intent Flow" }),
-        el("p", { class: "mmi-muted", text: "No se pudo inicializar window.IntentFlow. Asegúrate de que el script bootstrap está cargado y recarga la página." }),
+        el("p", { class: "inteflow-muted", text: "No se pudo inicializar window.IntentFlow. Asegúrate de que el script bootstrap está cargado y recarga la página." }),
       ])
     );
     return;
@@ -379,11 +379,11 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
   }
   let profile = loadProfile() || "business";
 
-  const profileBar = el("div", { class: "mmi-actions", role: "group", "aria-label": "Perfil de uso" }, []);
+  const profileBar = el("div", { class: "inteflow-actions", role: "group", "aria-label": "Perfil de uso" }, []);
   function mkProfileBtn(id, label) {
     return el("button", {
       type: "button",
-      class: "mmi-button",
+      class: "inteflow-button",
       "data-profile": id,
       text: label,
       onclick: () => { profile = id; saveProfile(profile); applyProfile(); },
@@ -396,7 +396,7 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
   profileBar.appendChild(btnPBusiness);
   profileBar.appendChild(btnPTech);
 
-  const advancedWrap = el("label", { class: "mmi-badge", style: "display:none;" }, [
+  const advancedWrap = el("label", { class: "inteflow-badge", style: "display:none;" }, [
     el("input", {
       type: "checkbox",
       ...(advanced ? { checked: "checked" } : {}),
@@ -412,8 +412,8 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
 
   function setActiveProfileButton() {
     const map = { novice: btnPNovice, business: btnPBusiness, tech: btnPTech };
-    Object.values(map).forEach((b) => { b.className = "mmi-button"; });
-    if (map[profile]) map[profile].className = "mmi-button mmi-button-primary";
+    Object.values(map).forEach((b) => { b.className = "inteflow-button"; });
+    if (map[profile]) map[profile].className = "inteflow-button inteflow-button-primary";
   }
 
   function setSectionVisible(secEl, visible) {
@@ -460,25 +460,25 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
   let intentMeta = {}; // id -> meta
 
   // ---------- Header ----------
-  const header = el("div", { class: "mmi-card mmi-help" }, [
-    el("div", { class: "mmi-row" }, [
-      el("div", { class: "mmi-col" }, [
+  const header = el("div", { class: "inteflow-card inteflow-help" }, [
+    el("div", { class: "inteflow-row" }, [
+      el("div", { class: "inteflow-col" }, [
         el("h2", { text: "Intent Flow" }),
-        el("p", { class: "mmi-muted", html: "Panel para ejecutar <strong>intents</strong> (acciones) de forma segura. Hotkey: <span class=\"mmi-kbd\">Alt</span>+<span class=\"mmi-kbd\">Shift</span>+<span class=\"mmi-kbd\">M</span>." }),
+        el("p", { class: "inteflow-muted", html: "Panel para ejecutar <strong>intents</strong> (acciones) de forma segura. Hotkey: <span class=\"inteflow-kbd\">Alt</span>+<span class=\"inteflow-kbd\">Shift</span>+<span class=\"inteflow-kbd\">M</span>." }),
       ]),
-      el("div", { class: "mmi-col" }, [
-        el("div", { class: "mmi-actions" }, [profileBar, advancedWrap]),
+      el("div", { class: "inteflow-col" }, [
+        el("div", { class: "inteflow-actions" }, [profileBar, advancedWrap]),
       ]),
     ]),
   ]);
 
   // ---------- Status / logs ----------
-  const statusBox = el("pre", { class: "mmi-pre" }, "");
+  const statusBox = el("pre", { class: "inteflow-pre" }, "");
 
   // ---------- Live UI ----------
   // Visible badge (countdown). Screen reader announcements handled separately to avoid spam.
-  const liveInfo = el("span", { id: "mmi-live-badge", class: "mmi-badge", text: "Live: comprobando...", "aria-hidden": "true", "data-mmi-live": "badge" });
-  const liveTime = el("span", { id: "mmi-live-time", class: "mmi-muted", text: "", "aria-hidden": "true", "data-mmi-live": "time" });
+  const liveInfo = el("span", { id: "inteflow-live-badge", class: "inteflow-badge", text: "Live: comprobando...", "aria-hidden": "true", "data-inteflow-live": "badge" });
+  const liveTime = el("span", { id: "inteflow-live-time", class: "inteflow-muted", text: "", "aria-hidden": "true", "data-inteflow-live": "time" });
   const liveAnnounce = el("span", { class: "screen-reader-text", role: "status", "aria-live": "polite" }, "");
 
   const liveState = { active: false, remaining: 0, until: 0, lastAnnounced: null };
@@ -496,12 +496,12 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
     if (s.active && s.remaining > 0) {
       const n = Math.max(0, Number(s.remaining || 0));
       liveInfo.textContent = `Live: ON (${n}s)`;
-      liveInfo.className = "mmi-badge mmi-badge-warn";
+      liveInfo.className = "inteflow-badge inteflow-badge-warn";
       // Extra visible time (more perceptible than small parentheses in some zoom levels)
       liveTime.textContent = `Expira en ${fmtSeconds(n)} (${n}s)`;
     } else {
       liveInfo.textContent = "Live: OFF";
-      liveInfo.className = "mmi-badge";
+      liveInfo.className = "inteflow-badge";
       liveTime.textContent = "";
     }
   }
@@ -527,7 +527,7 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
       announceIfNeeded();
     } catch {
       liveInfo.textContent = "Live: error";
-      liveInfo.className = "mmi-badge mmi-badge-bad";
+      liveInfo.className = "inteflow-badge inteflow-badge-bad";
     }
   }
 
@@ -545,16 +545,16 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
     refreshLiveStatus();
   }, 15000);
 
-  const liveBar = el("div", { class: "mmi-card" }, [
+  const liveBar = el("div", { class: "inteflow-card" }, [
     el("h3", { text: "Modo Live" }),
-    el("div", { class: "mmi-actions", role: "group", "aria-label": "Controles de modo Live" }, [
+    el("div", { class: "inteflow-actions", role: "group", "aria-label": "Controles de modo Live" }, [
       liveInfo,
       liveTime,
-      el("button", { type: "button", class: "mmi-button mmi-button-small", text: "Activar Live (10 min)", onclick: async () => { await window.IntentFlow.enableLive?.(600); await refreshLiveStatus(); } }),
-      el("button", { type: "button", class: "mmi-button mmi-button-small", text: "Desactivar Live", onclick: async () => { await window.IntentFlow.disableLive?.(); await refreshLiveStatus(); } }),
+      el("button", { type: "button", class: "inteflow-button inteflow-button-small", text: "Activar Live (10 min)", onclick: async () => { await window.IntentFlow.enableLive?.(600); await refreshLiveStatus(); } }),
+      el("button", { type: "button", class: "inteflow-button inteflow-button-small", text: "Desactivar Live", onclick: async () => { await window.IntentFlow.disableLive?.(); await refreshLiveStatus(); } }),
       liveAnnounce,
     ]),
-    el("p", { class: "mmi-muted", text: "Las acciones unsafe (crear/actualizar posts, limpiar auditoría, etc.) se ejecutan con Live automático desde este panel." }),
+    el("p", { class: "inteflow-muted", text: "Las acciones unsafe (crear/actualizar posts, limpiar auditoría, etc.) se ejecutan con Live automático desde este panel." }),
   ]);
 
 
@@ -574,7 +574,7 @@ const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(roo
 
   function setInlineError(msg) {
     inlineMsg.style.display = msg ? "block" : "none";
-    inlineMsg.className = msg ? "mmi-badge mmi-badge-bad" : "";
+    inlineMsg.className = msg ? "inteflow-badge inteflow-badge-bad" : "";
     inlineMsg.textContent = msg || "";
   }
 
@@ -677,13 +677,13 @@ const btnRunEnsure = el("button", {
     },
   });
 
-  const ensureCard = el("div", { class: "mmi-card" }, [
+  const ensureCard = el("div", { class: "inteflow-card" }, [
     el("h3", { text: "Crear/actualizar post" }),
-    el("p", { class: "mmi-muted", text: "Crea o actualiza un post. Usa Live automático para evitar bloqueos con safe_mode." }),
-    el("div", { class: "mmi-actions", role: "group", "aria-label": "Acciones rápidas" }, [
-      el("button", { type: "button", class: "mmi-button", text: "📝 Crear borrador", onclick: () => quickEnsure("draft") }),
-      el("button", { type: "button", class: "mmi-button", text: "🚀 Publicar", onclick: () => quickEnsure("publish") }),
-      el("button", { type: "button", class: "mmi-button", text: "🧹 Limpiar", onclick: () => quickClear() }),
+    el("p", { class: "inteflow-muted", text: "Crea o actualiza un post. Usa Live automático para evitar bloqueos con safe_mode." }),
+    el("div", { class: "inteflow-actions", role: "group", "aria-label": "Acciones rápidas" }, [
+      el("button", { type: "button", class: "inteflow-button", text: "📝 Crear borrador", onclick: () => quickEnsure("draft") }),
+      el("button", { type: "button", class: "inteflow-button", text: "🚀 Publicar", onclick: () => quickEnsure("publish") }),
+      el("button", { type: "button", class: "inteflow-button", text: "🧹 Limpiar", onclick: () => quickClear() }),
     ]),
     el("div", {}, [el("label", { text: "Título" }), el("div", { style: "margin-top:6px;" }, [inputTitle])]),
     el("div", { style: "margin-top:10px;" }, [el("label", { text: "Status" }), el("div", { style: "margin-top:6px;" }, [inputStatus])]),
@@ -692,7 +692,7 @@ const btnRunEnsure = el("button", {
   ]);
 
   // ---------- History UI ----------
-  const historyBox = el("div", { class: "mmi-card" }, []);
+  const historyBox = el("div", { class: "inteflow-card" }, []);
   const btnClearHistory = el("button", {
     type: "button",
     text: "Borrar historial local",
@@ -706,11 +706,11 @@ const btnRunEnsure = el("button", {
     const items = loadHistory();
     historyBox.innerHTML = "";
     historyBox.appendChild(el("h3", { text: "Historial (local)" }));
-    historyBox.appendChild(el("p", { class: "mmi-muted", text: "Se guarda en este navegador. No guarda el contenido, solo título/status + resultado." }));
+    historyBox.appendChild(el("p", { class: "inteflow-muted", text: "Se guarda en este navegador. No guarda el contenido, solo título/status + resultado." }));
     historyBox.appendChild(btnClearHistory);
 
     if (!items.length) {
-      historyBox.appendChild(el("p", { class: "mmi-muted", text: "Sin historial todavía." }));
+      historyBox.appendChild(el("p", { class: "inteflow-muted", text: "Sin historial todavía." }));
       return;
     }
 
@@ -721,7 +721,7 @@ const btnRunEnsure = el("button", {
       const status = it?.payload?.status || "";
       const when = fmtTime(it.ts);
 
-      const actions = el("div", { class: "mmi-actions", style: "margin-top:6px;" }, []);
+      const actions = el("div", { class: "inteflow-actions", style: "margin-top:6px;" }, []);
       actions.appendChild(
         el("button", {
           type: "button",
@@ -738,7 +738,7 @@ const btnRunEnsure = el("button", {
       if (it.view) actions.appendChild(el("a", { href: it.view, target: "_blank", text: "Ver" }));
 
       ul.appendChild(el("li", { style: "margin:10px 0;" }, [
-        el("div", {}, [el("span", { text: `${ok} ${it.intentId} — "${title}" [${status}] ` }), el("span", { class: "mmi-muted", text: `(${when})` })]),
+        el("div", {}, [el("span", { text: `${ok} ${it.intentId} — "${title}" [${status}] ` }), el("span", { class: "inteflow-muted", text: `(${when})` })]),
         actions,
       ]));
     });
@@ -746,11 +746,11 @@ const btnRunEnsure = el("button", {
   }
 
   // ---------- Advanced: Runner + Intents list + Audit ----------
-  const advCard = el("div", { class: "mmi-card", style: "display:none;" }, []);
-  const intentsDatalist = el("datalist", { id: "mmi-intents-datalist" }, []);
+  const advCard = el("div", { class: "inteflow-card", style: "display:none;" }, []);
+  const intentsDatalist = el("datalist", { id: "inteflow-intents-datalist" }, []);
 
   // Quick actions
-  const quickRow = el("div", { class: "mmi-actions" }, []);
+  const quickRow = el("div", { class: "inteflow-actions" }, []);
   async function runQuick(id, payload = {}) {
     statusBox.textContent = `Ejecutando ${id}...`;
     try {
@@ -772,7 +772,7 @@ const btnRunEnsure = el("button", {
   // Runner
   const runnerIntent = el("input", {
     type: "text",
-    list: "mmi-intents-datalist",
+    list: "inteflow-intents-datalist",
     placeholder: "intentId (elige o escribe: server.registry.list)",
     style: "width:100%; max-width:520px;",
   });
@@ -785,9 +785,9 @@ const btnRunEnsure = el("button", {
   let runnerCurrentSchema = null;
   let runnerView = "json"; // 'form' | 'json'
 
-  const runnerTabs = el("div", { class: "mmi-actions", style: "margin-top:10px;" }, []);
-  const tabForm = el("button", { type: "button", class: "mmi-button", text: "Formulario" });
-  const tabJson  = el("button", { type: "button", class: "mmi-button", text: "JSON" });
+  const runnerTabs = el("div", { class: "inteflow-actions", style: "margin-top:10px;" }, []);
+  const tabForm = el("button", { type: "button", class: "inteflow-button", text: "Formulario" });
+  const tabJson  = el("button", { type: "button", class: "inteflow-button", text: "JSON" });
   runnerTabs.appendChild(tabForm);
   runnerTabs.appendChild(tabJson);
 
@@ -798,8 +798,8 @@ const btnRunEnsure = el("button", {
     const hasSchema = !!runnerCurrentSchema;
     runnerFormBox.style.display = (v === "form" && hasSchema) ? "block" : "none";
     runnerPayload.style.display = (v === "json") ? "block" : "none";
-    tabForm.className = "mmi-button" + (v === "form" ? " mmi-button-primary" : "");
-    tabJson.className  = "mmi-button" + (v === "json" ? " mmi-button-primary" : "");
+    tabForm.className = "inteflow-button" + (v === "form" ? " inteflow-button-primary" : "");
+    tabJson.className  = "inteflow-button" + (v === "json" ? " inteflow-button-primary" : "");
   }
 
   tabForm.addEventListener("click", () => setRunnerView("form"));
@@ -881,7 +881,7 @@ const btnRunEnsure = el("button", {
       const row = el("div", { style: "margin:10px 0;" }, [
         el("label", { html: `<strong>${labelTxt}</strong>` }),
         el("div", { style: "margin-top:6px;" }, [input]),
-        help.length ? el("div", { class: "mmi-muted", text: help.join(" · ") }) : null,
+        help.length ? el("div", { class: "inteflow-muted", text: help.join(" · ") }) : null,
       ]);
 
       runnerFormEls[key] = input;
@@ -925,7 +925,7 @@ const btnRunEnsure = el("button", {
 
 function setRunnerMsg(msg, isError = true) {
     runnerMsg.style.display = msg ? "block" : "none";
-    runnerMsg.className = msg ? (isError ? "mmi-badge mmi-badge-bad" : "mmi-badge mmi-badge-ok") : "";
+    runnerMsg.className = msg ? (isError ? "inteflow-badge inteflow-badge-bad" : "inteflow-badge inteflow-badge-ok") : "";
     runnerMsg.textContent = msg || "";
   }
 
@@ -935,19 +935,19 @@ function setRunnerMsg(msg, isError = true) {
     runnerInfo.innerHTML = "";
     if (!id) return;
     if (!meta) {
-      runnerInfo.appendChild(el("div", { class: "mmi-muted" }, "Sin metadatos (usa Describe/Registry)."));
+      runnerInfo.appendChild(el("div", { class: "inteflow-muted" }, "Sin metadatos (usa Describe/Registry)."));
       return;
     }
     const risk = meta.risk || (meta.policy?.unsafe ? "unsafe" : "safe");
-    const badgeClass = risk === "unsafe" ? "mmi-badge-warn" : "mmi-badge-ok";
-    runnerInfo.appendChild(el("div", { class: "mmi-actions" }, [
-      el("span", { class: `mmi-badge ${badgeClass}`, text: `${risk === "unsafe" ? "⚠️" : "✅"} ${risk}` }),
-      meta.policy?.capability ? el("span", { class: "mmi-badge", text: `cap: ${meta.policy.capability}` }) : null,
-      meta.policy?.scope ? el("span", { class: "mmi-badge", text: `scope: ${meta.policy.scope}` }) : null,
+    const badgeClass = risk === "unsafe" ? "inteflow-badge-warn" : "inteflow-badge-ok";
+    runnerInfo.appendChild(el("div", { class: "inteflow-actions" }, [
+      el("span", { class: `inteflow-badge ${badgeClass}`, text: `${risk === "unsafe" ? "⚠️" : "✅"} ${risk}` }),
+      meta.policy?.capability ? el("span", { class: "inteflow-badge", text: `cap: ${meta.policy.capability}` }) : null,
+      meta.policy?.scope ? el("span", { class: "inteflow-badge", text: `scope: ${meta.policy.scope}` }) : null,
     ]));
     runnerInfo.appendChild(el("div", { style: "margin-top:8px;" }, [
       el("strong", { text: meta.title || id }),
-      meta.description ? el("div", { class: "mmi-muted", text: meta.description }) : null,
+      meta.description ? el("div", { class: "inteflow-muted", text: meta.description }) : null,
     ]));
   }
 
@@ -964,14 +964,14 @@ function setRunnerMsg(msg, isError = true) {
     const items = loadRunnerHistory();
     runnerHistoryBox.innerHTML = "";
     if (!items.length) {
-      runnerHistoryBox.appendChild(el("p", { class: "mmi-muted", text: "Sin recientes todavía." }));
+      runnerHistoryBox.appendChild(el("p", { class: "inteflow-muted", text: "Sin recientes todavía." }));
       return;
     }
     const ul = el("ul", { style: "margin:0; padding-left:18px;" });
     items.forEach((it) => {
       ul.appendChild(el("li", { style: "margin:8px 0;" }, [
         el("code", { text: it.intentId || "" }),
-        el("span", { class: "mmi-muted", text: ` (${fmtTime(it.ts)})` }),
+        el("span", { class: "inteflow-muted", text: ` (${fmtTime(it.ts)})` }),
         el("button", {
           type: "button",
           style: "margin-left:10px;",
@@ -1049,7 +1049,7 @@ function setRunnerMsg(msg, isError = true) {
 
   // Intents list
   const intentSearch = el("input", { type: "text", placeholder: "Buscar intent (macro., server., diagnostics...)", style: "width:100%; max-width:520px;" });
-  const intentsListBox = el("div", { style: "margin-top:10px;" }, el("p", { class: "mmi-muted", text: "Cargando..." }));
+  const intentsListBox = el("div", { style: "margin-top:10px;" }, el("p", { class: "inteflow-muted", text: "Cargando..." }));
   let allIntents = [];
 
   async function loadDescribe() {
@@ -1091,7 +1091,7 @@ function setRunnerMsg(msg, isError = true) {
     intents.forEach((id) => {
       const meta = intentMeta[id] || {};
       const title = meta.title ? ` — ${meta.title}` : "";
-      const pre = el("pre", { class: "mmi-pre", style: "display:none; margin-top:8px;" }, "");
+      const pre = el("pre", { class: "inteflow-pre", style: "display:none; margin-top:8px;" }, "");
 
       const btnRun = el("button", {
         type: "button",
@@ -1125,10 +1125,10 @@ function setRunnerMsg(msg, isError = true) {
         el("li", { style: "break-inside: avoid; margin-bottom:12px;" }, [
           el("div", {}, [
             el("code", { text: id }),
-            el("span", { class: "mmi-muted", text: title }),
+            el("span", { class: "inteflow-muted", text: title }),
           ]),
-          meta.description ? el("div", { class: "mmi-muted", text: meta.description, style: "margin-top:4px;" }) : null,
-          el("div", { class: "mmi-actions", style: "margin-top:6px;" }, [btnRun, btnUse]),
+          meta.description ? el("div", { class: "inteflow-muted", text: meta.description, style: "margin-top:4px;" }) : null,
+          el("div", { class: "inteflow-actions", style: "margin-top:6px;" }, [btnRun, btnUse]),
           pre,
         ])
       );
@@ -1142,7 +1142,7 @@ function setRunnerMsg(msg, isError = true) {
 
   // Audit
   const auditLimit = el("input", { type: "number", value: "50", min: "1", max: "200", style: "width:100px;" });
-  const auditBox = el("div", { style: "margin-top:10px;" }, el("p", { class: "mmi-muted", text: "Cargando..." }));
+  const auditBox = el("div", { style: "margin-top:10px;" }, el("p", { class: "inteflow-muted", text: "Cargando..." }));
 
   async function loadAudit() {
     auditBox.innerHTML = "Cargando auditoría...";
@@ -1163,10 +1163,10 @@ function setRunnerMsg(msg, isError = true) {
   function renderAudit(events) {
     auditBox.innerHTML = "";
     if (!events.length) {
-      auditBox.appendChild(el("p", { class: "mmi-muted", text: "Sin eventos todavía." }));
+      auditBox.appendChild(el("p", { class: "inteflow-muted", text: "Sin eventos todavía." }));
       return;
     }
-    const table = el("table", { class: "mmi-table" });
+    const table = el("table", { class: "inteflow-table" });
     table.appendChild(
       el("thead", {},
         el("tr", {}, [
@@ -1212,7 +1212,7 @@ function setRunnerMsg(msg, isError = true) {
         const limit = Math.max(1, Math.min(1000, parseInt(auditLimit.value || "50", 10) || 50));
         const res = await window.IntentFlow.run("server.audit.export", { limit });
         statusBox.textContent = pretty(res);
-        if (res.ok && res.result) downloadJson(`mmi-audit-${Date.now()}.json`, res.result);
+        if (res.ok && res.result) downloadJson(`inteflow-audit-${Date.now()}.json`, res.result);
       } catch (e) {
         statusBox.textContent = "Error export: " + (e?.message || String(e));
       }
@@ -1255,7 +1255,7 @@ function setRunnerMsg(msg, isError = true) {
   );
   const execTargetId = el("input", { type: "text", placeholder: "target id (contiene)", style: "min-width:240px;" });
   const execAuto = el("input", { type: "checkbox" });
-  const execBox = el("div", { style: "margin-top:10px;" }, el("p", { class: "mmi-muted", text: "Cargando..." }));
+  const execBox = el("div", { style: "margin-top:10px;" }, el("p", { class: "inteflow-muted", text: "Cargando..." }));
   let execTimer = null;
 
   function buildExecFilters() {
@@ -1282,7 +1282,7 @@ function setRunnerMsg(msg, isError = true) {
       el("strong", { text: title || "Detalle" }),
       el("button", { type: "button", text: "Cerrar", onclick: () => overlay.remove() }),
     ]);
-    const pre = el("pre", { class: "mmi-pre", style: "margin-top:10px;" }, bodyText || "");
+    const pre = el("pre", { class: "inteflow-pre", style: "margin-top:10px;" }, bodyText || "");
     card.appendChild(header);
     card.appendChild(pre);
     overlay.appendChild(card);
@@ -1310,10 +1310,10 @@ function setRunnerMsg(msg, isError = true) {
   function renderExecution(items) {
     execBox.innerHTML = "";
     if (!items.length) {
-      execBox.appendChild(el("p", { class: "mmi-muted", text: __("no_executions","No executions yet.") }));
+      execBox.appendChild(el("p", { class: "inteflow-muted", text: __("no_executions","No executions yet.") }));
       return;
     }
-    const table = el("table", { class: "mmi-table" });
+    const table = el("table", { class: "inteflow-table" });
     table.appendChild(
       el("thead", {},
         el("tr", {}, [
@@ -1478,7 +1478,7 @@ function setRunnerMsg(msg, isError = true) {
     const res = await window.IntentFlow.run("server.presets.export", {});
     statusBox.textContent = pretty(res);
     if (res?.ok && res?.result?.ok) {
-      downloadJson(`mmi-presets-${Date.now()}.json`, res.result);
+      downloadJson(`inteflow-presets-${Date.now()}.json`, res.result);
     }
   }
 
@@ -1514,21 +1514,21 @@ function setRunnerMsg(msg, isError = true) {
 
 
 // ---------- FLOW BUILDER VISUAL v1 ----------
-const flowModeToggle = el("label", { class:"mmi-pill" }, [
-  el("input", { type:"checkbox", id:"mmi-flow-visual-toggle" }),
+const flowModeToggle = el("label", { class:"inteflow-pill" }, [
+  el("input", { type:"checkbox", id:"inteflow-flow-visual-toggle" }),
   el("span", { text:"Modo visual" }),
 ]);
 
-const flowVisualWrap = el("div", { class:"mmi-flow-builder", style:"display:none;" }, []);
+const flowVisualWrap = el("div", { class:"inteflow-flow-builder", style:"display:none;" }, []);
 const flowMetaName = el("input", { type:"text", placeholder:"Nombre del flow (requerido)" });
 const flowMetaId = el("input", { type:"text", placeholder:"ID (opcional)" });
 const flowMetaEnabled = el("input", { type:"checkbox" });
-const flowMetaEnabledWrap = el("label", { class:"mmi-pill" }, [flowMetaEnabled, el("span", { text:"Enabled" })]);
+const flowMetaEnabledWrap = el("label", { class:"inteflow-pill" }, [flowMetaEnabled, el("span", { text:"Enabled" })]);
 
 
 const flowTrigger = el("select", {});
 flowTrigger.appendChild(el("option", { value:"", text:"(sin trigger / solo manual)" }));
-const flowTriggerHelp = el("div", { class:"mmi-muted", style:"margin-top:6px;" }, []);
+const flowTriggerHelp = el("div", { class:"inteflow-muted", style:"margin-top:6px;" }, []);
 const flowTriggerTest = el("button", { type:"button", text:"Test trigger", style:"margin-left:6px;" });
 
 async function loadTriggerCatalog(){
@@ -1580,7 +1580,7 @@ flowTriggerTest.addEventListener('click', async ()=>{
     statusBox.textContent = 'Error al emitir trigger: ' + (err?.message || err);
   }
 });
-const flowStepsList = el("div", { class:"mmi-step-list" }, []);
+const flowStepsList = el("div", { class:"inteflow-step-list" }, []);
 const flowBtnAddStep = el("button", { type:"button", text:__("add_action","Add action") });
 const flowBtnSyncJson = el("button", { type:"button", text:"Sincronizar JSON" });
 
@@ -1678,7 +1678,7 @@ function renderStepCard(idx, step){
   // If we can map to an action, render fields; else raw JSON
   const body = el('div');
   if(action && action.fields){
-    const grid = el('div', { class:'mmi-field-grid' }, []);
+    const grid = el('div', { class:'inteflow-field-grid' }, []);
     Object.entries(action.fields).forEach(([key, meta])=>{
       const fType = meta?.type || 'string';
       const label = meta?.label || key;
@@ -1693,11 +1693,11 @@ function renderStepCard(idx, step){
         // live sync optional
       });
 
-      grid.appendChild(el('div', { class:'mmi-label', text: label }));
+      grid.appendChild(el('div', { class:'inteflow-label', text: label }));
       grid.appendChild(input);
     });
-    body.appendChild(el('div', { class:'mmi-field-grid' }, [
-      el('div', { class:'mmi-label', text:'Intent' }),
+    body.appendChild(el('div', { class:'inteflow-field-grid' }, [
+      el('div', { class:'inteflow-label', text:'Intent' }),
       intentInput
     ]));
     body.appendChild(el('div', { style:'height:8px;' }));
@@ -1705,10 +1705,10 @@ function renderStepCard(idx, step){
   } else {
     const raw = el('textarea', { 'data-step-payload-raw':'1' }, []);
     raw.value = JSON.stringify(step.payload || {}, null, 2);
-    body.appendChild(el('div', { class:'mmi-field-grid' }, [
-      el('div', { class:'mmi-label', text:'Intent' }),
+    body.appendChild(el('div', { class:'inteflow-field-grid' }, [
+      el('div', { class:'inteflow-label', text:'Intent' }),
       intentInput,
-      el('div', { class:'mmi-label', text:'Payload (JSON)' }),
+      el('div', { class:'inteflow-label', text:'Payload (JSON)' }),
       raw
     ]));
   }
@@ -1721,12 +1721,12 @@ function renderStepCard(idx, step){
   btnDown.addEventListener('click', ()=> moveStep(idx, +1));
   btnDel.addEventListener('click', ()=> removeStep(idx));
 
-  const head = el('div', { class:'mmi-step-head' }, [
-    el('div', {}, [ el('div', { class:'mmi-step-title', text: `Paso ${idx+1}` }), el('div', { class:'mmi-muted', text: title }) ]),
-    el('div', { class:'mmi-step-actions' }, [btnUp, btnDown, btnDel]),
+  const head = el('div', { class:'inteflow-step-head' }, [
+    el('div', {}, [ el('div', { class:'inteflow-step-title', text: `Paso ${idx+1}` }), el('div', { class:'inteflow-muted', text: title }) ]),
+    el('div', { class:'inteflow-step-actions' }, [btnUp, btnDown, btnDel]),
   ]);
 
-  const card = el('div', { class:'mmi-step-card', 'data-step-idx': String(idx) }, [head, body]);
+  const card = el('div', { class:'inteflow-step-card', 'data-step-idx': String(idx) }, [head, body]);
   return card;
 }
 
@@ -1788,18 +1788,18 @@ async function addStep(){
   if(!ok) return;
 
   // simple inline picker: add a temporary card at top
-  const picker = el('div', { class:'mmi-step-card' }, [
-    el('div', { class:'mmi-step-head' }, [
-      el('div', {}, [ el('div', { class:'mmi-step-title', text:'Nueva acción' }), el('div', { class:'mmi-muted', text:'Selecciona una acción o escribe un intent' }) ]),
-      el('div', { class:'mmi-step-actions' }, [])
+  const picker = el('div', { class:'inteflow-step-card' }, [
+    el('div', { class:'inteflow-step-head' }, [
+      el('div', {}, [ el('div', { class:'inteflow-step-title', text:'Nueva acción' }), el('div', { class:'inteflow-muted', text:'Selecciona una acción o escribe un intent' }) ]),
+      el('div', { class:'inteflow-step-actions' }, [])
     ]),
-    el('div', { class:'mmi-field-grid' }, [
-      el('div', { class:'mmi-label', text:'Acción' }),
+    el('div', { class:'inteflow-field-grid' }, [
+      el('div', { class:'inteflow-label', text:'Acción' }),
       sel,
-      el('div', { class:'mmi-label', text:'Intent manual' }),
+      el('div', { class:'inteflow-label', text:'Intent manual' }),
       custom,
     ]),
-    el('div', { class:'mmi-flow-footer' }, [
+    el('div', { class:'inteflow-flow-footer' }, [
       el('button', { type:'button', text:'Añadir', onclick: ()=>{
         const actionId = sel.value;
         let intentId = '';
@@ -1836,20 +1836,20 @@ async function addStep(){
 }
 
 // build visual wrap
-flowVisualWrap.appendChild(el('div', { class:'mmi-flow-top' }, [
+flowVisualWrap.appendChild(el('div', { class:'inteflow-flow-top' }, [
   el('div', {}, [ el('label', { text:'Nombre' }), flowMetaName ]),
   el('div', {}, [ el('label', { text:'ID' }), flowMetaId ]),
   el('div', {}, [ el('label', { text:'Trigger' }), el('div', {}, [flowTrigger, flowTriggerTest]), flowTriggerHelp ]),
   el('div', {}, [ el('label', { text:'Estado' }), flowMetaEnabledWrap ]),
 ]));
 flowVisualWrap.appendChild(flowStepsList);
-flowVisualWrap.appendChild(el('div', { class:'mmi-flow-footer' }, [flowBtnAddStep, flowBtnSyncJson]));
+flowVisualWrap.appendChild(el('div', { class:'inteflow-flow-footer' }, [flowBtnAddStep, flowBtnSyncJson]));
 
 flowBtnAddStep.addEventListener('click', addStep);
 flowBtnSyncJson.addEventListener('click', syncVisualToJson);
 
 document.addEventListener('change', async (e)=>{
-  if(e.target && e.target.id === 'mmi-flow-visual-toggle'){
+  if(e.target && e.target.id === 'inteflow-flow-visual-toggle'){
     const on = !!e.target.checked;
     flowVisualWrap.style.display = on ? '' : 'none';
     flowEditor.style.display = on ? 'none' : '';
@@ -1864,13 +1864,13 @@ document.addEventListener('change', async (e)=>{
 // keep JSON updated when editing meta in visual mode
 [flowMetaName, flowMetaId, flowTrigger].forEach(inp=>{
   inp.addEventListener('input', ()=>{
-    if(document.getElementById('mmi-flow-visual-toggle')?.checked){
+    if(document.getElementById('inteflow-flow-visual-toggle')?.checked){
       syncVisualToJson();
     }
   });
 });
 flowMetaEnabled.addEventListener('change', ()=>{
-  if(document.getElementById('mmi-flow-visual-toggle')?.checked){
+  if(document.getElementById('inteflow-flow-visual-toggle')?.checked){
     syncVisualToJson();
   }
 });
@@ -1913,7 +1913,7 @@ flowMetaEnabled.addEventListener('change', ()=>{
     statusBox.textContent = pretty(res);
     if (res?.ok && res?.result?.ok && res.result.flow) {
       flowEditor.value = JSON.stringify(res.result.flow, null, 2);
-      if (document.getElementById('mmi-flow-visual-toggle')?.checked) {
+      if (document.getElementById('inteflow-flow-visual-toggle')?.checked) {
         await ensureActionsCache();
         renderVisualFromFlow(res.result.flow);
       }
@@ -1971,7 +1971,7 @@ flowMetaEnabled.addEventListener('change', ()=>{
     const res = await window.IntentFlow.run("flow.export", {});
     statusBox.textContent = pretty(res);
     if (res?.ok && res?.result?.ok) {
-      downloadJson(`mmi-flows-${Date.now()}.json`, res.result);
+      downloadJson(`inteflow-flows-${Date.now()}.json`, res.result);
     }
   }
 
@@ -2002,16 +2002,16 @@ flowMetaEnabled.addEventListener('change', ()=>{
   const btnFlowImport = el("button", { type: "button", text: __("import","Import"), onclick: () => flowsFile.click() });
 
 // Build advanced card (sections for profiles)
-  const secTools  = el("div", { "data-mmi-sec": "tools" }, []);
-  const secRunner = el("div", { "data-mmi-sec": "runner" }, []);
-  const secIntents= el("div", { "data-mmi-sec": "intents" }, []);
-  const secPresets= el("div", { "data-mmi-sec": "presets" }, []);
-  const secFlows  = el("div", { "data-mmi-sec": "flows" }, []);
+  const secTools  = el("div", { "data-inteflow-sec": "tools" }, []);
+  const secRunner = el("div", { "data-inteflow-sec": "runner" }, []);
+  const secIntents= el("div", { "data-inteflow-sec": "intents" }, []);
+  const secPresets= el("div", { "data-inteflow-sec": "presets" }, []);
+  const secFlows  = el("div", { "data-inteflow-sec": "flows" }, []);
 
   // Modules / Integrations catalog (toggleable)
-  const secModules = el("div", { class: "mmi-card", id: "mmi-modules" }, [
+  const secModules = el("div", { class: "inteflow-card", id: "inteflow-modules" }, [
     el("h2", { text: "Integrations (Modules)" }),
-    el("div", { class: "mmi-muted", text: "Activa/desactiva integraciones. Están activadas por defecto, pero el loader es seguro: si una falla, no rompe WordPress." }),
+    el("div", { class: "inteflow-muted", text: "Activa/desactiva integraciones. Están activadas por defecto, pero el loader es seguro: si una falla, no rompe WordPress." }),
   ]);
 
 
@@ -2021,9 +2021,9 @@ flowMetaEnabled.addEventListener('change', ()=>{
 // Connections (reusable credentials)
 
 // ---- Connections (UX v2) ----
-const secConnections = el("div", { class: "mmi-card", id: "mmi-connections" }, [
+const secConnections = el("div", { class: "inteflow-card", id: "inteflow-connections" }, [
   el("h2", { text: "Connections" }),
-  el("div", { class: "mmi-muted", text: "Credenciales y endpoints reutilizables (Telegram, Slack, HTTP, etc.)." }),
+  el("div", { class: "inteflow-muted", text: "Credenciales y endpoints reutilizables (Telegram, Slack, HTTP, etc.)." }),
 ]);
 
 const CONNECTION_TYPES = {
@@ -2083,7 +2083,7 @@ async function loadModulesUI(){
   const top = el("div", { style: "display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:10px 0;" }, []);
   const btnRefresh = el("button", { type:"button", class:"button", text:"Actualizar" });
   const safeToggle = el("button", { type:"button", class:"button", text:"Modo seguro: OFF" });
-  const status = el("div", { class:"mmi-muted", text:"" });
+  const status = el("div", { class:"inteflow-muted", text:"" });
 
   top.appendChild(btnRefresh);
   top.appendChild(safeToggle);
@@ -2118,9 +2118,9 @@ async function loadModulesUI(){
       const depOk = !!it.dependency_ok;
       const err = (it.error || "").trim();
 
-      const pill = err ? '<span class="mmi-pill mmi-pill-bad">ERROR</span>'
-        : (!depOk ? '<span class="mmi-pill mmi-pill-warn">DEPENDENCIA</span>'
-        : (enabled ? '<span class="mmi-pill mmi-pill-ok">ON</span>' : '<span class="mmi-pill">OFF</span>'));
+      const pill = err ? '<span class="inteflow-pill inteflow-pill-bad">ERROR</span>'
+        : (!depOk ? '<span class="inteflow-pill inteflow-pill-warn">DEPENDENCIA</span>'
+        : (enabled ? '<span class="inteflow-pill inteflow-pill-ok">ON</span>' : '<span class="inteflow-pill">OFF</span>'));
 
       const btn = el("button", {
         type:"button",
@@ -2156,7 +2156,7 @@ async function loadModulesUI(){
       });
 
       const tr = el("tr", {}, [
-        el("td", {}, [ el("strong", { text: it.name || it.slug }), el("div",{class:"mmi-muted", text: it.slug}) ]),
+        el("td", {}, [ el("strong", { text: it.name || it.slug }), el("div",{class:"inteflow-muted", text: it.slug}) ]),
         el("td", { text: it.description || "" }),
         el("td", {}, [ el("code", { text: it.version || "" }) ]),
         el("td", { html: pill }),
@@ -2200,8 +2200,8 @@ function getTypeDef(type){
 }
 
 function buildModal(){
-  const overlay = el("div",{class:"mmi-modal-overlay",style:"display:none;"});
-  const box = el("div",{class:"mmi-modal"});
+  const overlay = el("div",{class:"inteflow-modal-overlay",style:"display:none;"});
+  const box = el("div",{class:"inteflow-modal"});
   overlay.appendChild(box);
   document.body.appendChild(overlay);
   return { overlay, box };
@@ -2211,12 +2211,12 @@ const connModal = buildModal();
 
 function openModal(title, bodyNode, actionsNode){
   connModal.box.innerHTML = "";
-  connModal.box.appendChild(el("div",{class:"mmi-modal-header"},[
+  connModal.box.appendChild(el("div",{class:"inteflow-modal-header"},[
     el("h3",{text:title, style:"margin:0;"}),
-    el("button",{type:"button",class:"mmi-icon-btn",text:"×",onclick:closeModal,"aria-label":"Cerrar"})
+    el("button",{type:"button",class:"inteflow-icon-btn",text:"×",onclick:closeModal,"aria-label":"Cerrar"})
   ]));
-  connModal.box.appendChild(el("div",{class:"mmi-modal-body"},[bodyNode]));
-  connModal.box.appendChild(el("div",{class:"mmi-modal-actions"},[actionsNode]));
+  connModal.box.appendChild(el("div",{class:"inteflow-modal-body"},[bodyNode]));
+  connModal.box.appendChild(el("div",{class:"inteflow-modal-actions"},[actionsNode]));
   connModal.overlay.style.display = "";
   connModal.overlay.setAttribute("aria-hidden","false");
 }
@@ -2228,10 +2228,10 @@ function closeModal(){
 
 connModal.overlay.addEventListener("click",(ev)=>{ if(ev.target===connModal.overlay) closeModal(); });
 
-const connToolbar = el("div", { class: "mmi-actions" }, []);
+const connToolbar = el("div", { class: "inteflow-actions" }, []);
 const btnConnNew = el("button", { type:"button", text:__("new_connection","New connection") });
 const btnConnReload = el("button", { type:"button", text:__("reload","Reload") });
-const connMsg = el("div",{class:"mmi-muted",style:"margin-left:auto;"});
+const connMsg = el("div",{class:"inteflow-muted",style:"margin-left:auto;"});
 connToolbar.appendChild(btnConnNew);
 connToolbar.appendChild(btnConnReload);
 connToolbar.appendChild(connMsg);
@@ -2246,15 +2246,15 @@ function renderConnRow(id, c){
   const meta = [];
   if (c.updated_at) meta.push("Actualizado: " + new Date(c.updated_at*1000).toLocaleString());
   const btnEdit = el("button",{type:"button",text:__("edit","Edit"),onclick:()=>openConnEditor(id,c)});
-  const btnDel = el("button",{type:"button",text:"Borrar",class:"mmi-danger",onclick:()=>deleteConn(id)});
+  const btnDel = el("button",{type:"button",text:"Borrar",class:"inteflow-danger",onclick:()=>deleteConn(id)});
   const btnTest = el("button",{type:"button",text:"Test",onclick:()=>testConn(id)});
-  return el("div",{class:"mmi-card",style:"margin-top:10px;"},[
+  return el("div",{class:"inteflow-card",style:"margin-top:10px;"},[
     el("div",{style:"display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap;"},[
       el("div",{},[
         el("div",{style:"font-weight:600;" ,text:title}),
-        el("div",{class:"mmi-muted",text: meta.join(" · ")}),
+        el("div",{class:"inteflow-muted",text: meta.join(" · ")}),
       ]),
-      el("div",{class:"mmi-actions"},[btnTest, btnEdit, btnDel]),
+      el("div",{class:"inteflow-actions"},[btnTest, btnEdit, btnDel]),
     ]),
   ]);
 }
@@ -2277,13 +2277,13 @@ function buildConnForm(initial){
   }
 
   const fieldsHost = el("div",{});
-  const errorBox = el("div",{class:"mmi-danger",style:"display:none;"});
+  const errorBox = el("div",{class:"inteflow-danger",style:"display:none;"});
 
   function renderFields(){
     const t = fType.value;
     const def = getTypeDef(t);
     fieldsHost.innerHTML = "";
-    if(def.help) fieldsHost.appendChild(el("div",{class:"mmi-muted",text:def.help,style:"margin-bottom:8px;"}));
+    if(def.help) fieldsHost.appendChild(el("div",{class:"inteflow-muted",text:def.help,style:"margin-bottom:8px;"}));
     def.fields.forEach(field=>{
       const val = (cfg[field.key] !== undefined) ? cfg[field.key] : (state[field.key] !== undefined ? state[field.key] : "");
       const input = el("input",{type: field.type||"text", value: val || "", placeholder: field.placeholder||""});
@@ -2356,8 +2356,8 @@ async function loadConnectionsUI(){
     connMsg.textContent = "";
     connList.innerHTML = "";
     const msg = (r && (r.message || r.error)) ? `${r.message || r.error}` : "Error cargando connections";
-    connList.appendChild(el("div",{class:"mmi-danger",text: msg}));
-    if(r) connList.appendChild(el("pre",{class:"mmi-code",text: pretty(r).slice(0,2000)}));
+    connList.appendChild(el("div",{class:"inteflow-danger",text: msg}));
+    if(r) connList.appendChild(el("pre",{class:"inteflow-code",text: pretty(r).slice(0,2000)}));
     return;
   }
   const items = r.items || {};
@@ -2365,7 +2365,7 @@ async function loadConnectionsUI(){
   const keys = Object.keys(items);
   connMsg.textContent = keys.length ? `${keys.length} connection(s)` : "0 connection(s)";
   if(keys.length === 0){
-    connList.appendChild(el("div",{class:"mmi-muted",text:"No hay connections aún. Pulsa “Nueva connection”."}));
+    connList.appendChild(el("div",{class:"inteflow-muted",text:"No hay connections aún. Pulsa “Nueva connection”."}));
     return;
   }
   keys.sort().forEach(id=>{
@@ -2428,13 +2428,13 @@ function openConnEditor(id, c){
 
 btnConnNew.addEventListener("click", ()=>openConnEditor("", {}));
 btnConnReload.addEventListener("click", ()=>loadConnectionsUI());
-const secTemplates = el("div", { class: "mmi-card", id: "mmi-templates" }, [
+const secTemplates = el("div", { class: "inteflow-card", id: "inteflow-templates" }, [
   el("h2", { text: "Templates" }),
-  el("div", { class: "mmi-muted", text: "Crea Flows desde plantillas (1 click)." }),
+  el("div", { class: "inteflow-muted", text: "Crea Flows desde plantillas (1 click)." }),
 ]);
 const tplList = el("div",{});
 const btnTplReload = el("button",{type:"button",text:__("reload","Reload")});
-secTemplates.appendChild(el("div",{class:"mmi-actions"},[btnTplReload]));
+secTemplates.appendChild(el("div",{class:"inteflow-actions"},[btnTplReload]));
 secTemplates.appendChild(tplList);
 
 async function loadTemplatesUI(){
@@ -2443,7 +2443,7 @@ async function loadTemplatesUI(){
     const items = r.items || [];
     tplList.innerHTML="";
     if(!items.length){
-      tplList.appendChild(el("div",{class:"mmi-muted",text:"No hay templates disponibles."}));
+      tplList.appendChild(el("div",{class:"inteflow-muted",text:"No hay templates disponibles."}));
       return;
     }
     items.forEach(t=>{
@@ -2452,33 +2452,33 @@ async function loadTemplatesUI(){
         await api("server.flows.save", t.flow);
         alert("Flow creado. Ve a Flows para editarlo.");
       });
-      tplList.appendChild(el("div",{class:"mmi-card",style:"margin-top:10px;"},[
+      tplList.appendChild(el("div",{class:"inteflow-card",style:"margin-top:10px;"},[
         el("div",{style:"display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;"},[
           el("div",{},[
             el("div",{text:t.label || t.id}),
-            el("div",{class:"mmi-muted",text:t.id||""})
+            el("div",{class:"inteflow-muted",text:t.id||""})
           ]),
-          el("div",{class:"mmi-actions"},[btn])
+          el("div",{class:"inteflow-actions"},[btn])
         ])
       ]));
     });
   }catch(e){
     tplList.innerHTML="";
-    tplList.appendChild(el("div",{class:"mmi-muted",text:"Error cargando templates."}));
+    tplList.appendChild(el("div",{class:"inteflow-muted",text:"Error cargando templates."}));
   }
 }
 btnTplReload.addEventListener("click", loadTemplatesUI);
 
 // ---------- END MMI UX PAGES v1 ----------
-  const secAudit  = el("div", { "data-mmi-sec": "audit" }, []);
-  const secExec   = el("div", { "data-mmi-sec": "exec" }, []);
+  const secAudit  = el("div", { "data-inteflow-sec": "audit" }, []);
+  const secExec   = el("div", { "data-inteflow-sec": "exec" }, []);
 
   advCard.appendChild(el("h3", { text: "Herramientas" }));
-  advCard.appendChild(el("p", { class: "mmi-muted", text: "Runner guiado, presets/flows y auditoría del servidor." }));
+  advCard.appendChild(el("p", { class: "inteflow-muted", text: "Runner guiado, presets/flows y auditoría del servidor." }));
 
   // Tools
-  secTools.appendChild(el("div", { class: "mmi-actions" }, [quickRow]));
-  secTools.appendChild(el("hr", { class: "mmi-hr" }));
+  secTools.appendChild(el("div", { class: "inteflow-actions" }, [quickRow]));
+  secTools.appendChild(el("hr", { class: "inteflow-hr" }));
 
   // Runner
   secRunner.appendChild(intentsDatalist);
@@ -2486,40 +2486,40 @@ btnTplReload.addEventListener("click", loadTemplatesUI);
   secRunner.appendChild(el("div", {}, [el("label", { text: "intentId" }), el("div", { style: "margin-top:6px;" }, [runnerIntent])])) ;
   secRunner.appendChild(el("div", { style: "margin-top:10px;" }, [el("label", { text: "payload" }), el("div", { style: "margin-top:6px;" }, [runnerPayload, runnerFormBox])])) ;
   secRunner.appendChild(runnerTabs);
-  secRunner.appendChild(el("div", { class: "mmi-actions", style: "margin-top:10px;" }, [btnPreset, btnValidate, btnRun]));
+  secRunner.appendChild(el("div", { class: "inteflow-actions", style: "margin-top:10px;" }, [btnPreset, btnValidate, btnRun]));
   secRunner.appendChild(runnerMsg);
   secRunner.appendChild(runnerInfo);
   secRunner.appendChild(el("div", { style: "margin-top:12px;" }, [runnerHistoryTitle, runnerHistoryBox]));
-  secRunner.appendChild(el("hr", { class: "mmi-hr" }));
+  secRunner.appendChild(el("hr", { class: "inteflow-hr" }));
 
   // Intents list
   secIntents.appendChild(el("h4", { text: "Intents disponibles" }));
   secIntents.appendChild(intentSearch);
   secIntents.appendChild(intentsListBox);
-  secIntents.appendChild(el("hr", { class: "mmi-hr" }));
+  secIntents.appendChild(el("hr", { class: "inteflow-hr" }));
 
   // Presets
   secPresets.appendChild(el("h4", { text: "Presets (servidor)" }));
-  secPresets.appendChild(el("p", { class: "mmi-muted", text: "Guarda y reutiliza plantillas en el servidor." }));
-  secPresets.appendChild(el("div", { class: "mmi-actions" }, [presetNameInput, btnPresetSaveServer, btnPresetExport, btnPresetImport]));
+  secPresets.appendChild(el("p", { class: "inteflow-muted", text: "Guarda y reutiliza plantillas en el servidor." }));
+  secPresets.appendChild(el("div", { class: "inteflow-actions" }, [presetNameInput, btnPresetSaveServer, btnPresetExport, btnPresetImport]));
   secPresets.appendChild(presetsFile);
-  secPresets.appendChild(el("div", { class: "mmi-actions", style: "margin-top:8px;" }, [presetsSelect, btnPresetLoadServer, btnPresetDeleteServer]));
-  secPresets.appendChild(el("hr", { class: "mmi-hr" }));
+  secPresets.appendChild(el("div", { class: "inteflow-actions", style: "margin-top:8px;" }, [presetsSelect, btnPresetLoadServer, btnPresetDeleteServer]));
+  secPresets.appendChild(el("hr", { class: "inteflow-hr" }));
 
   // Flows
   secFlows.appendChild(el("h4", { text: "Flows (secuencias)" }));
-  secFlows.appendChild(el("p", { class: "mmi-muted", text: "Un flow es una secuencia de intents. Puedes guardarlo y ejecutarlo (auto-live)." }));
-  secFlows.appendChild(el("div", { class: "mmi-actions" }, [flowsSelect, btnFlowLoad, btnFlowNew, btnFlowRun, btnFlowSave, btnFlowDelete, btnFlowExport, btnFlowImport]));
+  secFlows.appendChild(el("p", { class: "inteflow-muted", text: "Un flow es una secuencia de intents. Puedes guardarlo y ejecutarlo (auto-live)." }));
+  secFlows.appendChild(el("div", { class: "inteflow-actions" }, [flowsSelect, btnFlowLoad, btnFlowNew, btnFlowRun, btnFlowSave, btnFlowDelete, btnFlowExport, btnFlowImport]));
   secFlows.appendChild(flowsFile);
-  secFlows.appendChild(el("div", { class: "mmi-actions", style:"margin-top:10px;" }, [flowModeToggle]));
+  secFlows.appendChild(el("div", { class: "inteflow-actions", style:"margin-top:10px;" }, [flowModeToggle]));
   secFlows.appendChild(flowVisualWrap);
   secFlows.appendChild(el("div", { style: "margin-top:10px;" }, [flowEditor]));
-  secFlows.appendChild(el("hr", { class: "mmi-hr" }));
+  secFlows.appendChild(el("hr", { class: "inteflow-hr" }));
 
   // Audit
   secAudit.appendChild(el("h4", { text: "Auditoría del servidor" }));
-  secAudit.appendChild(el("p", { class: "mmi-muted", text: "Historial real guardado en WordPress (últimos eventos de ejecución)." }));
-  secAudit.appendChild(el("div", { class: "mmi-actions" }, [
+  secAudit.appendChild(el("p", { class: "inteflow-muted", text: "Historial real guardado en WordPress (últimos eventos de ejecución)." }));
+  secAudit.appendChild(el("div", { class: "inteflow-actions" }, [
     el("label", { text: "Límite" }),
     auditLimit,
     btnAuditRefresh,
@@ -2530,8 +2530,8 @@ btnTplReload.addEventListener("click", loadTemplatesUI);
 
   // Execution log
   secExec.appendChild(el("h4", { text: "Ejecuciones (Execution Log)" }));
-  secExec.appendChild(el("p", { class: "mmi-muted", text: "Log global de ejecuciones (scheduler, eventos, webhooks, manual). Útil para depurar." }));
-  secExec.appendChild(el("div", { class: "mmi-actions" }, [
+  secExec.appendChild(el("p", { class: "inteflow-muted", text: "Log global de ejecuciones (scheduler, eventos, webhooks, manual). Útil para depurar." }));
+  secExec.appendChild(el("div", { class: "inteflow-actions" }, [
     el("label", { text: "Límite" }),
     execLimit,
     el("label", { text: "Source" }),
@@ -2540,7 +2540,7 @@ btnTplReload.addEventListener("click", loadTemplatesUI);
     execTargetType,
     execTargetId,
     btnExecRefresh,
-    el("label", { class: "mmi-badge" }, [execAuto, el("span", { text: "Auto-actualizar" })]),
+    el("label", { class: "inteflow-badge" }, [execAuto, el("span", { text: "Auto-actualizar" })]),
     btnExecClear,
   ]));
   secExec.appendChild(execBox);
@@ -2560,10 +2560,10 @@ btnTplReload.addEventListener("click", loadTemplatesUI);
     applyProfile();
   }
   // Layout
-  const topRow = el("div", { class: "mmi-row" }, [
-    el("div", { class: "mmi-col" }, [liveBar, ensureCard]),
-    el("div", { class: "mmi-col" }, [
-      el("div", { class: "mmi-card" }, [el("h3", { text: "Resultado / logs" }), statusBox]),
+  const topRow = el("div", { class: "inteflow-row" }, [
+    el("div", { class: "inteflow-col" }, [liveBar, ensureCard]),
+    el("div", { class: "inteflow-col" }, [
+      el("div", { class: "inteflow-card" }, [el("h3", { text: "Resultado / logs" }), statusBox]),
       historyBox,
     ]),
   ]);
@@ -2592,27 +2592,27 @@ function buildFlowsWizard() {
     return `${base}-${rand}`;
   };
 
-  const card = (title, children=[]) => el("div", { class: "mmi-card" }, [
+  const card = (title, children=[]) => el("div", { class: "inteflow-card" }, [
     el("h3", { style:"margin-top:0", text: title }),
     ...children
   ]);
 
-  const msg = el("div", { class:"mmi-muted", text:"" });
-  const listBox = el("div", { class:"mmi-card", style:"padding:12px" }, []);
-  const editorBox = el("div", { class:"mmi-card", style:"padding:12px" }, []);
-  const rootBox = el("div", { class:"mmi-flow-wizard" }, [
-    el("div", { class:"mmi-flow-wizard-header" }, [
-      el("div", { class:"mmi-wizard-steps" }, [
-        el("div", { class:"mmi-step", "data-step":"1", text:"1) Trigger" }),
-        el("div", { class:"mmi-step", "data-step":"2", text:"2) Action" }),
-        el("div", { class:"mmi-step", "data-step":"3", text:"3) Options" }),
+  const msg = el("div", { class:"inteflow-muted", text:"" });
+  const listBox = el("div", { class:"inteflow-card", style:"padding:12px" }, []);
+  const editorBox = el("div", { class:"inteflow-card", style:"padding:12px" }, []);
+  const rootBox = el("div", { class:"inteflow-flow-wizard" }, [
+    el("div", { class:"inteflow-flow-wizard-header" }, [
+      el("div", { class:"inteflow-wizard-steps" }, [
+        el("div", { class:"inteflow-step", "data-step":"1", text:"1) Trigger" }),
+        el("div", { class:"inteflow-step", "data-step":"2", text:"2) Action" }),
+        el("div", { class:"inteflow-step", "data-step":"3", text:"3) Options" }),
       ]),
       el("div", { style:"text-align:right" }, [
         el("button", { class:"button button-primary", type:"button", text:__("new_flow","New flow"), onclick: () => startNewFlow() }),
       el("button", { class:"button", type:"button", text:"✨ Generar con IA", onclick: () => showAIFlowGenerator() }),
       ])
     ]),
-    el("div", { class:"mmi-flow-wizard-grid" }, [
+    el("div", { class:"inteflow-flow-wizard-grid" }, [
       el("div", {}, [ listBox ]),
       el("div", {}, [ editorBox ]),
     ]),
@@ -2621,7 +2621,7 @@ function buildFlowsWizard() {
 
   function setMsg(t, kind="") {
     msg.textContent = t || "";
-    msg.className = "mmi-muted" + (kind ? (" mmi-msg-"+kind) : "");
+    msg.className = "inteflow-muted" + (kind ? (" inteflow-msg-"+kind) : "");
   }
 
   async function loadAll() {
@@ -2642,7 +2642,7 @@ function buildFlowsWizard() {
   function renderList() {
     listBox.innerHTML = "";
     const search = el("input", { type:"search", placeholder:"Buscar flows…", style:"width:100%;margin-bottom:10px;" });
-    const ul = el("div", { class:"mmi-list" }, []);
+    const ul = el("div", { class:"inteflow-list" }, []);
     const rows = Object.values(state.flows || {}).map(f => ({
       id: f.id || "",
       name: f.name || f.id || "(sin nombre)",
@@ -2655,10 +2655,10 @@ function buildFlowsWizard() {
       const q = (search.value||"").toLowerCase().trim();
       rows.filter(r => !q || r.name.toLowerCase().includes(q) || r.id.toLowerCase().includes(q))
         .forEach(r => {
-          const row = el("div", { class:"mmi-list-row" }, [
+          const row = el("div", { class:"inteflow-list-row" }, [
             el("div", {}, [
               el("div", { style:"font-weight:600", text: r.name }),
-              el("div", { class:"mmi-muted", text: `${r.enabled ? "Activo" : "Pausado"} · ${r.trigger || "Sin trigger"}` })
+              el("div", { class:"inteflow-muted", text: `${r.enabled ? "Activo" : "Pausado"} · ${r.trigger || "Sin trigger"}` })
             ]),
             el("div", { style:"text-align:right;white-space:nowrap" }, [
               el("button", { class:"button", type:"button", text:__("edit","Edit"), onclick: () => loadFlow(r.id) }),
@@ -2667,7 +2667,7 @@ function buildFlowsWizard() {
           ]);
           ul.appendChild(row);
         });
-      if (!ul.children.length) ul.appendChild(el("div", { class:"mmi-muted", text:__("no_flows","No flows yet.") }));
+      if (!ul.children.length) ul.appendChild(el("div", { class:"inteflow-muted", text:__("no_flows","No flows yet.") }));
     };
     search.addEventListener("input", draw);
 
@@ -2720,7 +2720,7 @@ function buildFlowsWizard() {
 
     // Step 1: trigger picker
     const triggerSearch = el("input", { type:"search", placeholder:"Buscar trigger…", style:"width:100%;max-width:520px;margin-bottom:8px;" });
-    const triggerGrid = el("div", { class:"mmi-picker-grid" }, []);
+    const triggerGrid = el("div", { class:"inteflow-picker-grid" }, []);
     const drawTriggers = () => {
       triggerGrid.innerHTML = "";
       const q = (triggerSearch.value||"").toLowerCase().trim();
@@ -2729,22 +2729,22 @@ function buildFlowsWizard() {
         const isSel = (state.selectedEventId === e.id);
         const c = el("button", {
           type:"button",
-          class:"mmi-pick-card" + (isSel ? " is-selected" : ""),
+          class:"inteflow-pick-card" + (isSel ? " is-selected" : ""),
           onclick: () => { state.selectedEventId = e.id; drawTriggers(); setStepActive(1); }
         }, [
-          el("div", { class:"mmi-pick-title", text: e.label || e.id }),
-          el("div", { class:"mmi-muted", text: (e.group ? e.group + " · " : "") + (e.id || "") })
+          el("div", { class:"inteflow-pick-title", text: e.label || e.id }),
+          el("div", { class:"inteflow-muted", text: (e.group ? e.group + " · " : "") + (e.id || "") })
         ]);
         triggerGrid.appendChild(c);
       });
-      if (!triggerGrid.children.length) triggerGrid.appendChild(el("div", { class:"mmi-muted", text:"No se encontraron triggers." }));
+      if (!triggerGrid.children.length) triggerGrid.appendChild(el("div", { class:"inteflow-muted", text:"No se encontraron triggers." }));
     };
     triggerSearch.addEventListener("input", drawTriggers);
 
     // Step 2: choose integration for action
     const actionSearch = el("input", { type:"search", placeholder:"Buscar acción…", style:"width:100%;max-width:520px;margin-bottom:8px;" });
-    const integrationGrid = el("div", { class:"mmi-picker-grid" }, []);
-    const actionsGrid = el("div", { class:"mmi-picker-grid" }, []);
+    const integrationGrid = el("div", { class:"inteflow-picker-grid" }, []);
+    const actionsGrid = el("div", { class:"inteflow-picker-grid" }, []);
 
     const integrations = (() => {
       const set = new Map();
@@ -2761,14 +2761,14 @@ function buildFlowsWizard() {
         const isSel = (state.selectedActionIntegration === i.slug);
         integrationGrid.appendChild(el("button", {
           type:"button",
-          class:"mmi-pick-card" + (isSel ? " is-selected" : ""),
+          class:"inteflow-pick-card" + (isSel ? " is-selected" : ""),
           onclick: () => { state.selectedActionIntegration = i.slug; state.selectedActionId = ""; state.actionInput = {}; drawIntegrations(); drawActions(); setStepActive(2); }
         }, [
-          el("div", { class:"mmi-pick-title", text: i.name }),
-          el("div", { class:"mmi-muted", text: i.slug })
+          el("div", { class:"inteflow-pick-title", text: i.name }),
+          el("div", { class:"inteflow-muted", text: i.slug })
         ]));
       });
-      if (!integrationGrid.children.length) integrationGrid.appendChild(el("div", { class:"mmi-muted", text:"No hay integraciones de acciones registradas." }));
+      if (!integrationGrid.children.length) integrationGrid.appendChild(el("div", { class:"inteflow-muted", text:"No hay integraciones de acciones registradas." }));
     };
 
     const drawActions = () => {
@@ -2783,14 +2783,14 @@ function buildFlowsWizard() {
         const isSel = (state.selectedActionId === a.id);
         actionsGrid.appendChild(el("button", {
           type:"button",
-          class:"mmi-pick-card" + (isSel ? " is-selected" : ""),
+          class:"inteflow-pick-card" + (isSel ? " is-selected" : ""),
           onclick: () => { state.selectedActionId = a.id; state.actionInput = state.actionInput || {}; drawActions(); renderActionOptions(a); setStepActive(3); }
         }, [
-          el("div", { class:"mmi-pick-title", text: a.label || a.id }),
-          el("div", { class:"mmi-muted", text: a.description || a.id })
+          el("div", { class:"inteflow-pick-title", text: a.label || a.id }),
+          el("div", { class:"inteflow-muted", text: a.description || a.id })
         ]));
       });
-      if (!actionsGrid.children.length) actionsGrid.appendChild(el("div", { class:"mmi-muted", text:"No hay acciones para ese filtro." }));
+      if (!actionsGrid.children.length) actionsGrid.appendChild(el("div", { class:"inteflow-muted", text:"No hay acciones para ese filtro." }));
     };
     actionSearch.addEventListener("input", drawActions);
 
@@ -2809,7 +2809,7 @@ function buildFlowsWizard() {
       } catch(e) {}
 
       const fields = action.fields || {};
-      const form = el("div", { class:"mmi-form" }, []);
+      const form = el("div", { class:"inteflow-form" }, []);
 
       Object.keys(fields).forEach((k) => {
         const f = fields[k] || {};
@@ -2848,7 +2848,7 @@ function buildFlowsWizard() {
           inputEl = inp;
         }
 
-        form.appendChild(el("div", { class:"mmi-form-row" }, [
+        form.appendChild(el("div", { class:"inteflow-form-row" }, [
           el("label", { style:"font-weight:600;display:block;margin-bottom:4px", text: label + (req ? " *" : "") }),
           inputEl,
         ]));
@@ -2948,8 +2948,8 @@ function buildFlowsWizard() {
 
   function setStepActive(n) {
     try {
-      rootBox.querySelectorAll(".mmi-step").forEach(s => s.classList.remove("is-active"));
-      const elStep = rootBox.querySelector(`.mmi-step[data-step="${n}"]`);
+      rootBox.querySelectorAll(".inteflow-step").forEach(s => s.classList.remove("is-active"));
+      const elStep = rootBox.querySelector(`.inteflow-step[data-step="${n}"]`);
       if (elStep) elStep.classList.add("is-active");
     } catch(e) {}
   }
@@ -2964,22 +2964,22 @@ function buildFlowsWizard() {
 // To guarantee submenu UX, we hard-route by clearing the root and mounting ONLY the relevant section
 // on non-dashboard pages. This prevents "Dashboard completo" from appearing on Integrations/Flows/etc.
 const __mmiUrlPage = (new URLSearchParams(window.location.search).get('page') || '').replace(/_/g,'-');
-const __mmiPageKey = (root && root.dataset && root.dataset.mmiPage) ? String(root.dataset.mmiPage) :
-    (slugMap[__mmiUrlPage] || (__mmiUrlPage.includes('event')?'events':__mmiUrlPage.includes('flow')?'flows':__mmiUrlPage.includes('connection')?'connections':__mmiUrlPage.includes('integration')?'integrations':__mmiUrlPage.includes('log')?'logs':__mmiUrlPage.includes('sched')?'scheduler':__mmiUrlPage.includes('setting')?'settings':'dashboard'));
+const __mmiPageKey = (root && root.dataset && root.dataset.intreflowPage) ? String(root.dataset.intreflowPage) :
+    (({'inteflow-dashboard':'dashboard','inteflow-flows':'flows','inteflow-events':'events','inteflow-connections':'connections','inteflow-integrations':'integrations','inteflow-logs':'logs','inteflow-scheduler':'scheduler','inteflow-settings':'settings','inteflow-help':'help','inteflow-license':'license'})[__mmiUrlPage] || (__mmiUrlPage.includes('event')?'events':__mmiUrlPage.includes('flow')?'flows':__mmiUrlPage.includes('connection')?'connections':__mmiUrlPage.includes('integration')?'integrations':__mmiUrlPage.includes('log')?'logs':__mmiUrlPage.includes('sched')?'scheduler':__mmiUrlPage.includes('setting')?'settings':'dashboard'));
 
 const mountSubpage = (title, nodes, onMount) => {
   // Hide loader and show only this page
   if (loading) loading.style.display = "none";
   root.style.display = "";
   root.innerHTML = "";
-  const head = el("div", { class: "mmi-card mmi-help" }, [
-    el("div", { class: "mmi-row" }, [
-      el("div", { class: "mmi-col" }, [
+  const head = el("div", { class: "inteflow-card inteflow-help" }, [
+    el("div", { class: "inteflow-row" }, [
+      el("div", { class: "inteflow-col" }, [
         el("h2", { text: "Intent Flow" }),
-        el("p", { class: "mmi-muted", text: title }),
+        el("p", { class: "inteflow-muted", text: title }),
       ]),
-      el("div", { class: "mmi-col", style: "text-align:right" }, [
-        el("a", { class: "button", href: "admin.php?page=mmi-dashboard", text: __("back_dashboard","Back to Dashboard") }),
+      el("div", { class: "inteflow-col", style: "text-align:right" }, [
+        el("a", { class: "button", href: "admin.php?page=inteflow-dashboard", text: __("back_dashboard","Back to Dashboard") }),
       ])
     ])
   ]);
@@ -2997,9 +2997,9 @@ if (__mmiPageKey !== "dashboard") {
   }
   if (__mmiPageKey === "flows") {
     // Bloque de templates para la página Flows
-    const tplBlock = el("div", { class:"mmi-card", style:"margin-top:16px;" });
+    const tplBlock = el("div", { class:"inteflow-card", style:"margin-top:16px;" });
     tplBlock.appendChild(el("h3", { text: __('recipes_title', '⚡ Ready-to-use recipes'), style:"margin-top:0;" }));
-    tplBlock.appendChild(el("p", { class:"mmi-muted", style:"margin:0 0 12px;font-size:13px;", text: __('recipes_desc', 'Create a flow in 1 click from a pre-built recipe. You can customize it afterwards.') }));
+    tplBlock.appendChild(el("p", { class:"inteflow-muted", style:"margin:0 0 12px;font-size:13px;", text: __('recipes_desc', 'Create a flow in 1 click from a pre-built recipe. You can customize it afterwards.') }));
     const tplGrid = el("div", { style:"display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;" });
     tplBlock.appendChild(tplGrid);
 
@@ -3008,7 +3008,7 @@ if (__mmiPageKey !== "dashboard") {
       try {
         const r = await api("server.templates.list", {});
         const items = r && r.items ? r.items : (r && r.templates ? r.templates : []);
-        if(!items.length){ tplGrid.appendChild(el("p",{class:"mmi-muted",text:"No hay recetas disponibles."})); return; }
+        if(!items.length){ tplGrid.appendChild(el("p",{class:"inteflow-muted",text:"No hay recetas disponibles."})); return; }
         items.forEach(t => {
           const card = el("div", { style:"border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:12px;background:#fff;" });
           card.appendChild(el("div", { style:"font-weight:600;margin-bottom:4px;", text: t.label || t.id }));
@@ -3025,7 +3025,7 @@ if (__mmiPageKey !== "dashboard") {
           card.appendChild(btn);
           tplGrid.appendChild(card);
         });
-      } catch(e){ tplGrid.appendChild(el("p",{class:"mmi-muted",text:"Error cargando recetas."})); }
+      } catch(e){ tplGrid.appendChild(el("p",{class:"inteflow-muted",text:"Error cargando recetas."})); }
     }
 
     mountSubpage("Flows", [buildFlowsWizard(), tplBlock], () => { loadTplBlock(); });
@@ -3054,9 +3054,9 @@ if (__mmiPageKey !== "dashboard") {
     // Bloque de configuración general
     const secSettings = el("div", {});
 
-    const settingsHeader = el("div", { class:"mmi-card", style:"border-left:4px solid #2271b1;background:#f0f6fc;margin-bottom:12px;" }, [
+    const settingsHeader = el("div", { class:"inteflow-card", style:"border-left:4px solid #2271b1;background:#f0f6fc;margin-bottom:12px;" }, [
       el("h3", { text:"⚙️ Configuración general", style:"margin-top:0;" }),
-      el("p", { class:"mmi-muted", style:"margin:0;font-size:13px;", text:"Ajusta el comportamiento global del plugin. Los cambios se aplican inmediatamente." }),
+      el("p", { class:"inteflow-muted", style:"margin:0;font-size:13px;", text:"Ajusta el comportamiento global del plugin. Los cambios se aplican inmediatamente." }),
     ]);
 
     const liveStatus = el("div", { role:"status", "aria-live":"polite", style:"margin:8px 0;min-height:20px;font-size:13px;" });
@@ -3064,20 +3064,20 @@ if (__mmiPageKey !== "dashboard") {
     function tip(text){ return el("span", { title:text, "aria-label":text, style:"display:inline-block;margin-left:4px;cursor:help;color:#888;font-size:13px;", text:"ⓘ" }); }
 
     // Toggle dry_run
-    const dryToggle = el("input", { type:"checkbox", id:"mmi-dry-run", style:"margin-right:6px;" });
-    const dryLabel  = el("label", { for:"mmi-dry-run", style:"font-weight:500;cursor:pointer;" }, [
+    const dryToggle = el("input", { type:"checkbox", id:"inteflow-dry-run", style:"margin-right:6px;" });
+    const dryLabel  = el("label", { for:"inteflow-dry-run", style:"font-weight:500;cursor:pointer;" }, [
       el("span", { text:"Modo dry-run (simulación)" }),
       tip("Cuando está activo, todas las acciones se simulan pero NO se ejecutan realmente. Útil para probar sin riesgos. Desactívalo en producción."),
     ]);
-    const dryDesc = el("p", { class:"mmi-muted", style:"margin:4px 0 0 22px;font-size:12px;", text:"Las acciones no se ejecutan realmente. Ideal para pruebas." });
+    const dryDesc = el("p", { class:"inteflow-muted", style:"margin:4px 0 0 22px;font-size:12px;", text:"Las acciones no se ejecutan realmente. Ideal para pruebas." });
 
     // Toggle safe_mode
-    const safeToggle = el("input", { type:"checkbox", id:"mmi-safe-mode", style:"margin-right:6px;" });
-    const safeLabel  = el("label", { for:"mmi-safe-mode", style:"font-weight:500;cursor:pointer;" }, [
+    const safeToggle = el("input", { type:"checkbox", id:"inteflow-safe-mode", style:"margin-right:6px;" });
+    const safeLabel  = el("label", { for:"inteflow-safe-mode", style:"font-weight:500;cursor:pointer;" }, [
       el("span", { text:"Modo seguro (safe mode)" }),
       tip("Bloquea acciones potencialmente peligrosas como borrar posts o modificar opciones del sistema. Recomendado mantenerlo activo."),
     ]);
-    const safeDesc = el("p", { class:"mmi-muted", style:"margin:4px 0 0 22px;font-size:12px;", text:"Bloquea acciones peligrosas. Recomendado en producción." });
+    const safeDesc = el("p", { class:"inteflow-muted", style:"margin:4px 0 0 22px;font-size:12px;", text:"Bloquea acciones peligrosas. Recomendado en producción." });
 
     const btnSave = el("button", { class:"button button-primary", text:__("save_config","💾 Save configuration"), style:"margin-top:16px;" });
 
@@ -3128,7 +3128,7 @@ if (__mmiPageKey !== "dashboard") {
       }
     });
 
-    const settingsForm = el("div", { class:"mmi-card" }, [
+    const settingsForm = el("div", { class:"inteflow-card" }, [
       el("h4", { text:"Modo de ejecución", style:"margin-top:0;" }),
       el("div", { style:"margin-bottom:16px;" }, [ dryToggle, dryLabel, dryDesc ]),
       el("div", { style:"margin-bottom:8px;" }, [ safeToggle, safeLabel, safeDesc ]),
@@ -3151,18 +3151,18 @@ if (__mmiPageKey !== "dashboard") {
 
 
 // Page filtering (submenu UX)
-// Source of truth: PHP renders data-mmi-page / data-mmi-slug on #mmi-dashboard.
+// Source of truth: PHP renders data-inteflow-page / data-inteflow-slug on #inteflow-dashboard.
 // We also fallback to URL ?page=... and fuzzy matching so submenu routing never "falls back to Dashboard" silently.
 const slugMap = {
-  'mmi-dashboard':'dashboard',
-  'mmi-flows':'flows',
-  'mmi-help':'help',
-  'mmi-events':'events',
-  'mmi-connections':'connections',
-  'mmi-integrations':'integrations',
-  'mmi-logs':'logs',
-  'mmi-scheduler':'scheduler',
-  'mmi-settings':'settings',
+  'inteflow-dashboard':'dashboard',
+  'inteflow-flows':'flows',
+  'inteflow-help':'help',
+  'inteflow-events':'events',
+  'inteflow-connections':'connections',
+  'inteflow-integrations':'integrations',
+  'inteflow-logs':'logs',
+  'inteflow-scheduler':'scheduler',
+  'inteflow-settings':'settings',
 };
 
 function detectPageKey() {
@@ -3302,7 +3302,7 @@ function buildHelpPage() {
   function acc(icon, title, contentEl, open) {
     const d = document.createElement('details');
     if (open) d.setAttribute('open', '');
-    d.className = 'mmi-card';
+    d.className = 'inteflow-card';
     d.style.cssText = 'margin-bottom:10px;padding:0;overflow:hidden;';
     const s = document.createElement('summary');
     s.style.cssText = 'cursor:pointer;font-weight:600;font-size:14px;padding:14px 18px;list-style:none;display:flex;align-items:center;gap:10px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);';
@@ -3393,7 +3393,7 @@ function buildHelpPage() {
 
   // Header card
   const hdr = document.createElement('div');
-  hdr.className = 'mmi-card';
+  hdr.className = 'inteflow-card';
   hdr.style.cssText = 'border-left:4px solid #2271b1;background:#f0f6fc;margin-bottom:16px;display:flex;align-items:center;gap:16px;';
   hdr.innerHTML = '<span style="font-size:40px;">&#10145;</span><div><h2 style="margin:0 0 4px;">Intent Flow — Help</h2><p style="margin:0;font-size:14px;color:var(--color-text-secondary);">Complete guide to automate your WordPress site without limits or subscriptions.</p></div>';
   wrap.appendChild(hdr);
@@ -3668,7 +3668,7 @@ function buildHelpPage() {
   proFooter.innerHTML = '<div style="font-size:13px;opacity:.9;">&#10003; One-time payment &nbsp; &#10003; No subscription &nbsp; &#10003; Lifetime updates &nbsp; &#10003; Data stays on your server</div>';
 
   const proBtn = document.createElement('a');
-  proBtn.href = 'https://adaptatuweb.com/intent-flow-pro/';
+  proBtn.href = 'https://adaptatuweb.com/intent-flow-pro';
   proBtn.target = '_blank';
   proBtn.style.cssText = 'display:inline-block;background:#fff;color:#2271b1;font-weight:700;font-size:14px;padding:10px 22px;border-radius:6px;text-decoration:none;margin-left:auto;white-space:nowrap;';
   proBtn.textContent = 'Get Intent Flow Pro';
@@ -3682,7 +3682,7 @@ function buildHelpPage() {
 
 (function(){
   function enhanceAuditUI(){
-    const auditCard = document.querySelector('#mmi-audit, .mmi-audit, [data-mmi-audit]');
+    const auditCard = document.querySelector('#inteflow-audit, .inteflow-audit, [data-inteflow-audit]');
     if(!auditCard || auditCard.dataset.mmiEnhanced) return;
     auditCard.dataset.mmiEnhanced = "1";
 
@@ -3690,7 +3690,7 @@ function buildHelpPage() {
     controls.style.marginBottom = '8px';
     controls.innerHTML = `
       <label style="margin-right:8px;">Mostrar:
-        <select id="mmi-audit-filter-status">
+        <select id="inteflow-audit-filter-status">
           <option value="all">Todo</option>
           <option value="ok">OK</option>
           <option value="error">Errores</option>
@@ -3698,13 +3698,13 @@ function buildHelpPage() {
         </select>
       </label>
       <label style="margin-left:12px;">
-        <input type="checkbox" id="mmi-audit-autorefresh">
+        <input type="checkbox" id="inteflow-audit-autorefresh">
         Auto‑actualizar
       </label>
     `;
     auditCard.prepend(controls);
 
-    const select = controls.querySelector('#mmi-audit-filter-status');
+    const select = controls.querySelector('#inteflow-audit-filter-status');
     select.addEventListener('change', ()=>{
       const val = select.value;
       auditCard.querySelectorAll('[data-status]').forEach(row=>{
@@ -3713,7 +3713,7 @@ function buildHelpPage() {
       });
     });
 
-    const auto = controls.querySelector('#mmi-audit-autorefresh');
+    const auto = controls.querySelector('#inteflow-audit-autorefresh');
     let timer = null;
     auto.addEventListener('change', ()=>{
       if(auto.checked){
@@ -3762,20 +3762,20 @@ function buildHelpPage() {
     controls.style.marginBottom = '10px';
     controls.innerHTML = `
       <label>Mostrar:
-        <select id="mmi-audit-filter-status">
+        <select id="inteflow-audit-filter-status">
           <option value="all">Todo</option>
           <option value="ok">OK</option>
           <option value="blocked">Blocked</option>
         </select>
       </label>
       <label style="margin-left:12px;">
-        <input type="checkbox" id="mmi-audit-autorefresh"> Auto-actualizar
+        <input type="checkbox" id="inteflow-audit-autorefresh"> Auto-actualizar
       </label>
     `;
 
     container.insertBefore(controls, table);
 
-    const select = controls.querySelector('#mmi-audit-filter-status');
+    const select = controls.querySelector('#inteflow-audit-filter-status');
     select.addEventListener('change', ()=>{
       const val = select.value;
       table.querySelectorAll('tbody tr').forEach(row=>{
@@ -3787,7 +3787,7 @@ function buildHelpPage() {
       });
     });
 
-    const auto = controls.querySelector('#mmi-audit-autorefresh');
+    const auto = controls.querySelector('#inteflow-audit-autorefresh');
     let timer=null;
     auto.addEventListener('change', ()=>{
       if(auto.checked){
@@ -3824,14 +3824,14 @@ function buildHelpPage() {
     controls.innerHTML = `
       <label style="margin-right:10px;">
         Mostrar:
-        <select id="mmi-audit-filter-status">
+        <select id="inteflow-audit-filter-status">
           <option value="all">Todo</option>
           <option value="ok">OK</option>
           <option value="blocked">Blocked</option>
         </select>
       </label>
       <label>
-        <input type="checkbox" id="mmi-audit-autorefresh"> Auto-actualizar
+        <input type="checkbox" id="inteflow-audit-autorefresh"> Auto-actualizar
       </label>
     `;
 
@@ -3840,7 +3840,7 @@ function buildHelpPage() {
     const table = container.parentElement.querySelector('table');
     if(!table) return;
 
-    controls.querySelector('#mmi-audit-filter-status').addEventListener('change', (e)=>{
+    controls.querySelector('#inteflow-audit-filter-status').addEventListener('change', (e)=>{
       const val = e.target.value;
       table.querySelectorAll('tbody tr').forEach(row=>{
         const ok = row.innerText.includes('✔');
@@ -3852,7 +3852,7 @@ function buildHelpPage() {
     });
 
     let timer=null;
-    controls.querySelector('#mmi-audit-autorefresh').addEventListener('change', (e)=>{
+    controls.querySelector('#inteflow-audit-autorefresh').addEventListener('change', (e)=>{
       if(e.target.checked){
         timer=setInterval(()=>updateBtn.click(), 5000);
       } else if(timer){
@@ -4003,14 +4003,14 @@ function buildHelpPage() {
     const cards = buildCards(select);
     if(cards.length === 0) return;
 
-    if(block.querySelector('#mmi-flow-gallery')) return;
+    if(block.querySelector('#inteflow-flow-gallery')) return;
 
     // Find Load button (Cargar) and textarea (Flow JSON)
     const loadBtn = [...block.querySelectorAll('button')].find(b => (b.innerText||'').trim().toLowerCase() === 'cargar');
     const textarea = block.querySelector('textarea');
 
     const gallery = document.createElement('div');
-    gallery.id = 'mmi-flow-gallery';
+    gallery.id = 'inteflow-flow-gallery';
     gallery.style.margin = '10px 0 12px 0';
 
     const header = document.createElement('div');
@@ -4140,7 +4140,7 @@ function buildHelpPage() {
   const t = setInterval(()=>{
     tries++;
     enhance();
-    if(document.querySelector('#mmi-flow-gallery') || tries > 20) clearInterval(t);
+    if(document.querySelector('#inteflow-flow-gallery') || tries > 20) clearInterval(t);
   }, 350);
 })();
 // === END MMI Flow Gallery ===
@@ -4149,48 +4149,48 @@ function buildHelpPage() {
 
 // === MMI Focus/Selected States (A11y) ===
 (function(){
-  if(document.getElementById('mmi-a11y-focus-styles')) return;
+  if(document.getElementById('inteflow-a11y-focus-styles')) return;
   const style = document.createElement('style');
-  style.id = 'mmi-a11y-focus-styles';
+  style.id = 'inteflow-a11y-focus-styles';
   style.textContent = `
     /* Visible focus ring for all buttons/inputs inside Intent Flow page */
-    #mmi-dashboard button:focus-visible,
-    #mmi-dashboard [role="button"]:focus-visible,
-    #mmi-dashboard a:focus-visible,
-    #mmi-dashboard select:focus-visible,
-    #mmi-dashboard input:focus-visible,
-    #mmi-dashboard textarea:focus-visible {
+    #inteflow-dashboard button:focus-visible,
+    #inteflow-dashboard [role="button"]:focus-visible,
+    #inteflow-dashboard a:focus-visible,
+    #inteflow-dashboard select:focus-visible,
+    #inteflow-dashboard input:focus-visible,
+    #inteflow-dashboard textarea:focus-visible {
       outline: 3px solid rgba(26, 115, 232, 0.9);
       outline-offset: 2px;
       border-radius: 10px;
     }
 
     /* Subtle hover/active for secondary buttons (Cargar/Exportar/Importar/Guardar/etc.) */
-    #mmi-dashboard button.button,
-    #mmi-dashboard button:not(.button-primary):not(.mmi-primary) {
+    #inteflow-dashboard button.button,
+    #inteflow-dashboard button:not(.button-primary):not(.inteflow-primary) {
       transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
     }
-    #mmi-dashboard button.button:hover,
-    #mmi-dashboard button:not(.button-primary):not(.mmi-primary):hover {
+    #inteflow-dashboard button.button:hover,
+    #inteflow-dashboard button:not(.button-primary):not(.inteflow-primary):hover {
       box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.06);
     }
-    #mmi-dashboard button.button:active,
-    #mmi-dashboard button:not(.button-primary):not(.mmi-primary):active {
+    #inteflow-dashboard button.button:active,
+    #inteflow-dashboard button:not(.button-primary):not(.inteflow-primary):active {
       transform: translateY(1px);
     }
 
     /* Profile buttons: selected state via aria-pressed */
-    #mmi-dashboard [data-profile][aria-pressed="true"] {
+    #inteflow-dashboard [data-profile][aria-pressed="true"] {
       background: rgba(26,115,232,.12) !important;
       border-color: rgba(26,115,232,.55) !important;
       box-shadow: 0 0 0 3px rgba(26,115,232,.18);
     }
-    #mmi-dashboard [data-profile] {
+    #inteflow-dashboard [data-profile] {
       cursor: pointer;
     }
 
     /* Disabled buttons visible */
-    #mmi-dashboard button:disabled {
+    #inteflow-dashboard button:disabled {
       opacity: .55;
       cursor: not-allowed;
       box-shadow: none !important;
@@ -4207,13 +4207,13 @@ function buildHelpPage() {
   function sync(){
     let p = 'business';
     try { p = localStorage.getItem('mmi_profile_v1') || localStorage.getItem('mmi_profile') || 'business'; } catch(e){}
-    document.querySelectorAll('#mmi-dashboard [data-profile]').forEach(btn=>{
+    document.querySelectorAll('#inteflow-dashboard [data-profile]').forEach(btn=>{
       const val = btn.getAttribute('data-profile');
       btn.setAttribute('aria-pressed', val === p ? 'true' : 'false');
     });
   }
   document.addEventListener('click', (e)=>{
-    const btn = e.target.closest && e.target.closest('#mmi-dashboard [data-profile]');
+    const btn = e.target.closest && e.target.closest('#inteflow-dashboard [data-profile]');
     if(!btn) return;
     const val = btn.getAttribute('data-profile');
     try { localStorage.setItem('mmi_profile_v1', val); } catch(err){}
@@ -4626,15 +4626,15 @@ function runFlow(flow){
   }
 
   function renderAppsBlock(apps){
-    const dash = document.querySelector('#mmi-dashboard');
+    const dash = document.querySelector('#inteflow-dashboard');
     if(!dash) return;
 
     // Remove existing block (for rerender)
-    const existing = dash.querySelector('#mmi-apps-block');
+    const existing = dash.querySelector('#inteflow-apps-block');
     if(existing) existing.remove();
 
     const block = document.createElement('div');
-    block.id = 'mmi-apps-block';
+    block.id = 'inteflow-apps-block';
     block.style.margin = '10px 0 16px 0';
 
     const header = document.createElement('div');
@@ -4655,7 +4655,7 @@ function runFlow(flow){
       editBtn.className = 'button';
       editBtn.textContent = 'Editar Apps (JSON)';
       editBtn.addEventListener('click', ()=>{
-        const panel = block.querySelector('#mmi-apps-editor');
+        const panel = block.querySelector('#inteflow-apps-editor');
         if(panel){
           const open = (panel.style.display === 'none');
           panel.style.display = open ? '' : 'none';
@@ -4678,72 +4678,72 @@ function runFlow(flow){
     // Tech editor
     if(getProfile() === 'tech'){
       const editor = document.createElement('div');
-      editor.id = 'mmi-apps-editor';
+      editor.id = 'inteflow-apps-editor';
       editor.style.marginTop = '12px';
       editor.style.display = (localStorage.getItem('mmi_apps_editor_open') === '1' ? '' : 'none');
 
       editor.innerHTML = `
         <div style="margin:8px 0;"><strong>Apps (JSON)</strong> <span style="opacity:.7">— se guarda en el servidor</span></div>
-        <textarea id="mmi-apps-json" rows="10" style="width:100%; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;"></textarea>
+        <textarea id="inteflow-apps-json" rows="10" style="width:100%; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;"></textarea>
         <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; align-items:center;">
-          <button type="button" class="button button-primary" id="mmi-apps-save">Guardar Apps</button>
-          <button type="button" class="button" id="mmi-apps-export">Exportar archivo</button>
-          <label for="mmi-apps-file" class="button" style="display:inline-flex; align-items:center; gap:6px;">
+          <button type="button" class="button button-primary" id="inteflow-apps-save">Guardar Apps</button>
+          <button type="button" class="button" id="inteflow-apps-export">Exportar archivo</button>
+          <label for="inteflow-apps-file" class="button" style="display:inline-flex; align-items:center; gap:6px;">
             <span>Elegir .json</span>
-            <input id="mmi-apps-file" type="file" accept="application/json,.json" style="display:none;" />
+            <input id="inteflow-apps-file" type="file" accept="application/json,.json" style="display:none;" />
           </label>
-          <button type="button" class="button" id="mmi-apps-import-file">Importar archivo</button>
-          <button type="button" class="button" id="mmi-apps-import">Importar (editor)</button>
-          <button type="button" class="button" id="mmi-apps-reset">Restaurar defaults</button>
-          <span id="mmi-apps-status" role="status" style="font-size:12px; opacity:.8;"></span>
+          <button type="button" class="button" id="inteflow-apps-import-file">Importar archivo</button>
+          <button type="button" class="button" id="inteflow-apps-import">Importar (editor)</button>
+          <button type="button" class="button" id="inteflow-apps-reset">Restaurar defaults</button>
+          <span id="inteflow-apps-status" role="status" style="font-size:12px; opacity:.8;"></span>
         </div>
       
-<div id="mmi-apps-history" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; align-items:center;">
+<div id="inteflow-apps-history" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; align-items:center;">
   <strong style="font-size:12px; opacity:.85;">Versiones</strong>
-  <select id="mmi-apps-history-select" style="min-width:260px; max-width:100%;">
+  <select id="inteflow-apps-history-select" style="min-width:260px; max-width:100%;">
     <option value="">— Sin historial —</option>
   </select>
-  <button type="button" class="button" id="mmi-apps-history-load">Cargar en editor</button>
-  <button type="button" class="button" id="mmi-apps-history-restore">Restaurar</button>
-  <button type="button" class="button" id="mmi-apps-history-undo" style="display:none;">Deshacer</button>
-  <button type="button" class="button" id="mmi-apps-history-clear">Borrar historial</button>
+  <button type="button" class="button" id="inteflow-apps-history-load">Cargar en editor</button>
+  <button type="button" class="button" id="inteflow-apps-history-restore">Restaurar</button>
+  <button type="button" class="button" id="inteflow-apps-history-undo" style="display:none;">Deshacer</button>
+  <button type="button" class="button" id="inteflow-apps-history-clear">Borrar historial</button>
   <span style="font-size:12px; opacity:.75;">(Se guarda en el servidor, máx. 20)</span>
 </div>
 
-<div id="mmi-apps-history-diff" style="margin-top:10px; padding:10px; border:1px solid rgba(0,0,0,.08); border-radius:10px; background:#fbfbfc;">
+<div id="inteflow-apps-history-diff" style="margin-top:10px; padding:10px; border:1px solid rgba(0,0,0,.08); border-radius:10px; background:#fbfbfc;">
   <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
     <strong style="font-size:12px; opacity:.85;">Diff</strong>
     <label style="font-size:12px; opacity:.85;">Base
-      <select id="mmi-apps-diff-base" style="margin-left:6px;">
+      <select id="inteflow-apps-diff-base" style="margin-left:6px;">
         <option value="current">Actual</option>
       </select>
     </label>
     <label style="font-size:12px; opacity:.85;">Comparar con
-      <select id="mmi-apps-diff-target" style="margin-left:6px; min-width:240px; max-width:100%;">
+      <select id="inteflow-apps-diff-target" style="margin-left:6px; min-width:240px; max-width:100%;">
         <option value="">— Selecciona una versión —</option>
       </select>
     </label>
-    <button type="button" class="button" id="mmi-apps-diff-run">Ver diff</button>
+    <button type="button" class="button" id="inteflow-apps-diff-run">Ver diff</button>
   </div>
-  <div id="mmi-apps-diff-output" style="margin-top:10px;" role="region" aria-label="Cambios entre versiones"></div>
+  <div id="inteflow-apps-diff-output" style="margin-top:10px;" role="region" aria-label="Cambios entre versiones"></div>
 </div>
       `;
 
       block.appendChild(editor);
 
-      const ta = editor.querySelector('#mmi-apps-json');
-      const status = editor.querySelector('#mmi-apps-status');
+      const ta = editor.querySelector('#inteflow-apps-json');
+      const status = editor.querySelector('#inteflow-apps-status');
 
-const histSelect = editor.querySelector('#mmi-apps-history-select');
-const histLoadBtn = editor.querySelector('#mmi-apps-history-load');
-const histRestoreBtn = editor.querySelector('#mmi-apps-history-restore');
-const histUndoBtn = editor.querySelector('#mmi-apps-history-undo');
-const histClearBtn = editor.querySelector('#mmi-apps-history-clear');
+const histSelect = editor.querySelector('#inteflow-apps-history-select');
+const histLoadBtn = editor.querySelector('#inteflow-apps-history-load');
+const histRestoreBtn = editor.querySelector('#inteflow-apps-history-restore');
+const histUndoBtn = editor.querySelector('#inteflow-apps-history-undo');
+const histClearBtn = editor.querySelector('#inteflow-apps-history-clear');
 
-const diffBaseSel = editor.querySelector('#mmi-apps-diff-base');
-const diffTargetSel = editor.querySelector('#mmi-apps-diff-target');
-const diffRunBtn = editor.querySelector('#mmi-apps-diff-run');
-const diffOut = editor.querySelector('#mmi-apps-diff-output');
+const diffBaseSel = editor.querySelector('#inteflow-apps-diff-base');
+const diffTargetSel = editor.querySelector('#inteflow-apps-diff-target');
+const diffRunBtn = editor.querySelector('#inteflow-apps-diff-run');
+const diffOut = editor.querySelector('#inteflow-apps-diff-output');
 
 let _mmiHistorySeedTried = false;
 
@@ -4882,8 +4882,8 @@ function renderAppsDiff(a, b){
   return html;
 }
 
-      const fileInput = editor.querySelector('#mmi-apps-file');
-      const importFileBtn = editor.querySelector('#mmi-apps-import-file');
+      const fileInput = editor.querySelector('#inteflow-apps-file');
+      const importFileBtn = editor.querySelector('#inteflow-apps-import-file');
 
       async function previewAndImportApps(jsonText, sourceLabel){
         const parsed = safeJsonParse(jsonText);
@@ -5082,7 +5082,7 @@ if(histClearBtn){
   });
 }
 
-editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
+editor.querySelector('#inteflow-apps-save').addEventListener('click', async ()=>{
         status.textContent = 'Guardando…';
         const parsed = safeJsonParse(ta.value);
         if(!parsed.ok){ status.textContent = 'JSON inválido: ' + parsed.error; return; }
@@ -5097,7 +5097,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
         }
       });
 
-      editor.querySelector('#mmi-apps-export').addEventListener('click', async ()=>{
+      editor.querySelector('#inteflow-apps-export').addEventListener('click', async ()=>{
         status.textContent = 'Exportando…';
         const res = await exportAppsFromServer();
         if(res?.ok && typeof res.json === 'string'){
@@ -5108,7 +5108,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
             const yyyy = d.getFullYear();
             const mm = String(d.getMonth()+1).padStart(2,'0');
             const dd = String(d.getDate()).padStart(2,'0');
-            const filename = `mmi-apps-${yyyy}-${mm}-${dd}.json`;
+            const filename = `inteflow-apps-${yyyy}-${mm}-${dd}.json`;
             downloadJson(filename, JSON.parse(res.json));
           }catch(e){
             // If JSON parse fails, still allow manual copy from textarea.
@@ -5120,11 +5120,11 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       });
 
 
-      editor.querySelector('#mmi-apps-import').addEventListener('click', async ()=>{
+      editor.querySelector('#inteflow-apps-import').addEventListener('click', async ()=>{
         await previewAndImportApps(ta.value, 'editor');
       });
 
-      editor.querySelector('#mmi-apps-reset').addEventListener('click', ()=>{
+      editor.querySelector('#inteflow-apps-reset').addEventListener('click', ()=>{
         ta.value = JSON.stringify(DEFAULT_APPS, null, 2);
         status.textContent = 'Defaults listos (pulsa Guardar Apps).';
       });
@@ -5142,7 +5142,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
   let tries = 0;
   const t = setInterval(()=>{
     tries++;
-    if(document.querySelector('#mmi-dashboard') && window.IntentFlow?.run){
+    if(document.querySelector('#inteflow-dashboard') && window.IntentFlow?.run){
       clearInterval(t);
       boot();
     }
@@ -5223,14 +5223,14 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
     if (!host) return;
 
     // Avoid double-mount
-    if (host.querySelector('[data-mmi-scheduler-pro="1"]')) return;
+    if (host.querySelector('[data-inteflow-scheduler-pro="1"]')) return;
 
-    const live = el('div', { class:'mmi-muted', role:'status', 'aria-live':'polite' });
+    const live = el('div', { class:'inteflow-muted', role:'status', 'aria-live':'polite' });
 
-    const header = el('div', { class:'mmi-row' }, [
+    const header = el('div', { class:'inteflow-row' }, [
       el('div', {}, [
         el('h3', { text:'Scheduler (UI)' }),
-        el('p', { class:'mmi-muted', text:'Programa tareas (jobs) que ejecutan intents en segundo plano mediante WP-Cron. Requiere cron fiable en producción.' }),
+        el('p', { class:'inteflow-muted', text:'Programa tareas (jobs) que ejecutan intents en segundo plano mediante WP-Cron. Requiere cron fiable en producción.' }),
       ]),
     ]);
 
@@ -5260,7 +5260,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       await refresh();
     }});
 
-    const form = el('div', { class:'mmi-card mmi-row', 'data-mmi-scheduler-pro':'1' }, [
+    const form = el('div', { class:'inteflow-card inteflow-row', 'data-inteflow-scheduler-pro':'1' }, [
       el('div', {}, [ el('label', { text:'Intent' }), fIntent ]),
       el('div', {}, [ el('label', { text:'ID (opcional)' }), fId ]),
       el('div', {}, [ el('label', { text:'Intervalo (s)' }), fInterval ]),
@@ -5269,9 +5269,9 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
     ]);
 
     // Jobs list container
-    const list = el('div', { class:'mmi-card' }, [
+    const list = el('div', { class:'inteflow-card' }, [
       el('h4', { text:'Jobs' }),
-      el('div', { class:'mmi-muted', text:'Se guardan en el servidor. Cada job almacena last_run/next_run y last_result.' }),
+      el('div', { class:'inteflow-muted', text:'Se guardan en el servidor. Cada job almacena last_run/next_run y last_result.' }),
     ]);
 
     const tableWrap = el('div', { style:'overflow:auto; max-width:100%;' });
@@ -5367,9 +5367,9 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
           el('td', {}, [ el('code', { text:id }) ]),
           el('td', {}, [ intentInput ]),
           el('td', {}, [ enabledToggle ]),
-          el('td', {}, [ intervalInput, el('span', { class:'mmi-muted', text:' s' }) ]),
-          el('td', { class:'mmi-muted' }, [ el('span', { text: fmtTs(j.last_run) }) ]),
-          el('td', { class:'mmi-muted' }, [ el('span', { text: fmtTs(j.next_run) }) ]),
+          el('td', {}, [ intervalInput, el('span', { class:'inteflow-muted', text:' s' }) ]),
+          el('td', { class:'inteflow-muted' }, [ el('span', { text: fmtTs(j.last_run) }) ]),
+          el('td', { class:'inteflow-muted' }, [ el('span', { text: fmtTs(j.next_run) }) ]),
           el('td', {}, [
             lastBadge,
             j.last_result ? el('details', {}, [
@@ -5386,7 +5386,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       tableWrap.appendChild(table);
     }
 
-    const wrap = el('div', { class:'mmi-card', 'data-mmi-scheduler-pro':'1' }, [
+    const wrap = el('div', { class:'inteflow-card', 'data-inteflow-scheduler-pro':'1' }, [
       header,
       form,
       live,
@@ -5403,7 +5403,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       if (profile !== 'technical') return;
 
       // Best-effort mount: in your UI there is a main container.
-      const host = document.querySelector('#mmi-dashboard') || document.querySelector('.wrap') || document.body;
+      const host = document.querySelector('#inteflow-dashboard') || document.querySelector('.wrap') || document.body;
       mountScheduler(host);
     }catch(e){}
   });
@@ -5446,20 +5446,20 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
 
   async function mountIntegrations(host){
     if(!host) return;
-    if(host.querySelector('[data-mmi-integrations="1"]')) return;
+    if(host.querySelector('[data-inteflow-integrations="1"]')) return;
 
-    const box = el('div', { class:'mmi-card', 'data-mmi-integrations':'1' }, [
+    const box = el('div', { class:'inteflow-card', 'data-inteflow-integrations':'1' }, [
       el('h2', { text:'Integrations (v1)' }),
-      el('p', { class:'mmi-muted', text:'Conexiones reutilizables para intents: http.request, slack.send, zapier.trigger. Úsalas por connection_id en Apps/Rules/Jobs.' }),
+      el('p', { class:'inteflow-muted', text:'Conexiones reutilizables para intents: http.request, slack.send, zapier.trigger. Úsalas por connection_id en Apps/Rules/Jobs.' }),
     ]);
 
-    const status = el('div', { class:'mmi-muted', role:'status' });
+    const status = el('div', { class:'inteflow-muted', role:'status' });
     const table = el('table', { class:'widefat striped', style:'margin-top:8px;' });
     box.appendChild(status);
     box.appendChild(table);
 
     // Create form
-    const form = el('div', { class:'mmi-row', style:'margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:end;' });
+    const form = el('div', { class:'inteflow-row', style:'margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:end;' });
     const typeS = el('select', { style:'min-width:220px;' }, [
       el('option', { value:'slack.webhook', text:'Slack (Incoming Webhook)' }),
       el('option', { value:'zapier.hook', text:'Zapier (Catch Hook)' }),
@@ -5469,10 +5469,10 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
     const idI   = el('input', { type:'text', placeholder:'connection_id (opcional)', style:'min-width:220px;' });
     const urlI  = el('input', { type:'text', placeholder:'URL (webhook/hook/base)', style:'min-width:420px; flex:1;' });
     const addBtn = el('button', { class:'button button-primary', text:__("save","Save") });
-    form.appendChild(el('label', { class:'mmi-field' }, [el('div',{class:'mmi-muted',text:'Tipo'}), typeS]));
-    form.appendChild(el('label', { class:'mmi-field' }, [el('div',{class:'mmi-muted',text:'Nombre'}), nameI]));
-    form.appendChild(el('label', { class:'mmi-field' }, [el('div',{class:'mmi-muted',text:'ID'}), idI]));
-    form.appendChild(el('label', { class:'mmi-field', style:'flex:1;' }, [el('div',{class:'mmi-muted',text:'URL'}), urlI]));
+    form.appendChild(el('label', { class:'inteflow-field' }, [el('div',{class:'inteflow-muted',text:'Tipo'}), typeS]));
+    form.appendChild(el('label', { class:'inteflow-field' }, [el('div',{class:'inteflow-muted',text:'Nombre'}), nameI]));
+    form.appendChild(el('label', { class:'inteflow-field' }, [el('div',{class:'inteflow-muted',text:'ID'}), idI]));
+    form.appendChild(el('label', { class:'inteflow-field', style:'flex:1;' }, [el('div',{class:'inteflow-muted',text:'URL'}), urlI]));
     form.appendChild(addBtn);
     box.appendChild(form);
 
@@ -5507,7 +5507,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
             el('td', {}, [ el('code', { text: item.id || '' }) ]),
             el('td', { text: typeLabel(item.type) }),
             el('td', { text: item.name || '' }),
-            el('td', { html: enabled ? '<span class="mmi-pill mmi-pill-ok">ON</span>' : '<span class="mmi-pill">OFF</span>' }),
+            el('td', { html: enabled ? '<span class="inteflow-pill inteflow-pill-ok">ON</span>' : '<span class="inteflow-pill">OFF</span>' }),
             el('td', {}, [ el('details', {}, [ el('summary',{text:'Ver'}), el('pre',{style:'white-space:pre-wrap; max-width:520px;', text: cfgStr }) ]) ]),
             el('td', {}, []),
           ]);
@@ -5560,7 +5560,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
     try{
       const profile = (localStorage.getItem('mmi_profile_v1') || '').toLowerCase();
       if (profile !== 'technical') return;
-      const host = document.querySelector('#mmi-dashboard') || document.querySelector('.wrap') || document.body;
+      const host = document.querySelector('#inteflow-dashboard') || document.querySelector('.wrap') || document.body;
       mountIntegrations(host);
     }catch(e){}
   });
@@ -5589,17 +5589,17 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
   function mount(container){
     if(!container) return;
     if(!window.IntentFlow || typeof window.IntentFlow.run !== 'function'){
-      container.innerHTML = '<p class="mmi-muted">IntentFlow no disponible.</p>';
+      container.innerHTML = '<p class="inteflow-muted">IntentFlow no disponible.</p>';
       return;
     }
 
     const status = document.createElement('div');
-    status.className = 'mmi-muted';
+    status.className = 'inteflow-muted';
     status.setAttribute('role','status');
     status.setAttribute('aria-live','polite');
 
     const form = document.createElement('div');
-    form.className = 'mmi-row';
+    form.className = 'inteflow-row';
 
     const id = document.createElement('input'); id.placeholder='ID (opcional, ej: job_ui_test)';
     id.style.minWidth='220px';
@@ -5639,17 +5639,17 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       const next = Number(j.next_run||0);
       const overdue = enabled && next && next < (serverNow - 30);
       const st = String(j.last_status || '').toLowerCase();
-      if (!enabled) return '<span class="mmi-muted">OFF</span>';
+      if (!enabled) return '<span class="inteflow-muted">OFF</span>';
       if (overdue) return '<strong>OVERDUE</strong>';
       if (st === 'ok') return '<span>OK</span>';
       if (st === 'error') return '<span>ERROR</span>';
-      return '<span class="mmi-muted">—</span>';
+      return '<span class="inteflow-muted">—</span>';
     }
 
     function renderTable(jobs){
       const keys = Object.keys(jobs||{});
       if(!keys.length){
-        tableWrap.innerHTML = '<p class="mmi-muted">No hay jobs aún.</p>';
+        tableWrap.innerHTML = '<p class="inteflow-muted">No hay jobs aún.</p>';
         return;
       }
       let html = '<table class="widefat striped"><thead><tr>'
@@ -5659,16 +5659,16 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
         html += '<tr data-job="'+esc(k)+'">'
           + '<td><code>'+esc(k)+'</code></td>'
           + '<td>'+statusBadge(j)+'</td>'
-          + '<td><label><input type="checkbox" class="mmi-job-enabled" '+(j.enabled?'checked':'')+'/> <span class="screen-reader-text">Enabled</span></label></td>'
-          + '<td><input class="mmi-job-intent" value="'+esc(j.intent||'')+'" style="min-width:240px"/></td>'
-          + '<td><input type="number" class="mmi-job-interval" min="30" step="30" value="'+esc(j.interval||0)+'" style="width:90px"/></td>'
+          + '<td><label><input type="checkbox" class="inteflow-job-enabled" '+(j.enabled?'checked':'')+'/> <span class="screen-reader-text">Enabled</span></label></td>'
+          + '<td><input class="inteflow-job-intent" value="'+esc(j.intent||'')+'" style="min-width:240px"/></td>'
+          + '<td><input type="number" class="inteflow-job-interval" min="30" step="30" value="'+esc(j.interval||0)+'" style="width:90px"/></td>'
           + '<td>'+esc(fmtTs(j.last_run))+'</td>'
           + '<td>'+esc(fmtTs(j.next_run))+'</td>'
           + '<td>'
-          + '<button class="button mmi-job-run">Run now</button> '
-          + '<button class="button mmi-job-save">Guardar</button> '
-          + '<button class="button-link-delete mmi-job-del">Eliminar</button>'
-          + '<details class="mmi-job-runs" style="margin-top:6px;"><summary>Runs</summary><div class="mmi-muted">Cargando…</div></details>'
+          + '<button class="button inteflow-job-run">Run now</button> '
+          + '<button class="button inteflow-job-save">Guardar</button> '
+          + '<button class="button-link-delete inteflow-job-del">Eliminar</button>'
+          + '<details class="inteflow-job-runs" style="margin-top:6px;"><summary>Runs</summary><div class="inteflow-muted">Cargando…</div></details>'
           + '</td>'
           + '</tr>';
       }
@@ -5676,7 +5676,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       tableWrap.innerHTML = html;
 
       // Run now
-      tableWrap.querySelectorAll('button.mmi-job-run').forEach(btn=>{
+      tableWrap.querySelectorAll('button.inteflow-job-run').forEach(btn=>{
         btn.addEventListener('click', async (e)=>{
           const tr = e.target.closest('tr[data-job]');
           const jobId = tr.getAttribute('data-job');
@@ -5687,13 +5687,13 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
         });
       });
 
-      tableWrap.querySelectorAll('button.mmi-job-save').forEach(btn=>{
+      tableWrap.querySelectorAll('button.inteflow-job-save').forEach(btn=>{
         btn.addEventListener('click', async (e)=>{
           const tr = e.target.closest('tr[data-job]');
           const jobId = tr.getAttribute('data-job');
-          const en = tr.querySelector('.mmi-job-enabled')?.checked ? true : false;
-          const inId = tr.querySelector('.mmi-job-intent')?.value || '';
-          const iv = Number(tr.querySelector('.mmi-job-interval')?.value || 0);
+          const en = tr.querySelector('.inteflow-job-enabled')?.checked ? true : false;
+          const inId = tr.querySelector('.inteflow-job-intent')?.value || '';
+          const iv = Number(tr.querySelector('.inteflow-job-interval')?.value || 0);
           status.textContent = 'Guardando…';
           const res = await api('server.scheduler.update', { id: jobId, job: { enabled: en, intent: inId, interval: iv } });
           status.textContent = res && res.ok !== false ? 'Guardado.' : ('Error: '+(res?.error||'unknown'));
@@ -5701,7 +5701,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
         });
       });
 
-      tableWrap.querySelectorAll('button.mmi-job-del').forEach(btn=>{
+      tableWrap.querySelectorAll('button.inteflow-job-del').forEach(btn=>{
         btn.addEventListener('click', async (e)=>{
           const tr = e.target.closest('tr[data-job]');
           const jobId = tr.getAttribute('data-job');
@@ -5714,7 +5714,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       });
 
       // Runs viewer (lazy)
-      tableWrap.querySelectorAll('details.mmi-job-runs').forEach(d=>{
+      tableWrap.querySelectorAll('details.inteflow-job-runs').forEach(d=>{
         d.addEventListener('toggle', async (e)=>{
           if(!d.open) return;
           const tr = d.closest('tr[data-job]');
@@ -5732,8 +5732,8 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
             return;
           }
           let out = '<div style="display:flex; gap:8px; align-items:center; margin:6px 0;">'
-            + '<button class="button mmi-job-runs-refresh">Recargar</button>'
-            + '<button class="button mmi-job-runs-clear">Borrar historial</button>'
+            + '<button class="button inteflow-job-runs-refresh">Recargar</button>'
+            + '<button class="button inteflow-job-runs-clear">Borrar historial</button>'
             + '</div>';
           out += '<div style="max-height:260px; overflow:auto; border:1px solid #ddd; padding:6px;">';
           out += '<table class="widefat striped" style="margin:0; min-width:760px;"><thead><tr><th>Cuando</th><th>Duración</th><th>OK</th><th>Error</th><th>Detalle</th></tr></thead><tbody>';
@@ -5750,12 +5750,12 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
           out += '</tbody></table></div>';
           box.innerHTML = out;
 
-          box.querySelector('.mmi-job-runs-refresh')?.addEventListener('click', async (ev)=>{
+          box.querySelector('.inteflow-job-runs-refresh')?.addEventListener('click', async (ev)=>{
             ev.preventDefault();
             d.open = false; // force reload
             d.open = true;
           });
-          box.querySelector('.mmi-job-runs-clear')?.addEventListener('click', async (ev)=>{
+          box.querySelector('.inteflow-job-runs-clear')?.addEventListener('click', async (ev)=>{
             ev.preventDefault();
             if(!confirm('Borrar historial de runs de '+jobId+'?')) return;
             const rr = await api('server.scheduler.runs.clear', { id: jobId });
@@ -5808,7 +5808,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
   }
 
   document.addEventListener('DOMContentLoaded', ()=>{
-    const body = document.getElementById('mmi-scheduler-ui-body');
+    const body = document.getElementById('inteflow-scheduler-ui-body');
     if(body){
       try{
         mount(body);
@@ -5861,18 +5861,18 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
 
   window.mountEvents = function mountEvents(host){
     if(!host) return;
-    if(host.querySelector('[data-mmi-events="1"]')) return;
+    if(host.querySelector('[data-inteflow-events="1"]')) return;
 
-    const live = el('div', { class:'mmi-muted', role:'status', 'aria-live':'polite', style:'margin:8px 0;min-height:20px;' });
+    const live = el('div', { class:'inteflow-muted', role:'status', 'aria-live':'polite', style:'margin:8px 0;min-height:20px;' });
 
     // Tooltip helper
-    function tip(text){ return el('span', { class:'mmi-tip', title:text, 'aria-label':text, style:'display:inline-block;margin-left:4px;cursor:help;color:#888;font-size:13px;', text:'ⓘ' }); }
+    function tip(text){ return el('span', { class:'inteflow-tip', title:text, 'aria-label':text, style:'display:inline-block;margin-left:4px;cursor:help;color:#888;font-size:13px;', text:'ⓘ' }); }
 
     // Header con explicación
-    const header = el('div', { class:'mmi-card', style:'border-left:4px solid #2271b1; background:#f0f6fc;' }, [
+    const header = el('div', { class:'inteflow-card', style:'border-left:4px solid #2271b1; background:#f0f6fc;' }, [
       el('h3', { text:'⚡ Events — Automatizaciones por evento', style:'margin-top:0;' }),
       el('p', { style:'margin:0 0 8px;', text:'Conecta lo que pasa en WordPress (trigger) con acciones automáticas. Ejemplo: "cuando un usuario se registra → envía un email de bienvenida".' }),
-      el('p', { class:'mmi-muted', style:'margin:0;font-size:13px;', text:'💡 Pasos: 1) Elige un evento de la lista. 2) Elige una acción. 3) Guarda la regla. ¡Listo!' }),
+      el('p', { class:'inteflow-muted', style:'margin:0;font-size:13px;', text:'💡 Pasos: 1) Elige un evento de la lista. 2) Elige una acción. 3) Guarda la regla. ¡Listo!' }),
     ]);
 
     // Selectores de evento y acción
@@ -5997,10 +5997,10 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       if(!res || res.ok === false){ live.textContent='❌ Error: ' + (res?.error||'unknown'); live.style.color='#d63638'; return; }
       const n = res.dispatched?.length ?? 0;
       live.textContent='✅ Emit OK — ' + n + ' regla(s) ejecutada(s).'; live.style.color = n>0?'#00a32a':'#888';
-      try{ const pre = host.querySelector('#mmi-events-last'); if(pre) pre.textContent = JSON.stringify(res,null,2); }catch(e){}
+      try{ const pre = host.querySelector('#inteflow-events-last'); if(pre) pre.textContent = JSON.stringify(res,null,2); }catch(e){}
     }});
 
-    const form = el('div', { class:'mmi-card', 'data-mmi-events':'1' }, [
+    const form = el('div', { class:'inteflow-card', 'data-inteflow-events':'1' }, [
       el('h4', { style:'margin-top:0;', text:'Nueva regla' }),
       el('table', { style:'border-collapse:collapse;width:100%;max-width:700px;' }, [
         el('tbody', {}, [
@@ -6035,10 +6035,10 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
 
     // Lista de reglas existentes
     const tableWrap = el('div', { style:'overflow:auto;max-width:100%;' });
-    const last = el('pre', { id:'mmi-events-last', style:'white-space:pre-wrap;max-width:100%;margin-top:10px;font-size:12px;', text:'' });
-    const list = el('div', { class:'mmi-card', 'data-mmi-events':'1' }, [
+    const last = el('pre', { id:'inteflow-events-last', style:'white-space:pre-wrap;max-width:100%;margin-top:10px;font-size:12px;', text:'' });
+    const list = el('div', { class:'inteflow-card', 'data-inteflow-events':'1' }, [
       el('h4', { style:'margin-top:0;', text:'Reglas activas' }),
-      el('p', { class:'mmi-muted', style:'margin:0 0 8px;font-size:13px;', text:'Aquí aparecen todas las automatizaciones configuradas. Puedes activarlas/desactivarlas o eliminarlas.' }),
+      el('p', { class:'inteflow-muted', style:'margin:0 0 8px;font-size:13px;', text:'Aquí aparecen todas las automatizaciones configuradas. Puedes activarlas/desactivarlas o eliminarlas.' }),
       tableWrap,
       el('details', { style:'margin-top:8px;' }, [ el('summary', { text:'Debug — último emit', style:'cursor:pointer;color:#888;font-size:13px;' }), last ]),
     ]);
@@ -6109,7 +6109,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
       tableWrap.appendChild(table);
     }
 
-    const wrap = el('div', { 'data-mmi-events':'1' }, [ header, live, form, list ]);
+    const wrap = el('div', { 'data-inteflow-events':'1' }, [ header, live, form, list ]);
     host.appendChild(wrap);
 
     // Cargar datos
@@ -6148,25 +6148,25 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
 
   async function mountWebhooks(host){
     if(!host) return;
-    if(host.querySelector('[data-mmi-webhooks="1"]')) return;
+    if(host.querySelector('[data-inteflow-webhooks="1"]')) return;
 
-    const box = el('div', { class:'mmi-card', 'data-mmi-webhooks':'1' }, [
+    const box = el('div', { class:'inteflow-card', 'data-inteflow-webhooks':'1' }, [
       el('h2', { text:'Webhooks (v1)' }),
-      el('p', { class:'mmi-muted', text:'Endpoints públicos firmados (HMAC SHA-256). Emiten el evento "webhook.received".' }),
+      el('p', { class:'inteflow-muted', text:'Endpoints públicos firmados (HMAC SHA-256). Emiten el evento "webhook.received".' }),
     ]);
 
-    const status = el('div', { class:'mmi-muted', role:'status' });
+    const status = el('div', { class:'inteflow-muted', role:'status' });
     box.appendChild(status);
 
     const table = el('table', { class:'widefat striped' });
     box.appendChild(table);
 
-    const form = el('div', { class:'mmi-row', style:'margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; align-items:end;' });
+    const form = el('div', { class:'inteflow-row', style:'margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; align-items:end;' });
     const nameI = el('input', { type:'text', placeholder:'Nombre', style:'min-width:220px;' });
     const idI = el('input', { type:'text', placeholder:'id (opcional, ej: wh_github)', style:'min-width:220px;' });
     const addBtn = el('button', { class:'button button-primary', text:'Crear webhook' });
-    form.appendChild(el('label', { class:'mmi-field' }, [el('div',{class:'mmi-muted',text:'Nombre'}), nameI]));
-    form.appendChild(el('label', { class:'mmi-field' }, [el('div',{class:'mmi-muted',text:'ID'}), idI]));
+    form.appendChild(el('label', { class:'inteflow-field' }, [el('div',{class:'inteflow-muted',text:'Nombre'}), nameI]));
+    form.appendChild(el('label', { class:'inteflow-field' }, [el('div',{class:'inteflow-muted',text:'ID'}), idI]));
     form.appendChild(addBtn);
     box.appendChild(form);
 
@@ -6192,7 +6192,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
           const tr = el('tr', {}, [
             el('td', { text: item.id || '' }),
             el('td', { text: item.name || '' }),
-            el('td', { html: enabled ? '<span class="mmi-pill mmi-pill-ok">ON</span>' : '<span class="mmi-pill">OFF</span>' }),
+            el('td', { html: enabled ? '<span class="inteflow-pill inteflow-pill-ok">ON</span>' : '<span class="inteflow-pill">OFF</span>' }),
             el('td', {}, [
               el('input', { type:'text', value:url, readonly:'readonly', style:'width:100%; min-width:320px;' })
             ]),
@@ -6260,7 +6260,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
 
   document.addEventListener('DOMContentLoaded', () => {
     try{
-      const host = document.querySelector('.mmi-card') || document.querySelector('.wrap') || document.body;
+      const host = document.querySelector('.inteflow-card') || document.querySelector('.wrap') || document.body;
       mountWebhooks(host);
     }catch(e){}
   });
@@ -6307,14 +6307,14 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
 
   async function mountActions(host){
     if(!host) return;
-    if(host.querySelector('[data-mmi-actions="1"]')) return;
+    if(host.querySelector('[data-inteflow-actions="1"]')) return;
 
-    const box = el('div', { class:'mmi-card', 'data-mmi-actions':'1' }, [
+    const box = el('div', { class:'inteflow-card', 'data-inteflow-actions':'1' }, [
       el('h2', { text:'Actions Catalog (v1)' }),
-      el('p', { class:'mmi-muted', text:'Acciones autodescriptivas (UX) que ejecutan intents vía Runner/Target. Sirve como base para editor visual tipo Uncanny.' })
+      el('p', { class:'inteflow-muted', text:'Acciones autodescriptivas (UX) que ejecutan intents vía Runner/Target. Sirve como base para editor visual tipo Uncanny.' })
     ]);
 
-    const status = el('div', { class:'mmi-muted', role:'status' });
+    const status = el('div', { class:'inteflow-muted', role:'status' });
     const body = el('div');
     box.appendChild(status);
     box.appendChild(body);
@@ -6371,9 +6371,9 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
             }});
 
             const tr = el('tr', {}, [
-              el('td', {}, [ el('code', { text: a.id }) , el('div', { class:'mmi-muted', text: a.label || '' }) ]),
+              el('td', {}, [ el('code', { text: a.id }) , el('div', { class:'inteflow-muted', text: a.label || '' }) ]),
               el('td', {}, [ el('code', { text: a.intent || '' }) ]),
-              el('td', { class:'mmi-muted', text: a.description || '' }),
+              el('td', { class:'inteflow-muted', text: a.description || '' }),
               el('td', {}, [ btn ]),
             ]);
             tbody.appendChild(tr);
@@ -6398,7 +6398,7 @@ editor.querySelector('#mmi-apps-save').addEventListener('click', async ()=>{
     try{
       const profile = (localStorage.getItem('mmi_profile_v1') || '').toLowerCase();
       if (profile !== 'technical') return;
-      const host = document.querySelector('#mmi-dashboard') || document.querySelector('.wrap') || document.body;
+      const host = document.querySelector('#inteflow-dashboard') || document.querySelector('.wrap') || document.body;
       mountActions(host);
     }catch(e){}
   });
@@ -6423,7 +6423,7 @@ async function loadConnectionsForSelect(selectEl, type){
 
 // Visual Connection Selector for actions
 async function mmiConnectionSelect(type){
-  const select = el("select",{class:"mmi-conn-select"});
+  const select = el("select",{class:"inteflow-conn-select"});
   select.appendChild(el("option",{value:"",text:"(no connection)"}));
   try{
     const r = await api("server.connections.list",{});
@@ -6438,11 +6438,11 @@ async function mmiConnectionSelect(type){
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  const root = document.querySelector('#mmi-dashboard');
+  const root = document.querySelector('#inteflow-dashboard');
   if (!root) return;
-  const pageKey = root.dataset && root.dataset.mmiPage ? root.dataset.mmiPage : '';
+  const pageKey = root.dataset && root.dataset.intreflowPage ? root.dataset.intreflowPage : '';
   if (pageKey !== 'help') return;
-  const loading = document.querySelector('#mmi-loading');
+  const loading = document.querySelector('#inteflow-loading');
   if (loading) loading.style.display = 'none';
   root.style.display = '';
   root.innerHTML = '';
@@ -6456,19 +6456,19 @@ function buildLicensePage() {
   const wrap = document.createElement('div');
 
   const hdr = document.createElement('div');
-  hdr.className = 'mmi-card';
+  hdr.className = 'inteflow-card';
   hdr.style.cssText = 'border-left:4px solid #2271b1;background:#f0f6fc;margin-bottom:16px;';
   hdr.innerHTML = '<h2 style="margin-top:0;">🔑 Licencia — Intent Flow Pro</h2><p style="margin:0;font-size:14px;color:var(--color-text-secondary);">Activa tu licencia Pro para desbloquear WooCommerce, Google Sheets y más.</p>';
   wrap.appendChild(hdr);
 
   const status = document.createElement('div');
-  status.className = 'mmi-card';
+  status.className = 'inteflow-card';
   status.style.marginBottom = '12px';
   status.innerHTML = '<p style="margin:0;color:#888;font-size:13px;">Cargando estado de licencia…</p>';
   wrap.appendChild(status);
 
   const form = document.createElement('div');
-  form.className = 'mmi-card';
+  form.className = 'inteflow-card';
 
   const liveMsg = document.createElement('div');
   liveMsg.style.cssText = 'margin:8px 0;min-height:20px;font-size:13px;';
@@ -6497,7 +6497,7 @@ function buildLicensePage() {
 
   // Features Pro
   const featCard = document.createElement('div');
-  featCard.className = 'mmi-card';
+  featCard.className = 'inteflow-card';
   featCard.innerHTML = '<h3 style="margin-top:0;">🚀 Intent Flow Pro incluye</h3>' +
     '<ul style="margin:0;padding-left:20px;line-height:2;font-size:14px;color:var(--color-text-secondary);">' +
     '<li>🛒 Módulo WooCommerce — triggers y acciones de pedidos, clientes, cupones</li>' +
@@ -6567,11 +6567,11 @@ function buildLicensePage() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  const root = document.querySelector('#mmi-dashboard');
+  const root = document.querySelector('#inteflow-dashboard');
   if (!root) return;
-  const pageKey = root.dataset && root.dataset.mmiPage ? root.dataset.mmiPage : '';
+  const pageKey = root.dataset && root.dataset.intreflowPage ? root.dataset.intreflowPage : '';
   if (pageKey !== 'license') return;
-  const loading = document.querySelector('#mmi-loading');
+  const loading = document.querySelector('#inteflow-loading');
   if (loading) loading.style.display = 'none';
   root.style.display = '';
   root.innerHTML = '';

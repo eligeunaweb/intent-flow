@@ -29,36 +29,36 @@ add_action('plugins_loaded', function() {
     );
 });
 
-define('IF_VERSION','0.9.4.2.33');
-define('IF_PLUGIN_FILE', __FILE__);
-define('IF_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('IF_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('INTEFLOW_VERSION','0.9.4.2.33');
+define('INTEFLOW_PLUGIN_FILE', __FILE__);
+define('INTEFLOW_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('INTEFLOW_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-require_once IF_PLUGIN_DIR . 'includes/I18n.php';
-require_once IF_PLUGIN_DIR . 'includes/Settings.php';
-require_once IF_PLUGIN_DIR . 'includes/MacroIntent_Settings.php';
-require_once IF_PLUGIN_DIR . 'includes/Enqueue.php';
-require_once IF_PLUGIN_DIR . 'includes/AuditLog.php';
-require_once IF_PLUGIN_DIR . 'includes/PlanState.php';
-require_once IF_PLUGIN_DIR . 'includes/Redact.php';
-require_once IF_PLUGIN_DIR . 'includes/Allowlist.php';
-require_once IF_PLUGIN_DIR . 'includes/PluginSafelist.php';
-require_once IF_PLUGIN_DIR . 'includes/Scopes.php';
-require_once IF_PLUGIN_DIR . 'includes/Target.php';
-require_once IF_PLUGIN_DIR . 'includes/ExecutionLog.php';
-require_once IF_PLUGIN_DIR . 'includes/Runner.php';
-require_once IF_PLUGIN_DIR . 'includes/AppsRunner.php';
-require_once IF_PLUGIN_DIR . 'includes/Events.php';
-require_once IF_PLUGIN_DIR . 'includes/FlowTriggers.php';
-require_once IF_PLUGIN_DIR . 'includes/Webhooks.php';
-require_once IF_PLUGIN_DIR . 'includes/Integrations.php';
-require_once IF_PLUGIN_DIR . 'includes/Modules.php';
-require_once IF_PLUGIN_DIR . 'includes/actions/ActionRegistry.php';
-require_once IF_PLUGIN_DIR . 'includes/actions/ActionExecutor.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/I18n.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Settings.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/MacroIntent_Settings.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Enqueue.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/AuditLog.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/PlanState.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Redact.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Allowlist.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/PluginSafelist.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Scopes.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Target.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/ExecutionLog.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Runner.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/AppsRunner.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Events.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/FlowTriggers.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Webhooks.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Integrations.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Modules.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/actions/ActionRegistry.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/actions/ActionExecutor.php';
 
-require_once IF_PLUGIN_DIR . 'includes/AdminPage.php';
-require_once IF_PLUGIN_DIR . 'includes/Scheduler.php';
-require_once IF_PLUGIN_DIR . 'includes/SchedulerRuns.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/AdminPage.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Scheduler.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/SchedulerRuns.php';
 
 add_action('plugins_loaded', function () {
 
@@ -67,12 +67,12 @@ add_action('plugins_loaded', function () {
 });
 
 
-$ajax_file = IF_PLUGIN_DIR . 'includes/Ajax.php';
+$ajax_file = INTEFLOW_PLUGIN_DIR . 'includes/Ajax.php';
 if (file_exists($ajax_file)) {
     require_once $ajax_file;
 }
 
-final class IF_Plugin {
+final class INTEFLOW_Plugin {
     private static $instance = null;
 
     public static function instance() : self {
@@ -84,61 +84,61 @@ final class IF_Plugin {
 
     private function __construct() {
         add_action('init', [$this, 'init']);
-        register_activation_hook(IF_PLUGIN_FILE, [$this, 'on_activate']);
+        register_activation_hook(INTEFLOW_PLUGIN_FILE, [$this, 'on_activate']);
     }
 
     public function init() : void {
-        IF_Settings::init();
-        IF_Enqueue::init();
+        INTEFLOW_Settings::init();
+        INTEFLOW_Enqueue::init();
 
-        if (class_exists('IF_AdminPage')) {
-            IF_AdminPage::init();
+        if (class_exists('INTEFLOW_AdminPage')) {
+            INTEFLOW_AdminPage::init();
         }
 
-        if (class_exists('IF_Ajax')) {
-            IF_Ajax::init();
+        if (class_exists('INTEFLOW_Ajax')) {
+            INTEFLOW_Ajax::init();
         }
 
-        if (class_exists('IF_Scheduler')) {
-            IF_Scheduler::init();
+        if (class_exists('INTEFLOW_Scheduler')) {
+            INTEFLOW_Scheduler::init();
         }
 
-        if (class_exists('IF_Events')) {
-            IF_Events::init();
+        if (class_exists('INTEFLOW_Events')) {
+            INTEFLOW_Events::init();
         }
 
-        if (class_exists('IF_Webhooks')) {
-            IF_Webhooks::init();
+        if (class_exists('INTEFLOW_Webhooks')) {
+            INTEFLOW_Webhooks::init();
         }
     }
 
     public function on_activate() : void {
-        IF_Settings::ensure_defaults();
-        if (class_exists('IF_Integrations')) {
-            IF_Integrations::ensure_defaults();
+        INTEFLOW_Settings::ensure_defaults();
+        if (class_exists('INTEFLOW_Integrations')) {
+            INTEFLOW_Integrations::ensure_defaults();
         }
-        if (class_exists('IF_Modules')) {
-            IF_Modules::ensure_defaults();
+        if (class_exists('INTEFLOW_Modules')) {
+            INTEFLOW_Modules::ensure_defaults();
         }
     }
 }
 
-IF_Plugin::instance();
+INTEFLOW_Plugin::instance();
 
 
-require_once IF_PLUGIN_DIR . 'includes/flows/FlowRegistry.php';
-require_once IF_PLUGIN_DIR . 'includes/flows/FlowExecutor.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/flows/FlowRegistry.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/flows/FlowExecutor.php';
 
-require_once IF_PLUGIN_DIR . 'includes/Connections.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Connections.php';
 
-require_once IF_PLUGIN_DIR . 'includes/Templates.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/Templates.php';
 
-require_once IF_PLUGIN_DIR . 'includes/ConnectionResolver.php';
+require_once INTEFLOW_PLUGIN_DIR . 'includes/ConnectionResolver.php';
 
 
 // Module Loader (fail-safe)
 add_action('plugins_loaded', function(){
-    if (class_exists('IF_Modules')) {
-        IF_Modules::load_enabled();
+    if (class_exists('INTEFLOW_Modules')) {
+        INTEFLOW_Modules::load_enabled();
     }
 }, 3);

@@ -5,7 +5,7 @@
 if (!defined('ABSPATH')) exit;
 
 // Register connection type
-add_filter('if_connection_types', function($types){
+add_filter('inteflow_connection_types', function($types){
     $types['telegram'] = [
         'label' => 'Telegram Bot',
         'fields' => [
@@ -17,7 +17,7 @@ add_filter('if_connection_types', function($types){
 });
 
 // Register intent
-add_action('if_register_intents', function($reg){
+add_action('inteflow_register_intents', function($reg){
     $reg->register('telegram.sendMessage', function($payload){
         $token = $payload['bot_token'] ?? '';
         $chat = $payload['chat_id'] ?? '';

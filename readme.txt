@@ -1,6 +1,5 @@
 === Intent Flow — Workflow Automation ===
 Contributors: adaptatuweb
-Author: Álvaro Martínez - AdaptaTuWeb.com
 Tags: automation, workflow, triggers, actions, webhooks
 Requires at least: 6.0
 Tested up to: 7.1
@@ -140,27 +139,23 @@ No data is sent to Telegram unless you explicitly configure a Telegram connectio
 
 = OpenAI =
 
-If you configure an OpenAI connection and use any AI action (generate, summarize, classify, translate or moderate), the plugin sends data to the OpenAI API.
+If you configure an OpenAI connection and use any AI action, the plugin sends data to the OpenAI API.
 
-* **What data is sent:** The text content you configure in your automation flows (e.g. post body, comment text, user-provided string).
-* **When:** Only when an automation you have configured triggers an OpenAI action.
+* **What data is sent:** The text content you configure in your automation flows.
+* **When:** Only when an automation triggers an OpenAI action.
 * **Service provider:** OpenAI, L.L.C.
 * **Terms of Service:** https://openai.com/policies/terms-of-use
 * **Privacy Policy:** https://openai.com/policies/privacy-policy
 
-No data is sent to OpenAI unless you explicitly configure an OpenAI connection and create an automation that uses it.
-
 = WhatsApp Business (Meta) =
 
-If you configure a WhatsApp Business connection and use WhatsApp actions, the plugin sends messages via the Meta WhatsApp Cloud API.
+If you configure a WhatsApp connection and use WhatsApp actions, the plugin sends messages via the Meta WhatsApp Cloud API.
 
-* **What data is sent:** The recipient phone number and message content you configure in your automation flows.
-* **When:** Only when an automation you have configured triggers a WhatsApp action.
+* **What data is sent:** The recipient phone number and message content you configure in your flows.
+* **When:** Only when an automation triggers a WhatsApp action.
 * **Service provider:** Meta Platforms, Inc.
 * **Terms of Service:** https://www.whatsapp.com/legal/terms-of-service
 * **Privacy Policy:** https://www.whatsapp.com/legal/privacy-policy
-
-No data is sent to WhatsApp unless you explicitly configure a WhatsApp connection and create an automation that uses it.
 
 = Slack =
 

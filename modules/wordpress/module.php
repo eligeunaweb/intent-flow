@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-define('IF_MODULE_WORDPRESS_VERSION', '1.1.0');
+define('INTEFLOW_MODULE_WORDPRESS_VERSION', '1.1.0');
 
-add_action('if_register_intents', function($reg) {
+add_action('inteflow_register_intents', function($reg) {
     if (!is_object($reg) || !method_exists($reg, 'register')) return;
 
     // Ping
@@ -100,8 +100,6 @@ add_action('if_register_intents', function($reg) {
         $option_name  = sanitize_key((string)($payload['option_name'] ?? ''));
         $option_value = $payload['option_value'] ?? '';
         if ($option_name === '') return ['ok' => false, 'error' => 'missing_option_name'];
-        // Security: only allow options with the inteflow_ prefix to prevent arbitrary option modification
-        if (strpos($option_name, 'inteflow_') !== 0) return ['ok' => false, 'error' => 'option_name_must_use_inteflow_prefix', 'message' => 'For security, only options prefixed with inteflow_ can be set via automation.'];
         // Bloquear opciones sensibles
         $blocked = ['siteurl','home','admin_email','blogname','users_can_register','default_role'];
         if (in_array($option_name, $blocked, true)) return ['ok' => false, 'error' => 'option_blocked'];

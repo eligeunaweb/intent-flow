@@ -2,7 +2,7 @@ import { isHotkeyAltShiftM } from "./engine/modules/keyboard.js";
 import { createEngine } from "./engine/index.js";
 
 const boot = (global) => {
-  const cfg = global.IF_BOOT || {};
+  const cfg = global.INTEFLOW_BOOT || {};
   const engine = createEngine(cfg);
 
   let __mmi_live_until = 0;

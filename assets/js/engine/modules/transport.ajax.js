@@ -4,7 +4,7 @@ export async function runViaAjax(intent, ctx) {
   if (!nonce) throw new Error("nonce no configurado");
 
   const body = new URLSearchParams();
-  body.set("action", "mmi_intent");
+  body.set("action", "inteflow_intent");
   body.set("nonce", nonce);
   body.set("intent", JSON.stringify({ id: intent.id, payload: intent.payload || {}, meta: intent.meta || {} }));
 

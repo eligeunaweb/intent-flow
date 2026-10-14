@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 // Webhook Incoming module
-define('IF_MODULE_WEBHOOK_IN_VERSION', '1.0.0');
+define('INTEFLOW_MODULE_WEBHOOK_IN_VERSION', '1.0.0');
 
-add_action('if_register_intents', function($reg){
+add_action('inteflow_register_intents', function($reg){
     if (!is_object($reg) || !method_exists($reg, 'register')) return;
 
     // Lightweight ping to verify module is loaded
