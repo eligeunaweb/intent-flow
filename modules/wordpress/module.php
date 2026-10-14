@@ -100,6 +100,9 @@ add_action('inteflow_register_intents', function($reg) {
         $option_name  = sanitize_key((string)($payload['option_name'] ?? ''));
         $option_value = $payload['option_value'] ?? '';
         if ($option_name === '') return ['ok' => false, 'error' => 'missing_option_name'];
+        // Strict allowlist — only specific inteflow_ options can be set via automation
+        $allowed_options = ['inteflow_settings','inteflow_enabled_modules','inteflow_apps_v1','inteflow_presets_v1','inteflow_event_rules_v1','inteflow_flows_v1'];
+        if (!in_array($option_name, $allowed_options, true)) { return ['ok' => false, 'error' => 'option_not_allowed']; }
         // Bloquear opciones sensibles
         $blocked = ['siteurl','home','admin_email','blogname','users_can_register','default_role'];
         if (in_array($option_name, $blocked, true)) return ['ok' => false, 'error' => 'option_blocked'];

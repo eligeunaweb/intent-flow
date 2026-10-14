@@ -216,6 +216,12 @@ Go to **Intent Flow → Logs** for a full audit trail of all executions.
 4. Logs — full execution history with filters
 5. Settings — dry-run and safe mode toggles
 
+== Source Code ==
+
+The full source code for this plugin, including unminified JavaScript and CSS, is publicly available at:
+
+https://github.com/eligeunaweb/intent-flow
+
 == Changelog ==
 
 = 0.9.4.2.33 =
