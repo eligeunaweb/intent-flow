@@ -6,13 +6,13 @@ if (!defined('ABSPATH')) { exit; }
  *
  * - Modules live under /modules/<slug>/
  * - Each module provides manifest.json and optional module.php
- * - Enabled modules are stored in option: if_enabled_modules (autoload=false)
+ * - Enabled modules are stored in option: inteflow_enabled_modules (autoload=false)
  * - Loader is fail-safe: a broken module is marked error and skipped (does not crash WP).
  */
-final class IF_Modules {
-    const OPT_ENABLED   = 'if_enabled_modules';
-    const OPT_ERRORS    = 'if_module_errors_v1';
-    const OPT_SAFE_MODE = 'if_modules_safe_mode_v1';
+final class INTEFLOW_Modules {
+    const OPT_ENABLED   = 'inteflow_enabled_modules';
+    const OPT_ERRORS    = 'inteflow_module_errors_v1';
+    const OPT_SAFE_MODE = 'inteflow_modules_safe_mode_v1';
 
     public static function ensure_defaults() : void {
         $all = array_keys(self::discover());
@@ -81,7 +81,7 @@ final class IF_Modules {
 
     public static function module_dirs() : array {
         $dirs = [];
-        $internal = trailingslashit(IF_PLUGIN_DIR) . 'modules/';
+        $internal = trailingslashit(INTEFLOW_PLUGIN_DIR) . 'modules/';
         if (is_dir($internal)) $dirs[] = $internal;
 
         // Future: allow user-installed modules in uploads
@@ -145,7 +145,7 @@ final class IF_Modules {
         self::ensure_defaults();
 
         // Avoid duplicate Telegram when external add-on plugin is present
-        $external_telegram = defined('IF_TELEGRAM_MODULE_VERSION');
+        $external_telegram = defined('INTEFLOW_TELEGRAM_MODULE_VERSION');
 
         $all = self::discover();
         $enabled = self::enabled();
@@ -181,18 +181,18 @@ final class IF_Modules {
 }
 
 // -------- Intents for module catalog UI --------
-add_action('if_register_intents', function($reg){
+add_action('inteflow_register_intents', function($reg){
     if (!is_object($reg) || !method_exists($reg, 'register')) return;
 
     $reg->register('server.modules.list', function($payload, $meta, $ctx){
-        $all = IF_Modules::discover();
-        $enabled = IF_Modules::enabled();
-        $errs = IF_Modules::errors();
-        $safe = IF_Modules::is_safe_mode();
+        $all = INTEFLOW_Modules::discover();
+        $enabled = INTEFLOW_Modules::enabled();
+        $errs = INTEFLOW_Modules::errors();
+        $safe = INTEFLOW_Modules::is_safe_mode();
 
         $items = [];
         foreach ($all as $slug => $m) {
-            $dep = IF_Modules::dep_status($m);
+            $dep = INTEFLOW_Modules::dep_status($m);
             $items[] = [
                 'slug' => $slug,
                 'name' => (string)($m['name'] ?? $slug),
@@ -214,28 +214,28 @@ add_action('if_register_intents', function($reg){
         $enabledFlag = array_key_exists('enabled', $payload) ? (bool)$payload['enabled'] : null;
         if (!$slug || $enabledFlag === null) return [ 'ok'=>false, 'error'=>'bad_request', 'message'=>'slug/enabled required' ];
 
-        $all = IF_Modules::discover();
+        $all = INTEFLOW_Modules::discover();
         if (!isset($all[$slug])) return [ 'ok'=>false, 'error'=>'not_found', 'message'=>'module not found' ];
 
-        $enabled = IF_Modules::enabled();
+        $enabled = INTEFLOW_Modules::enabled();
         $isEnabled = in_array($slug, $enabled, true);
 
         if ($enabledFlag && !$isEnabled) $enabled[] = $slug;
         if (!$enabledFlag && $isEnabled) $enabled = array_values(array_filter($enabled, function($s) use ($slug){ return $s !== $slug; }));
 
-        IF_Modules::set_enabled($enabled);
+        INTEFLOW_Modules::set_enabled($enabled);
 
         // If enabling, clear previous error marker (will be re-set if load fails)
-        if ($enabledFlag) IF_Modules::clear_error($slug);
+        if ($enabledFlag) INTEFLOW_Modules::clear_error($slug);
 
-        return [ 'ok'=>true, 'enabled' => IF_Modules::enabled() ];
+        return [ 'ok'=>true, 'enabled' => INTEFLOW_Modules::enabled() ];
     }, ['capability' => 'manage_options']);
 
     $reg->register('server.modules.safe_mode', function($payload, $meta, $ctx){
         $on = array_key_exists('on', $payload) ? (bool)$payload['on'] : null;
         if ($on === null) return [ 'ok'=>false, 'error'=>'bad_request', 'message'=>'on required' ];
-        IF_Modules::set_safe_mode($on);
-        return [ 'ok'=>true, 'safe_mode' => IF_Modules::is_safe_mode() ];
+        INTEFLOW_Modules::set_safe_mode($on);
+        return [ 'ok'=>true, 'safe_mode' => INTEFLOW_Modules::is_safe_mode() ];
     }, ['capability' => 'manage_options']);
 
 }, 5);

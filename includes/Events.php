@@ -5,10 +5,10 @@ if (!defined('ABSPATH')) { exit; }
  * Minimal event system (v1):
  * - Persistent rules stored in WP options
  * - Emit events from WP hooks
- * - Dispatch rules via IF_Runner
+ * - Dispatch rules via INTEFLOW_Runner
  */
-final class IF_Events {
-	const OPTION_KEY = 'if_event_rules_v1';
+final class INTEFLOW_Events {
+	const OPTION_KEY = 'inteflow_event_rules_v1';
 
 	public static function init() : void {
 		// Core WP hooks -> events
@@ -50,7 +50,7 @@ final class IF_Events {
 			foreach ($list as $i => $r) {
 				if (!is_array($r)) continue;
 				if (!isset($r['target'])) {
-					$rules[$ev][$i]['target'] = class_exists('IF_Target') ? IF_Target::normalize($r) : ['type'=>'intent','id'=> (string)($r['intent'] ?? '')];
+					$rules[$ev][$i]['target'] = class_exists('INTEFLOW_Target') ? INTEFLOW_Target::normalize($r) : ['type'=>'intent','id'=> (string)($r['intent'] ?? '')];
 				}
 				if (!isset($rules[$ev][$i]['input'])) {
 					$rules[$ev][$i]['input'] = is_array($r['input'] ?? null) ? $r['input'] : (is_array($r['payload'] ?? null) ? $r['payload'] : []);
@@ -96,12 +96,12 @@ final class IF_Events {
 
 		$id = isset($rule['id']) ? sanitize_text_field((string)$rule['id']) : '';
 		if ($id === '') {
-			$id = function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('if_rule_', true);
+			$id = function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('inteflow_rule_', true);
 		}
 
 		// Target v1 (supports legacy type/intent/app_id)
 		$target = $rule['target'] ?? $rule;
-		$target = class_exists('IF_Target') ? IF_Target::normalize($target) : (array)$target;
+		$target = class_exists('INTEFLOW_Target') ? INTEFLOW_Target::normalize($target) : (array)$target;
 		if (($target['id'] ?? '') === '') {
 			return ['ok'=>false,'error'=>'missing_target'];
 		}
@@ -220,7 +220,7 @@ final class IF_Events {
 			$type = (string)($rule['type'] ?? 'intent');
 			$rule_id = (string)($rule['id'] ?? '');
 			$target = isset($rule['target']) ? $rule['target'] : $rule;
-			$target = class_exists('IF_Target') ? IF_Target::normalize($target) : (array)$target;
+			$target = class_exists('INTEFLOW_Target') ? INTEFLOW_Target::normalize($target) : (array)$target;
 			$target_type = (string)($target['type'] ?? 'intent');
 			$target_id   = (string)($target['id'] ?? '');
 			$base_meta = array_merge($meta, [
@@ -255,8 +255,8 @@ final class IF_Events {
 				$rule_input = $rule['payload'];
 			}
 			$resolved_input = self::resolve_payload_templates($rule_input, $payload, $meta);
-			$out = class_exists('IF_Runner')
-				? IF_Runner::run_target($target, $resolved_input, $base_meta, $runner_opts)
+			$out = class_exists('INTEFLOW_Runner')
+				? INTEFLOW_Runner::run_target($target, $resolved_input, $base_meta, $runner_opts)
 				: ['ok'=>false,'error'=>'runner_missing'];
 
 			$dispatched[] = [
@@ -269,8 +269,8 @@ final class IF_Events {
 			continue;
 		}
 
-		if (class_exists('IF_FlowTriggers')) {
-			IF_FlowTriggers::on_event($event, $payload, $meta);
+		if (class_exists('INTEFLOW_FlowTriggers')) {
+			INTEFLOW_FlowTriggers::on_event($event, $payload, $meta);
 		}
 
 		return [

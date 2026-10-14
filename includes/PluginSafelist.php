@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_PluginSafelist {
+final class INTEFLOW_PluginSafelist {
 
 	/**
 	 * Lista de plugins permitidos para activar/desactivar.

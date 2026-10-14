@@ -5,8 +5,8 @@ if (!defined('ABSPATH')) { exit; }
  * Global execution log (v1)
  * Used for all sources: AJAX, Scheduler, Events, Webhooks, etc.
  */
-final class IF_ExecutionLog {
-	const OPTION_KEY = 'if_execution_log_v1';
+final class INTEFLOW_ExecutionLog {
+	const OPTION_KEY = 'inteflow_execution_log_v1';
 	const MAX_ITEMS  = 500;
 
 	public static function add(array $entry) : string {

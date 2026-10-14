@@ -1,8 +1,8 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Flows {
-    const OPTION_KEY = 'if_flows_v1';
+final class INTEFLOW_Flows {
+    const OPTION_KEY = 'inteflow_flows_v1';
     const MAX_ITEMS = 100;
 
     /** @return array<string, array> */

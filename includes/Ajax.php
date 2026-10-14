@@ -1,12 +1,12 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Ajax {
+final class INTEFLOW_Ajax {
 
-	// Registry/audit execution moved to IF_Runner
+	// Registry/audit execution moved to INTEFLOW_Runner
 
 	public static function init() : void {
-		add_action('wp_ajax_mmi_intent', [__CLASS__, 'handle']);
+		add_action('wp_ajax_inteflow_intent', [__CLASS__, 'handle']);
 	}
 
 
@@ -15,8 +15,8 @@ final class IF_Ajax {
 		// Admin-only
 		if (!is_user_logged_in() || !current_user_can('manage_options')) {
 			// Lightweight audit via runner (without executing an intent)
-			if (class_exists('IF_AuditLog')) {
-				IF_AuditLog::record([
+			if (class_exists('INTEFLOW_AuditLog')) {
+				INTEFLOW_AuditLog::record([
 					'ts'          => gmdate('c'),
 					'user_id'     => get_current_user_id(),
 					'intentId'    => '(forbidden)',
@@ -60,8 +60,8 @@ final class IF_Ajax {
 			], 400);
 		}
 
-		$out = class_exists('IF_Runner')
-			? IF_Runner::run_intent($intent_id, $payload, $meta, [ 'source' => 'ajax' ])
+		$out = class_exists('INTEFLOW_Runner')
+			? INTEFLOW_Runner::run_intent($intent_id, $payload, $meta, [ 'source' => 'ajax' ])
 			: ['ok'=>false,'intentId'=>$intent_id,'error'=>'runner_missing'];
 
 		$dry_run_after  = !empty($out['dry_run']);

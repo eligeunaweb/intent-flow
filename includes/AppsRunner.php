@@ -8,12 +8,12 @@ if (!defined('ABSPATH')) { exit; }
  *  - intent + payload
  *  - flow { steps:[ {id,payload,meta}, ... ] }
  *
- * Storage actual: option "if_apps" (array o JSON) para compatibilidad.
+ * Storage actual: option "inteflow_apps" (array o JSON) para compatibilidad.
  */
-final class IF_AppsRunner {
+final class INTEFLOW_AppsRunner {
 	/** @return array<int, array> */
 	public static function all() : array {
-		$raw = get_option('if_apps', []);
+		$raw = get_option('inteflow_apps', []);
 		$apps = is_array($raw) ? $raw : json_decode((string)$raw, true);
 		return is_array($apps) ? $apps : [];
 	}
@@ -36,7 +36,7 @@ final class IF_AppsRunner {
 	public static function run(string $app_id, array $input = [], array $meta = [], array $options = []) : array {
 		$app = self::get($app_id);
 		if (!$app) return ['ok'=>false,'error'=>'app_not_found','app_id'=>$app_id];
-		if (!class_exists('IF_Runner')) return ['ok'=>false,'error'=>'runner_missing','app_id'=>$app_id];
+		if (!class_exists('INTEFLOW_Runner')) return ['ok'=>false,'error'=>'runner_missing','app_id'=>$app_id];
 
 		$source = (string)($options['source'] ?? 'apps');
 		$options = array_merge(['source' => $source], $options);
@@ -53,7 +53,7 @@ final class IF_AppsRunner {
 		if ($intent !== '') {
 			$payload = is_array($app['payload'] ?? null) ? $app['payload'] : [];
 			$payload = self::resolve_templates($payload, $input, $run_meta);
-			$out = IF_Runner::run_intent($intent, $payload, $run_meta, $options);
+			$out = INTEFLOW_Runner::run_intent($intent, $payload, $run_meta, $options);
 			return self::wrap_result($app, $intent, $started_at, $t0, [$out], $out);
 		}
 
@@ -79,7 +79,7 @@ final class IF_AppsRunner {
 				'step_id'    => $step_intent,
 			]);
 
-			$r = IF_Runner::run_intent($step_intent, $step_payload, $step_meta, $options);
+			$r = INTEFLOW_Runner::run_intent($step_intent, $step_payload, $step_meta, $options);
 			$results[] = $r;
 			$last = $r;
 

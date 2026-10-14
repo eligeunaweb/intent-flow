@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Redact {
+final class INTEFLOW_Redact {
 
 	// claves sensibles típicas (case-insensitive)
 	private static $SENSITIVE_KEYS = [

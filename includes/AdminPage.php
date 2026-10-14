@@ -1,17 +1,17 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_AdminPage {
+final class INTEFLOW_AdminPage {
 
-    const SLUG_DASHBOARD   = 'mmi-dashboard';
-    const SLUG_FLOWS       = 'mmi-flows';
-    const SLUG_EVENTS      = 'mmi-events';
-    const SLUG_CONNECTIONS = 'mmi-connections';
-    const SLUG_INTEGRATIONS= 'mmi-integrations';
-    const SLUG_LOGS        = 'mmi-logs';
-    const SLUG_SCHEDULER   = 'mmi-scheduler';
-    const SLUG_SETTINGS    = 'mmi-settings';
-    const SLUG_HELP        = 'mmi-help';
+    const SLUG_DASHBOARD   = 'inteflow-dashboard';
+    const SLUG_FLOWS       = 'inteflow-flows';
+    const SLUG_EVENTS      = 'inteflow-events';
+    const SLUG_CONNECTIONS = 'inteflow-connections';
+    const SLUG_INTEGRATIONS= 'inteflow-integrations';
+    const SLUG_LOGS        = 'inteflow-logs';
+    const SLUG_SCHEDULER   = 'inteflow-scheduler';
+    const SLUG_SETTINGS    = 'inteflow-settings';
+    const SLUG_HELP        = 'inteflow-help';
 
     public static function init() : void {
         add_action('admin_menu', [__CLASS__, 'register_menu']);
@@ -80,30 +80,30 @@ final class IF_AdminPage {
 
         echo '<div class="wrap">';
         echo '<h1>Intent Flow</h1>';
-        echo '<div id="mmi-loading" class="mmi-card" aria-label="Cargando UI"><p style="margin:0">Cargando Intent Flow…</p></div>';
-        echo '<div id="mmi-dashboard" class="mmi-dashboard" style="display:none;" data-mmi-page="' . esc_attr($key) . '" data-mmi-slug="' . esc_attr(isset($_GET['page']) ? sanitize_key($_GET['page']) : self::SLUG_DASHBOARD) . '"></div>';
+        echo '<div id="inteflow-loading" class="inteflow-card" aria-label="Cargando UI"><p style="margin:0">Cargando Intent Flow…</p></div>';
+        echo '<div id="inteflow-dashboard" class="inteflow-dashboard" style="display:none;" data-inteflow-page="' . esc_attr($key) . '" data-inteflow-slug="' . esc_attr(isset($_GET['page']) ? sanitize_key($_GET['page']) : self::SLUG_DASHBOARD) . '"></div>';
 
-        echo '<div id="mmi-scheduler-ui" class="mmi-card" aria-label="Scheduler (UI)" style="' . ($key === 'scheduler' ? '' : 'display:none;') . '">';
+        echo '<div id="inteflow-scheduler-ui" class="inteflow-card" aria-label="Scheduler (UI)" style="' . ($key === 'scheduler' ? '' : 'display:none;') . '">';
         echo '<h2 style="margin-top:0">Scheduler</h2>';
-        echo '<div id="mmi-scheduler-ui-body"></div>';
+        echo '<div id="inteflow-scheduler-ui-body"></div>';
         echo '</div>';
 
         echo '</div>';
     }
 
     public static function enqueue_assets(string $hook) : void {
-        if (strpos($hook, 'mmi-') === false) {
+        if (strpos($hook, 'inteflow-') === false) {
             if (strpos($hook, 'toplevel_page_' . self::SLUG_DASHBOARD) === false) return;
         }
         if (!is_user_logged_in() || !current_user_can('manage_options')) return;
 
-        $css_path = IF_PLUGIN_DIR . 'assets/css/admin-dashboard.css';
-        $css_ver  = file_exists($css_path) ? filemtime($css_path) : IF_VERSION;
-        wp_enqueue_style('mmi-admin-dashboard', IF_PLUGIN_URL . 'assets/css/admin-dashboard.css', [], $css_ver);
+        $css_path = INTEFLOW_PLUGIN_DIR . 'assets/css/admin-dashboard.css';
+        $css_ver  = file_exists($css_path) ? filemtime($css_path) : INTEFLOW_VERSION;
+        wp_enqueue_style('inteflow-admin-dashboard', INTEFLOW_PLUGIN_URL . 'assets/css/admin-dashboard.css', [], $css_ver);
 
-        $js_path = IF_PLUGIN_DIR . 'assets/js/admin-dashboard.js';
-        $js_ver  = file_exists($js_path) ? filemtime($js_path) : IF_VERSION;
-        wp_register_script('mmi-admin-dashboard', IF_PLUGIN_URL . 'assets/js/admin-dashboard.js', ['mmi-bootstrap'], $js_ver, true);
-        wp_enqueue_script('mmi-admin-dashboard');
+        $js_path = INTEFLOW_PLUGIN_DIR . 'assets/js/admin-dashboard.js';
+        $js_ver  = file_exists($js_path) ? filemtime($js_path) : INTEFLOW_VERSION;
+        wp_register_script('inteflow-admin-dashboard', INTEFLOW_PLUGIN_URL . 'assets/js/admin-dashboard.js', ['inteflow-bootstrap'], $js_ver, true);
+        wp_enqueue_script('inteflow-admin-dashboard');
     }
 }

@@ -5,10 +5,10 @@ if (!defined('ABSPATH')) { exit; }
  * Lightweight token helper used for privileged toggles (settings/live).
  * Token is derived from WP salts + user_id and not stored in DB.
  */
-final class MacroIntent_Settings {
+final class INTEFLOW_Settings_Legacy {
 
 	public static function expected_token(int $user_id) : string {
-		return substr(hash_hmac('sha256', 'if_settings_toggle:' . $user_id, wp_salt('auth')), 0, 12);
+		return substr(hash_hmac('sha256', 'inteflow_settings_toggle:' . $user_id, wp_salt('auth')), 0, 12);
 	}
 
 	public static function validate_token($token, int $user_id) : array {

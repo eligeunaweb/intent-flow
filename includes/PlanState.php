@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_PlanState {
+final class INTEFLOW_PlanState {
 
 	/**
 	 * Calcula una huella estable del estado del sitio relevante para aplicar planes.
@@ -26,10 +26,10 @@ final class IF_PlanState {
 	}
 
 	private static function safe_settings() : array {
-		if (!class_exists('IF_Settings')) {
+		if (!class_exists('INTEFLOW_Settings')) {
 			return [];
 		}
-		$s = IF_Settings::get();
+		$s = INTEFLOW_Settings::get();
 		return [
 			'enabled'   => !empty($s['enabled']),
 			'safe_mode' => !empty($s['safe_mode']),

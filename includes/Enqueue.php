@@ -3,8 +3,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-final class IF_Enqueue {
-    const HANDLE_BOOTSTRAP = 'mmi-bootstrap';
+final class INTEFLOW_Enqueue {
+    const HANDLE_BOOTSTRAP = 'inteflow-bootstrap';
 
     public static function init() : void {
         add_action('wp_enqueue_scripts', [__CLASS__, 'enqueue_frontend']);
@@ -27,21 +27,21 @@ final class IF_Enqueue {
     }
 
     private static function enqueue_common() : void {
-        $settings = IF_Settings::get();
+        $settings = INTEFLOW_Settings::get();
 
-        $bootstrap_path = IF_PLUGIN_DIR . 'assets/js/bootstrap.js';
-        $ver = file_exists($bootstrap_path) ? filemtime($bootstrap_path) : IF_VERSION;
+        $bootstrap_path = INTEFLOW_PLUGIN_DIR . 'assets/js/bootstrap.js';
+        $ver = file_exists($bootstrap_path) ? filemtime($bootstrap_path) : INTEFLOW_VERSION;
 
         wp_register_script(
             self::HANDLE_BOOTSTRAP,
-            IF_PLUGIN_URL . 'assets/js/bootstrap.js',
+            INTEFLOW_PLUGIN_URL . 'assets/js/bootstrap.js',
             [],
             $ver,
             true
         );
 
-        wp_localize_script(self::HANDLE_BOOTSTRAP, 'IF_BOOT', [
-            'version'   => IF_VERSION,
+        wp_localize_script(self::HANDLE_BOOTSTRAP, 'INTEFLOW_BOOT', [
+            'version'   => INTEFLOW_VERSION,
             'safe_mode' => !empty($settings['safe_mode']),
             'dry_run'   => !empty($settings['dry_run']),
             'enabled'   => !empty($settings['enabled']),

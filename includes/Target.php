@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) { exit; }
  * Unifies legacy scheduler/jobs and event rules into a canonical target:
  *   ['type' => 'intent'|'app', 'id' => 'server.audit.latest'|'app_xxx']
  */
-final class IF_Target {
+final class INTEFLOW_Target {
 
 	public static function normalize($mixed) : array {
 		$t = is_array($mixed) ? $mixed : [];

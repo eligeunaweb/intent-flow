@@ -291,6 +291,6 @@ final class IntentFlow_I18n {
     }
 
     public static function localize() : void {
-        wp_localize_script('mmi-admin-dashboard', 'intentFlowI18n', self::get_strings());
+        wp_localize_script('inteflow-admin-dashboard', 'intentFlowI18n', self::get_strings());
     }
 }

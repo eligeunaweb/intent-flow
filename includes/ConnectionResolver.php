@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_ConnectionResolver {
+final class INTEFLOW_ConnectionResolver {
 
     public static function resolve_payload(array $payload) : array {
 
@@ -9,12 +9,12 @@ final class IF_ConnectionResolver {
             return $payload;
         }
 
-        if (!class_exists('IF_Connections')) {
+        if (!class_exists('INTEFLOW_Connections')) {
             return $payload;
         }
 
         $conn_id = (string)$payload['connection'];
-        $conn = IF_Connections::get($conn_id);
+        $conn = INTEFLOW_Connections::get($conn_id);
 
         if (!$conn) {
             return $payload;

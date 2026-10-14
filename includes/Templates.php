@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Templates {
+final class INTEFLOW_Templates {
 
     public static function all() : array {
         return [

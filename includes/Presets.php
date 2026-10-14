@@ -1,8 +1,8 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Presets {
-    const OPTION_KEY = 'if_presets_v1';
+final class INTEFLOW_Presets {
+    const OPTION_KEY = 'inteflow_presets_v1';
     const MAX_ITEMS = 200;
 
     /** @return array<string, array> */

@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_AuditLog {
+final class INTEFLOW_AuditLog {
 
-	const OPTION_KEY = 'if_audit_log';
+	const OPTION_KEY = 'inteflow_audit_log';
 	const MAX_ENTRIES = 200;
 
 	public static function record(array $event) : void {

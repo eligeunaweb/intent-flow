@@ -1,20 +1,20 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Scheduler {
-    const OPTION_KEY = 'if_scheduler_jobs';
-    const LOCK_KEY   = 'if_scheduler_tick_lock_v1';
+final class INTEFLOW_Scheduler {
+    const OPTION_KEY = 'inteflow_scheduler_jobs';
+    const LOCK_KEY   = 'inteflow_scheduler_tick_lock_v1';
 
     public static function init() : void {
         add_filter('cron_schedules', [__CLASS__, 'cron_schedules']);
         add_action('inteflow_scheduler_tick', [__CLASS__, 'tick']);
         if (!wp_next_scheduled('inteflow_scheduler_tick')) {
-            wp_schedule_event(time()+60, 'if_minute', 'inteflow_scheduler_tick');
+            wp_schedule_event(time()+60, 'inteflow_minute', 'inteflow_scheduler_tick');
         }
     }
 
     public static function cron_schedules($schedules) {
-        $schedules['if_minute'] = [
+        $schedules['inteflow_minute'] = [
             'interval' => 60,
             'display' => 'Intent Flow every minute',
         ];
@@ -28,8 +28,8 @@ final class IF_Scheduler {
 		foreach ($jobs as $id => $job) {
 			if (!is_array($job)) continue;
 			if (!isset($job['target']) || !is_array($job['target'])) {
-				$jobs[$id]['target'] = class_exists('IF_Target')
-					? IF_Target::normalize($job)
+				$jobs[$id]['target'] = class_exists('INTEFLOW_Target')
+					? INTEFLOW_Target::normalize($job)
 					: [ 'type' => (string)($job['type'] ?? 'intent'), 'id' => (string)($job['intent'] ?? '') ];
 			}
 			// Keep legacy mirrors for UI
@@ -111,11 +111,11 @@ final class IF_Scheduler {
 				'app_id' => (string)($job['app_id'] ?? ''),
 			];
 		}
-		$target = class_exists('IF_Target') ? IF_Target::normalize($target) : (array)$target;
+		$target = class_exists('INTEFLOW_Target') ? INTEFLOW_Target::normalize($target) : (array)$target;
 		$input = (array)($job['input'] ?? $job['payload'] ?? []);
 
-		$out = class_exists('IF_Runner')
-			? IF_Runner::run_target(
+		$out = class_exists('INTEFLOW_Runner')
+			? INTEFLOW_Runner::run_target(
 				$target,
 				$input,
 				['job_id' => $job_id],
@@ -135,7 +135,7 @@ final class IF_Scheduler {
 		$duration_ms = (int) round((microtime(true) - $t0) * 1000);
 
         $run = [
-            'run_id'      => function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('if_run_', true),
+            'run_id'      => function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('inteflow_run_', true),
             'job_id'      => $job_id,
             'source'      => $source,
 			'target'      => $target,
@@ -148,8 +148,8 @@ final class IF_Scheduler {
             'result'      => $out,
         ];
 
-        if (class_exists('IF_SchedulerRuns')) {
-            IF_SchedulerRuns::append($job_id, $run);
+        if (class_exists('INTEFLOW_SchedulerRuns')) {
+            INTEFLOW_SchedulerRuns::append($job_id, $run);
         }
 
         return $run;

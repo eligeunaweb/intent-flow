@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Scopes {
+final class INTEFLOW_Scopes {
 
 	public static function defaults() : array {
 		// '*' = todo
@@ -15,7 +15,7 @@ final class IF_Scopes {
 	}
 
 	public static function get_map() : array {
-		$s = class_exists('IF_Settings') ? IF_Settings::get() : [];
+		$s = class_exists('INTEFLOW_Settings') ? INTEFLOW_Settings::get() : [];
 		$map = isset($s['scopes_by_role']) && is_array($s['scopes_by_role']) ? $s['scopes_by_role'] : [];
 		return $map ?: self::defaults();
 	}

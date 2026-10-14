@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) { exit; }
 /**
  * Integrations storage (connections) for external platforms.
  *
- * Option: if_integrations_v1 (autoload = false)
+ * Option: inteflow_integrations_v1 (autoload = false)
  *
  * Structure:
  *  [
@@ -22,8 +22,8 @@ if (!defined('ABSPATH')) { exit; }
  *    ],
  *  ]
  */
-final class IF_Integrations {
-	const OPTION_KEY = 'if_integrations_v1';
+final class INTEFLOW_Integrations {
+	const OPTION_KEY = 'inteflow_integrations_v1';
 
 	public static function ensure_defaults() : void {
 		$cur = get_option(self::OPTION_KEY, null);

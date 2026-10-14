@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-final class IF_Settings {
+final class INTEFLOW_Settings {
     const OPTION_KEY = 'inteflow_settings';
 
     public static function init() : void {
@@ -12,7 +12,7 @@ final class IF_Settings {
 
     public static function register() : void {
         register_setting(
-            'if_settings_group',
+            'inteflow_settings_group',
             self::OPTION_KEY,
             [
                 'type'              => 'array',

@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Allowlist {
+final class INTEFLOW_Allowlist {
 
 	/**
 	 * Lista de intents permitidos para batch/plan.

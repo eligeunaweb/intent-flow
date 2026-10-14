@@ -22,8 +22,8 @@ if (!defined('ABSPATH')) { exit; }
  *    'message'     => string,
  *  ]
  */
-final class IF_SchedulerRuns {
-    const OPTION_KEY = 'if_scheduler_runs_v1';
+final class INTEFLOW_SchedulerRuns {
+    const OPTION_KEY = 'inteflow_scheduler_runs_v1';
     const PER_JOB_LIMIT = 50;
 
     public static function all() : array {

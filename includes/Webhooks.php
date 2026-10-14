@@ -3,13 +3,13 @@ if (!defined('ABSPATH')) { exit; }
 
 /**
  * Webhooks (v1)
- * - Public REST endpoint: /wp-json/mmi/v1/webhook/{id}
+ * - Public REST endpoint: /wp-json/inteflow/v1/webhook/{id}
  * - HMAC verification via X-MMI-Signature header (sha256=<hex> or <hex>)
  * - Emits event: webhook.received
  */
-final class IF_Webhooks {
+final class INTEFLOW_Webhooks {
 	private static $did_init = false;
-	const OPTION_KEY = 'if_webhooks_v1';
+	const OPTION_KEY = 'inteflow_webhooks_v1';
 
 	public static function init() : void {
 		if (self::$did_init) return;
@@ -80,13 +80,13 @@ final class IF_Webhooks {
 
 	private static function with_url(array $item) : array {
 		$item['url'] = function_exists('get_rest_url')
-			? get_rest_url(null, 'mmi/v1/webhook/' . $item['id'])
+			? get_rest_url(null, 'inteflow/v1/webhook/' . $item['id'])
 			: rest_url('if/v1/webhook/' . $item['id']);
 		return $item;
 	}
 
 	public static function register_routes() : void {
-		register_rest_route('mmi/v1', '/webhook/(?P<id>[a-zA-Z0-9_\-]+)', [
+		register_rest_route('inteflow/v1', '/webhook/(?P<id>[a-zA-Z0-9_\-]+)', [
 			'methods'  => 'POST',
 			'callback' => [__CLASS__, 'handle_webhook'],
 			'permission_callback' => '__return_true',
@@ -147,13 +147,13 @@ final class IF_Webhooks {
 		];
 
 		// Emit event for rule engine.
-		if (class_exists('IF_Events')) {
-			IF_Events::emit('webhook.received', $payload, $meta);
+		if (class_exists('INTEFLOW_Events')) {
+			INTEFLOW_Events::emit('webhook.received', $payload, $meta);
 		}
 
 		// Optional: record the reception itself in execution log, even if no rules.
-		if (class_exists('IF_ExecutionLog')) {
-			IF_ExecutionLog::add([
+		if (class_exists('INTEFLOW_ExecutionLog')) {
+			INTEFLOW_ExecutionLog::add([
 				'source' => 'webhook.received',
 				'target' => ['type'=>'event','id'=>'webhook.received'],
 				'ok' => true,

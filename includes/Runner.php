@@ -7,15 +7,15 @@ if (!defined('ABSPATH')) { exit; }
  * Scheduler, AJAX UI, Events, Webhooks, and future "Apps" should all execute
  * intents through the same codepath, producing consistent ctx/meta and audit.
  */
-final class IF_Runner {
+final class INTEFLOW_Runner {
 
-	/** @var null|IF_IntentRegistry */
+	/** @var null|INTEFLOW_IntentRegistry */
 	private static $registry = null;
 
 	public static function registry() {
 		if (self::$registry) return self::$registry;
 
-		$index = IF_PLUGIN_DIR . 'includes/intents/index_0930.php';
+		$index = INTEFLOW_PLUGIN_DIR . 'includes/intents/index_0930.php';
 		if (!file_exists($index)) return null;
 
 		require_once $index;
@@ -23,7 +23,7 @@ final class IF_Runner {
 
 		self::$registry = if_build_intent_registry();
 		// Allow core+modules to register intents after base handlers.
-		do_action('if_register_intents', self::$registry);
+		do_action('inteflow_register_intents', self::$registry);
 
 		return self::$registry;
 	}
@@ -32,7 +32,7 @@ final class IF_Runner {
 	 * Build an execution context (ctx) from Settings + overrides.
 	 */
 	public static function ctx(array $overrides = []) : array {
-		$settings  = class_exists('IF_Settings') ? IF_Settings::get() : [];
+		$settings  = class_exists('INTEFLOW_Settings') ? INTEFLOW_Settings::get() : [];
 		$ctx = [
 			'dry_run'   => !empty($settings['dry_run']),
 			'safe_mode' => !empty($settings['safe_mode']),
@@ -64,7 +64,7 @@ final class IF_Runner {
 	 * @param array $options {
 	 *   @type string $source         Human source label for audit (e.g. 'ajax', 'scheduler.cron', 'events.wp').
 	 *   @type bool   $ensure_admin   If true, set an admin user if none (for cron/webhook contexts).
-	 *   @type bool   $audit          If true, record into IF_AuditLog.
+	 *   @type bool   $audit          If true, record into INTEFLOW_AuditLog.
 	 *   @type array  $ctx            Context overrides.
 	 * }
 	 */
@@ -91,7 +91,7 @@ final class IF_Runner {
 		}
 
 		// Re-check dry_run after execution (settings may change during execution)
-		$settings_after = class_exists('IF_Settings') ? IF_Settings::get() : [];
+		$settings_after = class_exists('INTEFLOW_Settings') ? INTEFLOW_Settings::get() : [];
 		$dry_run_after  = !empty($settings_after['dry_run']);
 
 		$duration_ms = (int) round((microtime(true) - $t0) * 1000);
@@ -101,7 +101,7 @@ final class IF_Runner {
 			'exec_source'  => $source,
 		]);
 
-		if ($audit && class_exists('IF_AuditLog')) {
+		if ($audit && class_exists('INTEFLOW_AuditLog')) {
 			$event = [
 				'intentId'     => $intent_id,
 				'ok'           => !empty($out['ok']),
@@ -111,16 +111,16 @@ final class IF_Runner {
 				'duration_ms'  => $duration_ms,
 				'source'       => $source,
 			];
-			if (class_exists('IF_Redact')) {
-				$event = IF_Redact::deep($event);
+			if (class_exists('INTEFLOW_Redact')) {
+				$event = INTEFLOW_Redact::deep($event);
 			}
-			IF_AuditLog::record($event);
+			INTEFLOW_AuditLog::record($event);
 		}
 
 		// Execution log entry (global)
-		if (class_exists('IF_ExecutionLog')) {
+		if (class_exists('INTEFLOW_ExecutionLog')) {
 			$entry = [
-				'exec_id'     => function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('if_exec_', true),
+				'exec_id'     => function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('inteflow_exec_', true),
 				'ts'          => time(),
 				'source'      => $source,
 				'target'      => ['type'=>'intent','id'=>$intent_id],
@@ -132,7 +132,7 @@ final class IF_Runner {
 				'error'       => (string)($out['error'] ?? ''),
 				'message'     => (string)($out['message'] ?? ''),
 			];
-			IF_ExecutionLog::add($entry);
+			INTEFLOW_ExecutionLog::add($entry);
 			$out_with_meta['exec_id'] = $entry['exec_id'];
 		}
 
@@ -145,7 +145,7 @@ final class IF_Runner {
 	 * @param array $target Canonical target format: ['type'=>'intent'|'app','id'=>'...']
 	 */
 	public static function run_target(array $target, array $input = [], array $meta = [], array $options = []) : array {
-		$target = class_exists('IF_Target') ? IF_Target::normalize($target) : $target;
+		$target = class_exists('INTEFLOW_Target') ? INTEFLOW_Target::normalize($target) : $target;
 
 		// Retry policy (optional):
 		// - retries: int (additional attempts)
@@ -232,8 +232,8 @@ final class IF_Runner {
 			$t0 = microtime(true);
 			$ctx = self::ctx($ctx_over);
 			$meta = array_merge([ 'source' => $source ], $meta);
-			$out = class_exists('IF_AppsRunner')
-				? IF_AppsRunner::run($id, $input, $meta, [
+			$out = class_exists('INTEFLOW_AppsRunner')
+				? INTEFLOW_AppsRunner::run($id, $input, $meta, [
 					'source'       => $source,
 					'ensure_admin' => false,
 					'audit'        => $audit,
@@ -241,7 +241,7 @@ final class IF_Runner {
 				])
 				: ['ok'=>false,'error'=>'apps_runner_missing'];
 
-			$settings_after = class_exists('IF_Settings') ? IF_Settings::get() : [];
+			$settings_after = class_exists('INTEFLOW_Settings') ? INTEFLOW_Settings::get() : [];
 			$dry_run_after  = !empty($settings_after['dry_run']);
 			$duration_ms = (int) round((microtime(true) - $t0) * 1000);
 			$out = is_array($out) ? $out : ['ok'=>false,'error'=>'invalid_result'];
@@ -251,9 +251,9 @@ final class IF_Runner {
 				'exec_source' => $source,
 			]);
 
-			if (class_exists('IF_ExecutionLog')) {
+			if (class_exists('INTEFLOW_ExecutionLog')) {
 				$entry = [
-					'exec_id'     => function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('if_exec_', true),
+					'exec_id'     => function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('inteflow_exec_', true),
 					'ts'          => time(),
 					'source'      => $source,
 					'target'      => ['type'=>'app','id'=>$id],
@@ -265,7 +265,7 @@ final class IF_Runner {
 					'error'       => (string)($out['error'] ?? ''),
 					'message'     => (string)($out['message'] ?? ''),
 				];
-				IF_ExecutionLog::add($entry);
+				INTEFLOW_ExecutionLog::add($entry);
 				$out_with_meta['exec_id'] = $entry['exec_id'];
 			}
 

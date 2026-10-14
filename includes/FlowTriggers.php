@@ -4,18 +4,18 @@ if (!defined('ABSPATH')) { exit; }
 /**
  * Flow triggers (v1):
  * - Run enabled flows whose `trigger` matches emitted event name.
- * - Executed from IF_Events::emit() after rule dispatching.
+ * - Executed from INTEFLOW_Events::emit() after rule dispatching.
  */
-final class IF_FlowTriggers {
+final class INTEFLOW_FlowTriggers {
 
     public static function on_event(string $eventName, array $payload, array $meta) : void {
 
         // Avoid recursion if a flow action emits the same event
         if (!empty($meta['__mmi_flow_trigger'])) return;
 
-        if (!class_exists('IF_FlowRegistry') || !class_exists('IF_FlowExecutor')) return;
+        if (!class_exists('INTEFLOW_FlowRegistry') || !class_exists('INTEFLOW_FlowExecutor')) return;
 
-        $flows = IF_FlowRegistry::all();
+        $flows = INTEFLOW_FlowRegistry::all();
         if (!is_array($flows) || empty($flows)) return;
 
         foreach ($flows as $flow_id => $flow) {
@@ -33,7 +33,7 @@ final class IF_FlowTriggers {
             ]);
 
             // Execution logging is handled by Runner when actions execute.
-            IF_FlowExecutor::run((string)$flow_id, $payload, $flow_meta, [
+            INTEFLOW_FlowExecutor::run((string)$flow_id, $payload, $flow_meta, [
                 'source' => 'events.flow',
                 'ensure_admin' => true,
                 'audit' => true,

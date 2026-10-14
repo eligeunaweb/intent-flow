@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_Connections {
+final class INTEFLOW_Connections {
 
-    const OPTION_KEY = 'if_connections_v1';
+    const OPTION_KEY = 'inteflow_connections_v1';
 
     public static function all() : array {
         $data = get_option(self::OPTION_KEY, []);
@@ -36,26 +36,26 @@ final class IF_Connections {
 
 
 // Ensure core connections intents are registered even if handler loader misses them.
-add_action('if_register_intents', function($reg){
+add_action('inteflow_register_intents', function($reg){
     if (!is_object($reg) || !method_exists($reg, 'register')) return;
 
     $reg->register('server.connections.list', function(array $payload, array $meta, array $ctx): array {
-        return ['ok'=>true,'items'=>IF_Connections::all()];
+        return ['ok'=>true,'items'=>INTEFLOW_Connections::all()];
     }, ['capability'=>'manage_options']);
 
     $reg->register('server.connections.save', function(array $payload, array $meta, array $ctx): array {
-        return IF_Connections::save($payload);
+        return INTEFLOW_Connections::save($payload);
     }, ['capability'=>'manage_options']);
 
     $reg->register('server.connections.delete', function(array $payload, array $meta, array $ctx): array {
         $id = isset($payload['id']) ? (string)$payload['id'] : '';
-        return IF_Connections::delete($id);
+        return INTEFLOW_Connections::delete($id);
     }, ['capability'=>'manage_options']);
 
     $reg->register('server.connections.test', function(array $payload, array $meta, array $ctx): array {
         $id = isset($payload['id']) ? (string)$payload['id'] : '';
         if ($id === '') return ['ok'=>false,'error'=>'missing_id'];
-        $c = IF_Connections::get($id);
+        $c = INTEFLOW_Connections::get($id);
         if (!$c) return ['ok'=>false,'error'=>'not_found'];
 
         $type = isset($c['type']) ? (string)$c['type'] : '';
