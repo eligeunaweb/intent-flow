@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.plan.run',
@@ -17,7 +17,7 @@ return function(IF_IntentRegistry $reg) : void {
 				return ['ok' => false, 'error' => 'too_many_steps', 'max' => $maxSteps];
 			}
 
-			$state_hash = class_exists('IF_PlanState') ? IF_PlanState::state_hash() : '';
+			$state_hash = class_exists('INTEFLOW_PlanState') ? INTEFLOW_PlanState::state_hash() : '';
 
 			// Planning siempre en dry-run
 			$planCtx = $ctx;
@@ -45,7 +45,7 @@ return function(IF_IntentRegistry $reg) : void {
 				}
 
 				// Allowlist
-				if (class_exists('IF_Allowlist') && !IF_Allowlist::is_allowed($id)) {
+				if (class_exists('INTEFLOW_Allowlist') && !INTEFLOW_Allowlist::is_allowed($id)) {
 					$results[] = [
 						'index'    => $i,
 						'intentId' => $id,
@@ -68,8 +68,8 @@ return function(IF_IntentRegistry $reg) : void {
 				}
 
 				// Guardar steps redactados
-				$pl_safe = class_exists('IF_Redact') ? IF_Redact::deep($pl) : $pl;
-				$mt_safe = class_exists('IF_Redact') ? IF_Redact::deep($mt) : $mt;
+				$pl_safe = class_exists('INTEFLOW_Redact') ? INTEFLOW_Redact::deep($pl) : $pl;
+				$mt_safe = class_exists('INTEFLOW_Redact') ? INTEFLOW_Redact::deep($mt) : $mt;
 
 				$normalizedSteps[] = [
 					'id'      => $id,
@@ -110,9 +110,9 @@ return function(IF_IntentRegistry $reg) : void {
 			$apply_allowed = (!$has_failed && !$has_blocked);
 
 			try {
-				$plan_id = 'if_plan_' . bin2hex(random_bytes(8));
+				$plan_id = 'inteflow_plan_' . bin2hex(random_bytes(8));
 			} catch (Throwable $e) {
-				$plan_id = 'if_plan_' . wp_generate_password(16, false, false);
+				$plan_id = 'inteflow_plan_' . wp_generate_password(16, false, false);
 			}
 
 			$ttl = 10 * MINUTE_IN_SECONDS;

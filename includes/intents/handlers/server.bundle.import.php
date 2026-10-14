@@ -10,7 +10,7 @@ return [
             return ['ok'=>false,'error'=>'invalid_bundle'];
         }
 
-        if (($bundle['schema'] ?? '') !== 'if_bundle_v1') {
+        if (($bundle['schema'] ?? '') !== 'inteflow_bundle_v1') {
             return ['ok'=>false,'error'=>'invalid_schema'];
         }
 
@@ -31,25 +31,32 @@ return [
 
         if (!empty($bundle['apps'])) {
             if ($mode === 'replace') {
-                update_option('if_apps', $bundle['apps'], false);
+                update_option('inteflow_apps', $bundle['apps'], false);
             } else {
-                $current = get_option('if_apps', []);
+                $current = get_option('inteflow_apps', []);
                 if (!is_array($current)) { $current = []; }
                 foreach ($bundle['apps'] as $app) {
                     if (!empty($app['id'])) {
                         $current[$app['id']] = $app;
                     }
                 }
-                update_option('if_apps', $current, false);
+                update_option('inteflow_apps', $current, false);
             }
         }
 
-        if (!empty($bundle['flows']) && class_exists('IF_Flows')) {
-            update_option(IF_Flows::OPTION_KEY, $bundle['flows'], false);
+        if (!empty($bundle['flows']) && class_exists('INTEFLOW_Flows')) {
+            update_option(INTEFLOW_Flows::OPTION_KEY, $bundle['flows'], false);
         }
 
-        if (!empty($bundle['presets']) && class_exists('IF_Presets')) {
-            update_option(IF_Presets::OPTION_KEY, $bundle['presets'], false);
+        if (!empty($bundle['presets']) && class_exists('INTEFLOW_Presets')) {
+            // Sanitize presets structure before saving
+$safe_presets = [];
+if (is_array($bundle['presets'])) {
+    foreach ($bundle['presets'] as $k => $v) {
+        $safe_presets[sanitize_key($k)] = is_array($v) ? $v : [];
+    }
+}
+update_option(INTEFLOW_Presets::OPTION_KEY, $safe_presets, false);
         }
 
         if (!empty($bundle['settings'])) {

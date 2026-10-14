@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) {
+return function(INTEFLOW_IntentRegistry $reg) {
 	$reg->register('server.actions.list', function(array $payload, array $meta, array $ctx) : array {
-		$actions = class_exists('IF_ActionRegistry') ? IF_ActionRegistry::get_all() : [];
+		$actions = class_exists('INTEFLOW_ActionRegistry') ? INTEFLOW_ActionRegistry::get_all() : [];
 		return [ 'ok' => true, 'items' => $actions ];
 	}, [
 		'capability' => 'manage_options',

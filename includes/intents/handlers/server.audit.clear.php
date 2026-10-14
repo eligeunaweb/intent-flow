@@ -1,14 +1,14 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.audit.clear',
 
 		function(array $payload, array $meta, array $ctx) : array {
 
-			IF_AuditLog::clear();
+			INTEFLOW_AuditLog::clear();
 
 			return [
 				'cleared' => true

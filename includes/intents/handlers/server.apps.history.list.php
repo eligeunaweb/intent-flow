@@ -2,22 +2,22 @@
 if (!defined('ABSPATH')) { exit; }
 
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.apps.history.list',
 		function(array $payload) : array {
-			$hist = if_apps_history_get();
+			$hist = inteflow_apps_history_get();
 
 			// Seed history on first run so the "Versiones" UI isn't empty after upgrading.
 			if (empty($hist)) {
-				$raw_apps = get_option('if_apps', []);
+				$raw_apps = get_option('inteflow_apps', []);
 				$arr_apps = is_array($raw_apps) ? $raw_apps : json_decode((string)$raw_apps, true);
 				$arr_apps = is_array($arr_apps) ? $arr_apps : [];
-				$valid = function_exists('if_apps_validate') ? if_apps_validate($arr_apps) : ['ok'=>false];
+				$valid = function_exists('inteflow_apps_validate') ? inteflow_apps_validate($arr_apps) : ['ok'=>false];
 				if (!empty($valid['ok']) && !empty($valid['apps'])) {
-					if_apps_history_push($valid['apps'], ['source' => 'seed', 'notes' => 'Seeded on first history list after upgrade']);
-					$hist = if_apps_history_get();
+					inteflow_apps_history_push($valid['apps'], ['source' => 'seed', 'notes' => 'Seeded on first history list after upgrade']);
+					$hist = inteflow_apps_history_get();
 				}
 			}
 

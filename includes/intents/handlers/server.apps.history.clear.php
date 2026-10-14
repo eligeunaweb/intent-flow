@@ -1,12 +1,12 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.apps.history.clear',
 		function(array $payload) : array {
-			update_option('if_apps_history', [], false);
+			update_option('inteflow_apps_history', [], false);
 			return ['ok'=>true,'cleared'=>true];
 		},
 		[

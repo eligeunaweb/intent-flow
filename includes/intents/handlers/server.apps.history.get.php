@@ -2,7 +2,7 @@
 if (!defined('ABSPATH')) { exit; }
 
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.apps.history.get',
@@ -10,14 +10,14 @@ return function(IF_IntentRegistry $reg) : void {
 			$id = isset($payload['id']) ? (string)$payload['id'] : '';
 			if ($id === '') return ['ok'=>false,'error'=>'missing_id'];
 
-			$hist = if_apps_history_get();
+			$hist = inteflow_apps_history_get();
 			foreach ($hist as $e) {
 				if (!is_array($e)) continue;
 				if (!isset($e['id']) || (string)$e['id'] !== $id) continue;
 
 				$apps = isset($e['apps']) && is_array($e['apps']) ? $e['apps'] : [];
 				// Validate snapshot for safety.
-				$check = if_apps_validate($apps);
+				$check = inteflow_apps_validate($apps);
 				if (empty($check['ok'])) return ['ok'=>false,'error'=>'snapshot_invalid'];
 
 				return [

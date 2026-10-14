@@ -1,14 +1,14 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
   $reg->register(
     'server.diagnostics.health',
     function(array $payload, array $meta, array $ctx) use ($reg) : array {
 
-      $settings = class_exists('IF_Settings') ? IF_Settings::get() : [];
-      $scopes   = class_exists('IF_Scopes') ? IF_Scopes::get_map() : [];
+      $settings = class_exists('INTEFLOW_Settings') ? INTEFLOW_Settings::get() : [];
+      $scopes   = class_exists('INTEFLOW_Scopes') ? INTEFLOW_Scopes::get_map() : [];
       $user_id  = (int)($ctx['user_id'] ?? get_current_user_id());
 
       $roles = [];
@@ -17,7 +17,7 @@ return function(IF_IntentRegistry $reg) : void {
         $roles = array_values($u->roles);
       }
 
-      $audit_ok = class_exists('IF_AuditLog');
+      $audit_ok = class_exists('INTEFLOW_AuditLog');
 
       $registry_count = 0;
       if (method_exists($reg, 'getPolicy')) {
@@ -34,7 +34,7 @@ return function(IF_IntentRegistry $reg) : void {
       }
 
       return [
-        'version' => defined('IF_VERSION') ? IF_VERSION : 'unknown',
+        'version' => defined('INTEFLOW_VERSION') ? INTEFLOW_VERSION : 'unknown',
 
         'user' => [
           'id'    => $user_id,
@@ -50,7 +50,7 @@ return function(IF_IntentRegistry $reg) : void {
           'registry' => $registry_count,
           'audit'    => $audit_ok,
           'scopes'   => !empty($scopes),
-          'safelist' => class_exists('IF_PluginSafelist'),
+          'safelist' => class_exists('INTEFLOW_PluginSafelist'),
         ],
 
         'scopes_by_role' => $scopes,

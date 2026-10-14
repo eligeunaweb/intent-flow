@@ -20,7 +20,7 @@ function if_apps_sanitize_array($v, $depth = 0) {
 	return null;
 }
 
-function if_apps_validate($apps) {
+function inteflow_apps_validate($apps) {
 	if (!is_array($apps)) return ['ok'=>false,'error'=>'apps_not_array'];
 	if (count($apps) > 50) return ['ok'=>false,'error'=>'apps_too_many'];
 	$clean = [];
@@ -70,16 +70,16 @@ function if_apps_validate($apps) {
 }
 
 
-if (!function_exists('if_apps_history_push')) {
-	function if_apps_history_get() : array {
-		$raw = get_option('if_apps_history', []);
+if (!function_exists('inteflow_apps_history_push')) {
+	function inteflow_apps_history_get() : array {
+		$raw = get_option('inteflow_apps_history', []);
 		$arr = is_array($raw) ? $raw : json_decode((string)$raw, true);
 		return is_array($arr) ? $arr : [];
 	}
 
-	function if_apps_history_push(array $apps_snapshot, array $meta = []) : array {
+	function inteflow_apps_history_push(array $apps_snapshot, array $meta = []) : array {
 		// Store newest-first, cap length for safety.
-		$hist = if_apps_history_get();
+		$hist = inteflow_apps_history_get();
 		$checksum = 'sha256:' . hash('sha256', wp_json_encode($apps_snapshot, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 		$entry = [
 			'id' => function_exists('wp_generate_uuid4') ? wp_generate_uuid4() : uniqid('if_', true),
@@ -103,42 +103,42 @@ if (!function_exists('if_apps_history_push')) {
 			$hist = array_slice($hist, 0, $max);
 		}
 
-		update_option('if_apps_history', $hist, false);
+		update_option('inteflow_apps_history', $hist, false);
 		return $entry;
 	}
 }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.apps.save',
 		function(array $payload) : array {
 			$apps = $payload['apps'] ?? null;
-			$check = if_apps_validate($apps);
+			$check = inteflow_apps_validate($apps);
 			if (empty($check['ok'])) return $check;
 
 			
 $clean = $check['apps'];
 
 // Snapshot previous value for history (best-effort).
-$before_raw = get_option('if_apps', []);
+$before_raw = get_option('inteflow_apps', []);
 $before_arr = is_array($before_raw) ? $before_raw : json_decode((string)$before_raw, true);
 $before_arr = is_array($before_arr) ? $before_arr : [];
-$before_check = if_apps_validate($before_arr);
+$before_check = inteflow_apps_validate($before_arr);
 $before = !empty($before_check['ok']) ? $before_check['apps'] : [];
 
-update_option('if_apps', $clean, false);
+update_option('inteflow_apps', $clean, false);
 
 // Verify persisted value is readable.
-$verify = get_option('if_apps', []);
+$verify = get_option('inteflow_apps', []);
 $verify = is_array($verify) ? $verify : json_decode((string)$verify, true);
 if (!is_array($verify)) {
-	update_option('if_apps', $before, false);
+	update_option('inteflow_apps', $before, false);
 	return ['ok'=>false,'error'=>'save_failed_rollback'];
 }
 
 // Push history only after success.
-if_apps_history_push($before, ['source' => 'save', 'notes' => 'Guardar Apps']);
+inteflow_apps_history_push($before, ['source' => 'save', 'notes' => 'Guardar Apps']);
 
 return ['ok'=>true,'count'=>count($clean)];
 

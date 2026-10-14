@@ -1,8 +1,8 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-class IF_FlowRegistry {
-    const OPTION_KEY = 'if_flows_v1';
+class INTEFLOW_FlowRegistry {
+    const OPTION_KEY = 'inteflow_flows_v1';
 
     public static function all() {
         $flows = get_option(self::OPTION_KEY, []);

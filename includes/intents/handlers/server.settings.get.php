@@ -1,11 +1,11 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 	$reg->register(
 		'server.settings.get',
 		function(array $payload, array $meta, array $ctx) : array {
-			$settings = IF_Settings::get();
+			$settings = INTEFLOW_Settings::get();
 
 			return [
 				'settings' => [

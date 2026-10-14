@@ -8,12 +8,12 @@ if (!defined('ABSPATH')) { exit; }
  *  - connection_id (zapier.hook) OR hook_url
  *  - data (array|object|string)
  */
-return function(IF_IntentRegistry $reg) {
+return function(INTEFLOW_IntentRegistry $reg) {
 	$reg->register('zapier.trigger', function(array $payload, array $meta, array $ctx) : array {
 		$hook = '';
 		$connection_id = isset($payload['connection_id']) ? sanitize_key((string)$payload['connection_id']) : '';
 		if ($connection_id) {
-			$conn = IF_Integrations::get($connection_id);
+			$conn = INTEFLOW_Integrations::get($connection_id);
 			if (!$conn || empty($conn['enabled']) || ($conn['type'] ?? '') !== 'zapier.hook') {
 				return [ 'ok' => false, 'error' => 'zapier_connection_not_found' ];
 			}

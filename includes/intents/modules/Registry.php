@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-final class IF_IntentRegistry {
+final class INTEFLOW_IntentRegistry {
 	/**
 	 * @var array<string, array{handler: callable, policy: array}>
 	 */
@@ -84,8 +84,8 @@ final class IF_IntentRegistry {
 		$scope = (string)($policy['scope'] ?? 'core');
 		$user_id = (int)($ctx['user_id'] ?? get_current_user_id());
 
-		if (class_exists('IF_Scopes') && $scope !== '' && $scope !== 'core') {
-			if (!IF_Scopes::is_allowed($user_id, $scope)) {
+		if (class_exists('INTEFLOW_Scopes') && $scope !== '' && $scope !== 'core') {
+			if (!INTEFLOW_Scopes::is_allowed($user_id, $scope)) {
 				return [
 					'ok'       => false,
 					'intentId' => $id,

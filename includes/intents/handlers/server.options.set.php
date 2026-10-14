@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
   // ✅ allowlist de opciones que permites tocar desde el motor
   $ALLOW = [

@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) { exit; }
 return [
 	'intent' => 'server.execution.list',
 	'run' => function(array $ctx) : array {
-		if (!class_exists('IF_ExecutionLog')) return ['ok'=>false,'error'=>'execution_log_missing'];
+		if (!class_exists('INTEFLOW_ExecutionLog')) return ['ok'=>false,'error'=>'execution_log_missing'];
 		$p = is_array($ctx['payload'] ?? null) ? $ctx['payload'] : [];
 		$filters = [
 			'limit'       => isset($p['limit']) ? (int)$p['limit'] : 50,
@@ -14,7 +14,7 @@ return [
 		];
 		return [
 			'ok' => true,
-			'entries' => IF_ExecutionLog::list($filters),
+			'entries' => INTEFLOW_ExecutionLog::list($filters),
 		];
 	},
 	'capability' => 'manage_options',

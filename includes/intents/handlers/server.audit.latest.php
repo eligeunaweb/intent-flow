@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.audit.latest',
@@ -13,7 +13,7 @@ return function(IF_IntentRegistry $reg) : void {
 				: 20;
 
 			return [
-				'events' => IF_AuditLog::latest($limit)
+				'events' => INTEFLOW_AuditLog::latest($limit)
 			];
 		},
 

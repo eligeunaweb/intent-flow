@@ -1,13 +1,13 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 	$reg->register(
 		'server.settings.set',
 		function(array $payload, array $meta, array $ctx) : array {
 			$user_id = (int)($ctx['user_id'] ?? get_current_user_id());
 
-			$expected = substr(hash_hmac('sha256', 'if_settings_toggle:' . $user_id, wp_salt('auth')), 0, 12);
+			$expected = substr(hash_hmac('sha256', 'inteflow_settings_toggle:' . $user_id, wp_salt('auth')), 0, 12);
 			$token    = isset($payload['token']) ? (string)$payload['token'] : '';
 
 			if ($token === '' || !hash_equals($expected, $token)) {
@@ -18,7 +18,7 @@ return function(IF_IntentRegistry $reg) : void {
 				];
 			}
 
-			$current = IF_Settings::get();
+			$current = INTEFLOW_Settings::get();
 
 			// Solo permitimos estas claves (sin UI)
 			$next = $current;
@@ -33,7 +33,7 @@ return function(IF_IntentRegistry $reg) : void {
 				$next['dry_run'] = !empty($payload['dry_run']);
 			}
 
-			update_option(IF_Settings::OPTION_KEY, $next, false);
+			update_option(INTEFLOW_Settings::OPTION_KEY, $next, false);
 
 			return [
 				'updated' => true,

@@ -1,13 +1,13 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
   $reg->register(
     'server.audit.export',
     function(array $payload, array $meta, array $ctx) : array {
 
-      if (!class_exists('IF_AuditLog')) {
+      if (!class_exists('INTEFLOW_AuditLog')) {
         return ['ok'=>false,'error'=>'audit_not_available'];
       }
 
@@ -15,7 +15,7 @@ return function(IF_IntentRegistry $reg) : void {
       if ($limit < 1) $limit = 1;
       if ($limit > 1000) $limit = 1000;
 
-      $events = IF_AuditLog::latest($limit);
+      $events = INTEFLOW_AuditLog::latest($limit);
 
       return [
         'count' => count($events),

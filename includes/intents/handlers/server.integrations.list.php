@@ -1,10 +1,10 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) {
+return function(INTEFLOW_IntentRegistry $reg) {
 	$reg->register('server.integrations.list', function(array $payload, array $meta, array $ctx) : array {
 		$type = isset($payload['type']) ? sanitize_text_field((string)$payload['type']) : '';
-		$items = IF_Integrations::list_items($type);
+		$items = INTEFLOW_Integrations::list_items($type);
 
 		// Basic redaction: keep URLs, but avoid showing query tokens.
 		foreach ($items as $i => $it) {

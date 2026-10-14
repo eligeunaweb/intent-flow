@@ -2,7 +2,7 @@
 if (!defined('ABSPATH')) { exit; }
 
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	// Ensure server.apps.save is registered even if this file is loaded before save handler.
 	$save_def = require __DIR__ . '/server.apps.save.php';
@@ -45,15 +45,15 @@ return function(IF_IntentRegistry $reg) : void {
 			}
 
 			// Validate / sanitize incoming apps.
-			$check = if_apps_validate($apps_in);
+			$check = inteflow_apps_validate($apps_in);
 			if (empty($check['ok'])) return $check;
 			$incoming = $check['apps'];
 
 			// Load current apps (best-effort), validate them too.
-			$current_raw = get_option('if_apps', []);
+			$current_raw = get_option('inteflow_apps', []);
 			$current_arr = is_array($current_raw) ? $current_raw : json_decode((string)$current_raw, true);
 			$current_arr = is_array($current_arr) ? $current_arr : [];
-			$current_check = if_apps_validate($current_arr);
+			$current_check = inteflow_apps_validate($current_arr);
 			$current = !empty($current_check['ok']) ? $current_check['apps'] : [];
 
 			// Build diff (by id).
@@ -105,19 +105,19 @@ return function(IF_IntentRegistry $reg) : void {
 					$out = $incoming;
 				}
 
-				update_option('if_apps', $out, false);
+				update_option('inteflow_apps', $out, false);
 
 				// Verify persisted value is readable.
-				$verify = get_option('if_apps', []);
+				$verify = get_option('inteflow_apps', []);
 				$verify = is_array($verify) ? $verify : json_decode((string)$verify, true);
 				if (!is_array($verify)) {
-					update_option('if_apps', $before, false);
+					update_option('inteflow_apps', $before, false);
 					return ['ok'=>false,'error'=>'import_failed_rollback'];
 				}
 
 				
 				// Push history only after success.
-				if_apps_history_push($before, ['source' => 'import', 'mode' => $mode, 'notes' => 'Importar Apps']);
+				inteflow_apps_history_push($before, ['source' => 'import', 'mode' => $mode, 'notes' => 'Importar Apps']);
 
 				return [
 					'ok'=>true,
@@ -127,7 +127,7 @@ return function(IF_IntentRegistry $reg) : void {
 					'schema'=>$schema_in,
 				];
 			} catch (Throwable $e) {
-				update_option('if_apps', $before, false);
+				update_option('inteflow_apps', $before, false);
 				return ['ok'=>false,'error'=>'import_exception_rollback','message'=>$e->getMessage()];
 			}
 		},

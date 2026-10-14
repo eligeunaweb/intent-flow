@@ -4,13 +4,13 @@ if (!defined('ABSPATH')) { exit; }
 return [
   'intent' => 'server.scheduler.update',
   'run' => function(array $ctx) : array {
-    if (!class_exists('IF_Scheduler')) return ['ok'=>false,'error'=>'scheduler_missing'];
+    if (!class_exists('INTEFLOW_Scheduler')) return ['ok'=>false,'error'=>'scheduler_missing'];
 
     $payload = is_array($ctx['payload'] ?? null) ? $ctx['payload'] : [];
     $id = sanitize_key($payload['id'] ?? '');
     if (!$id) return ['ok'=>false,'error'=>'missing_id'];
 
-    $jobs = IF_Scheduler::all();
+    $jobs = INTEFLOW_Scheduler::all();
     if (!isset($jobs[$id])) return ['ok'=>false,'error'=>'not_found'];
 
     $job = $jobs[$id];
@@ -26,7 +26,7 @@ return [
 		$job['app_id'] = array_key_exists('app_id', $payload) ? sanitize_text_field((string)$payload['app_id']) : (string)($job['app_id'] ?? '');
 		$job['target'] = [ 'type' => $job['type'], 'intent' => $job['intent'], 'app_id' => $job['app_id'] ];
 	}
-	$job['target'] = class_exists('IF_Target') ? IF_Target::normalize($job['target'] ?? []) : (array)($job['target'] ?? []);
+	$job['target'] = class_exists('INTEFLOW_Target') ? INTEFLOW_Target::normalize($job['target'] ?? []) : (array)($job['target'] ?? []);
 	$job['type']   = (string)($job['target']['type'] ?? 'intent');
 	$job['intent'] = $job['type'] === 'intent' ? (string)($job['target']['id'] ?? '') : '';
 	$job['app_id'] = $job['type'] === 'app' ? (string)($job['target']['id'] ?? '') : '';
@@ -58,7 +58,7 @@ return [
     }
 
     $jobs[$id] = $job;
-    IF_Scheduler::save($jobs);
+    INTEFLOW_Scheduler::save($jobs);
 
     return ['ok'=>true,'id'=>$id,'job'=>$job];
   },

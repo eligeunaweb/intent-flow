@@ -1,12 +1,12 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.apps.get',
 		function(array $payload) : array {
-			$raw = get_option('if_apps', null);
+			$raw = get_option('inteflow_apps', null);
 			if ($raw === null || $raw === '') {
 				return ['ok'=>true,'apps'=>[],'source'=>'default'];
 			}

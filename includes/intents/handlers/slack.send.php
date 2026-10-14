@@ -10,12 +10,12 @@ if (!defined('ABSPATH')) { exit; }
  *  - blocks (array) optional
  *  - attachments (array) optional
  */
-return function(IF_IntentRegistry $reg) {
+return function(INTEFLOW_IntentRegistry $reg) {
 	$reg->register('slack.send', function(array $payload, array $meta, array $ctx) : array {
 		$webhook = '';
 		$connection_id = isset($payload['connection_id']) ? sanitize_key((string)$payload['connection_id']) : '';
 		if ($connection_id) {
-			$conn = IF_Integrations::get($connection_id);
+			$conn = INTEFLOW_Integrations::get($connection_id);
 			if (!$conn || empty($conn['enabled']) || ($conn['type'] ?? '') !== 'slack.webhook') {
 				return [ 'ok' => false, 'error' => 'slack_connection_not_found' ];
 			}

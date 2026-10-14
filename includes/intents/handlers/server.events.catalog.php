@@ -1,6 +1,6 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
     $reg->register(
         'server.events.catalog',
         function(array $payload, array $meta, array $ctx) : array {

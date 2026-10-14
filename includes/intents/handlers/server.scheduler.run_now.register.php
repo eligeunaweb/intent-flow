@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
     $reg->register(
         'server.scheduler.run_now',
@@ -17,14 +17,14 @@ return function(IF_IntentRegistry $reg) : void {
 
             if ($intent === '') return ['ok'=>false,'error'=>'missing_intent'];
 
-            $index = IF_PLUGIN_DIR . 'includes/intents/index_0930.php';
+            $index = INTEFLOW_PLUGIN_DIR . 'includes/intents/index_0930.php';
             if (!file_exists($index)) return ['ok'=>false,'error'=>'registry_missing'];
             require_once $index;
             if (!function_exists('if_build_intent_registry')) return ['ok'=>false,'error'=>'registry_missing'];
 
             $reg2 = if_build_intent_registry();
 
-            $settings  = class_exists('IF_Settings') ? IF_Settings::get() : [];
+            $settings  = class_exists('INTEFLOW_Settings') ? INTEFLOW_Settings::get() : [];
             $safe_mode = !empty($settings['safe_mode']);
             $dry_run   = !empty($settings['dry_run']);
 

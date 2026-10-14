@@ -4,15 +4,15 @@ if (!defined('ABSPATH')) { exit; }
 return [
   'intent' => 'server.webhooks.list',
   'run' => function(array $ctx) : array {
-    if (!class_exists('IF_Webhooks')) return ['ok'=>false,'error'=>'webhooks_missing'];
-    $all = IF_Webhooks::get_all();
+    if (!class_exists('INTEFLOW_Webhooks')) return ['ok'=>false,'error'=>'webhooks_missing'];
+    $all = INTEFLOW_Webhooks::get_all();
     $out = [];
     foreach ($all as $id => $item) {
       if (!is_array($item)) continue;
       $out[] = array_merge($item, [
         'id' => $id,
         'url' => function_exists('get_rest_url')
-          ? get_rest_url(null, 'mmi/v1/webhook/' . $id)
+          ? get_rest_url(null, 'inteflow/v1/webhook/' . $id)
           : rest_url('if/v1/webhook/' . $id),
       ]);
     }

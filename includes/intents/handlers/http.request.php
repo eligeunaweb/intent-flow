@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) { exit; }
  *  - body (any)
  *  - timeout (seconds)
  */
-return function(IF_IntentRegistry $reg) {
+return function(INTEFLOW_IntentRegistry $reg) {
 	$reg->register('http.request', function(array $payload, array $meta, array $ctx) : array {
 		$method  = strtoupper(sanitize_text_field((string)($payload['method'] ?? 'POST')));
 		$timeout = isset($payload['timeout']) ? max(1, min(30, (int)$payload['timeout'])) : 15;
@@ -22,7 +22,7 @@ return function(IF_IntentRegistry $reg) {
 		$url = '';
 		$connection_id = isset($payload['connection_id']) ? sanitize_key((string)$payload['connection_id']) : '';
 		if ($connection_id) {
-			$conn = IF_Integrations::get($connection_id);
+			$conn = INTEFLOW_Integrations::get($connection_id);
 			if (!$conn || empty($conn['enabled']) || ($conn['type'] ?? '') !== 'http.endpoint') {
 				return [ 'ok' => false, 'error' => 'http_connection_not_found' ];
 			}

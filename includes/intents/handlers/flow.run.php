@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) { exit; }
 
 require_once __DIR__ . '/../../Flows.php';
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'flow.run',
@@ -16,7 +16,7 @@ return function(IF_IntentRegistry $reg) : void {
 			$flow = null;
 
 			if ($flowId !== '') {
-				$flow = IF_Flows::get($flowId);
+				$flow = INTEFLOW_Flows::get($flowId);
 				if (!$flow) return ['ok'=>false,'error'=>'not_found'];
 			} else if (isset($payload['flow']) && is_array($payload['flow'])) {
 				$flow = $payload['flow'];

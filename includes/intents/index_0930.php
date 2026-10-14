@@ -7,12 +7,12 @@ require_once __DIR__ . '/modules/Registry.php';
  * Build the server intent registry.
  *
  * Handler files can return either:
- *  1) callable(IF_IntentRegistry $reg): void  (legacy / preferred)
+ *  1) callable(INTEFLOW_IntentRegistry $reg): void  (legacy / preferred)
  *  2) array{intent:string, run:callable, ...policy} (declarative)
  */
-function if_build_intent_registry() : IF_IntentRegistry {
+function if_build_intent_registry() : INTEFLOW_IntentRegistry {
 
-	$registry = new IF_IntentRegistry();
+	$registry = new INTEFLOW_IntentRegistry();
 
 	// Preload apps helpers + ensure server.apps.save is registered early.
 	$apps_save_file = __DIR__ . '/handlers/server.apps.save.php';
@@ -41,7 +41,7 @@ function if_build_intent_registry() : IF_IntentRegistry {
 
 				$def = require_once $file;
 
-				// 1) Callable style: function(IF_IntentRegistry $reg): void
+				// 1) Callable style: function(INTEFLOW_IntentRegistry $reg): void
 				if (is_callable($def)) {
 					$def($registry);
 					continue;

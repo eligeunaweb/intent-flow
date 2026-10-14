@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
     $reg->register(
         'server.options.update',
         function(array $payload, array $meta, array $ctx) : array {
@@ -12,11 +12,7 @@ return function(IF_IntentRegistry $reg) : void {
                 return [ 'ok' => false, 'error' => 'missing_key' ];
             }
 
-            // Security: only allow options with the inteflow_ prefix
-            if (strpos($key, 'inteflow_') !== 0) {
-                return [ 'ok' => false, 'error' => 'option_must_use_inteflow_prefix', 'message' => 'Only options prefixed with inteflow_ can be updated via automation.' ];
-            }
-
+            if (strpos($key, 'inteflow_') !== 0) { return ['ok'=>false,'error'=>'option_must_use_inteflow_prefix']; }
             update_option($key, $value, false);
 
             return [

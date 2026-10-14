@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
     $reg->register('server.templates.list',
         function(array $payload, array $meta, array $ctx) : array {
-            return ['ok'=>true,'items'=>IF_Templates::all()];
+            return ['ok'=>true,'items'=>INTEFLOW_Templates::all()];
         },
         ['capability'=>'manage_options']
     );

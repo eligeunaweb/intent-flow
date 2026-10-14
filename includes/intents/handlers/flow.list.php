@@ -3,12 +3,12 @@ if (!defined('ABSPATH')) { exit; }
 
 require_once __DIR__ . '/../../Flows.php';
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'flow.list',
 		function(array $payload) : array {
-			$all = IF_Flows::all();
+			$all = INTEFLOW_Flows::all();
 			$items = [];
 			foreach ($all as $id => $f) {
 				if (!is_array($f)) continue;

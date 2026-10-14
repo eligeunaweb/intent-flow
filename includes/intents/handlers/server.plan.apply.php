@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.plan.apply',
@@ -26,7 +26,7 @@ return function(IF_IntentRegistry $reg) : void {
 
 			// Token challenge (6.7)
 			$user_id = (int)($ctx['user_id'] ?? get_current_user_id());
-			$expected = substr(hash_hmac('sha256', 'if_settings_toggle:' . $user_id, wp_salt('auth')), 0, 12);
+			$expected = substr(hash_hmac('sha256', 'inteflow_settings_toggle:' . $user_id, wp_salt('auth')), 0, 12);
 			$token = isset($payload['token']) ? (string)$payload['token'] : '';
 
 			if ($token === '' || !hash_equals($expected, $token)) {
@@ -83,7 +83,7 @@ return function(IF_IntentRegistry $reg) : void {
 			}
 
 			// State hash check (7.3)
-			$current_hash = class_exists('IF_PlanState') ? IF_PlanState::state_hash() : '';
+			$current_hash = class_exists('INTEFLOW_PlanState') ? INTEFLOW_PlanState::state_hash() : '';
 			$plan_hash = isset($plan['state_hash']) ? (string)$plan['state_hash'] : '';
 
 			if ($plan_hash !== '' && $current_hash !== '' && !hash_equals($plan_hash, $current_hash)) {
@@ -123,7 +123,7 @@ return function(IF_IntentRegistry $reg) : void {
 				}
 
 				// Allowlist
-				if (class_exists('IF_Allowlist') && !IF_Allowlist::is_allowed($id)) {
+				if (class_exists('INTEFLOW_Allowlist') && !INTEFLOW_Allowlist::is_allowed($id)) {
 					$results[] = [
 						'index'    => $i,
 						'intentId' => $id,

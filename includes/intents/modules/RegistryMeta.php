@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) { exit; }
  * Metadata (human-friendly) for intents.
  * This is intentionally lightweight: title/description/examples/risk.
  */
-final class IF_IntentMeta {
+final class INTEFLOW_IntentMeta {
 	/**
 	 * @return array<string, array{title:string, description:string, risk:string, example_payload:array, tags?:array}>
 	 */

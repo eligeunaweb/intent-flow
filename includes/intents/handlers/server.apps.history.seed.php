@@ -2,20 +2,20 @@
 if (!defined('ABSPATH')) { exit; }
 
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.apps.history.seed',
 		function(array $payload) : array {
-			$raw_apps = get_option('if_apps', []);
+			$raw_apps = get_option('inteflow_apps', []);
 			$arr_apps = is_array($raw_apps) ? $raw_apps : json_decode((string)$raw_apps, true);
 			$arr_apps = is_array($arr_apps) ? $arr_apps : [];
-			$check = function_exists('if_apps_validate') ? if_apps_validate($arr_apps) : ['ok'=>false,'error'=>'validate_missing'];
+			$check = function_exists('inteflow_apps_validate') ? inteflow_apps_validate($arr_apps) : ['ok'=>false,'error'=>'validate_missing'];
 			if (empty($check['ok'])) return $check;
 
 			$apps = $check['apps'] ?? [];
 			// Allow seeding even if empty, so the UI has a baseline.
-			$entry = if_apps_history_push(is_array($apps) ? $apps : [], [
+			$entry = inteflow_apps_history_push(is_array($apps) ? $apps : [], [
 				'source' => 'seed',
 				'notes'  => 'Seeded from current apps',
 			]);

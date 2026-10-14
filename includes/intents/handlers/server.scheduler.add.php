@@ -4,18 +4,18 @@ if (!defined('ABSPATH')) { exit; }
 return [
   'intent' => 'server.scheduler.add',
   'run' => function(array $ctx) : array {
-    if (!class_exists('IF_Scheduler')) return ['ok'=>false,'error'=>'scheduler_missing'];
+    if (!class_exists('INTEFLOW_Scheduler')) return ['ok'=>false,'error'=>'scheduler_missing'];
 
     $payload = is_array($ctx['payload'] ?? null) ? $ctx['payload'] : [];
 
-    $jobs = IF_Scheduler::all();
+    $jobs = INTEFLOW_Scheduler::all();
 
     $id = sanitize_key($payload['id'] ?? uniqid('job_'));
     $interval = max(60, intval($payload['interval'] ?? 3600));
 
 	// Target v1 (preferred)
 	$target = $payload['target'] ?? $payload;
-	$target = class_exists('IF_Target') ? IF_Target::normalize($target) : (array)$target;
+	$target = class_exists('INTEFLOW_Target') ? INTEFLOW_Target::normalize($target) : (array)$target;
 	$type   = (string)($target['type'] ?? 'intent');
 	$tid    = (string)($target['id'] ?? '');
 	if ($tid === '') return ['ok'=>false,'error'=>'missing_target'];
@@ -38,7 +38,7 @@ return [
       'last_result' => null,
     ];
 
-    IF_Scheduler::save($jobs);
+    INTEFLOW_Scheduler::save($jobs);
 
     return ['ok'=>true,'id'=>$id,'job'=>$jobs[$id]];
   },

@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) { exit; }
 
 require_once __DIR__ . '/../modules/RegistryMeta.php';
 
-return function(IF_IntentRegistry $reg) : void {
+return function(INTEFLOW_IntentRegistry $reg) : void {
 
 	$reg->register(
 		'server.registry.describe',
@@ -21,7 +21,7 @@ return function(IF_IntentRegistry $reg) : void {
 				$entry = $map[$id] ?? null;
 				$policy = is_array($entry) && isset($entry['policy']) && is_array($entry['policy']) ? $entry['policy'] : [];
 
-				$meta = IF_IntentMeta::get($id);
+				$meta = INTEFLOW_IntentMeta::get($id);
 				$title = $meta['title'] ?? $id;
 				$desc  = $meta['description'] ?? '';
 				$risk  = $meta['risk'] ?? (!empty($policy['unsafe']) ? 'unsafe' : 'safe');
