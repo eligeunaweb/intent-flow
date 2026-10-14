@@ -12,7 +12,18 @@ return function(INTEFLOW_IntentRegistry $reg) : void {
                 return [ 'ok' => false, 'error' => 'missing_key' ];
             }
 
-            if (strpos($key, 'inteflow_') !== 0) { return ['ok'=>false,'error'=>'option_must_use_inteflow_prefix']; }
+            // Strict allowlist — only these specific options can be updated via automation
+            $allowed_options = [
+                'inteflow_settings',
+                'inteflow_enabled_modules',
+                'inteflow_apps_v1',
+                'inteflow_presets_v1',
+                'inteflow_event_rules_v1',
+                'inteflow_flows_v1',
+            ];
+            if (!in_array($key, $allowed_options, true)) {
+                return ['ok'=>false,'error'=>'option_not_allowed','allowed'=>$allowed_options];
+            }
             update_option($key, $value, false);
 
             return [
